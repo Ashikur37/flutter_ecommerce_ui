@@ -1,43 +1,39 @@
-import 'package:commerce/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:commerce/constants.dart';
+import 'package:commerce/size_config.dart';
+
+import 'complete_profile_form.dart';
 
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Column(
-        children: [
-          Text(
-            "Complete profile",
-            style: headingStyle,
+    return SafeArea(
+      child: SizedBox(
+        width: double.infinity,
+        child: Padding(
+          padding:
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: SizeConfig.screenHeight * 0.03),
+                Text("Complete Profile", style: headingStyle),
+                Text(
+                  "Complete your details or continue  \nwith social media",
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: SizeConfig.screenHeight * 0.06),
+                CompleteProfileForm(),
+                SizedBox(height: getProportionateScreenHeight(30)),
+                Text(
+                  "By continuing your confirm that you agree \nwith our Term and Condition",
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.caption,
+                ),
+              ],
+            ),
           ),
-          Text(
-            "Complete your profile or continue \n with social media",
-            textAlign: TextAlign.center,
-          ),
-          CompleteProfileForm(),
-        ],
-      ),
-    );
-  }
-}
-
-class CompleteProfileForm extends StatefulWidget {
-  @override
-  _CompleteProfileFormState createState() => _CompleteProfileFormState();
-}
-
-class _CompleteProfileFormState extends State<CompleteProfileForm> {
-  final _formKey = GlobalKey<FormState>();
-  String firstName, lastName, phoneNumber, addreess;
-  final List<String> errors = [];
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [],
+        ),
       ),
     );
   }

@@ -1,7 +1,10 @@
-import 'search_field.dart';
 import 'package:flutter/material.dart';
+import 'package:commerce/screens/cart/cart_screen.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'icon_button_with_counter.dart';
+import '../../../size_config.dart';
+import 'icon_btn_with_counter.dart';
+import 'search_field.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({
@@ -11,23 +14,22 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 20,
-      ),
+      padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(3)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          IconButton(
+              icon: Icon(Icons.menu),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              }),
           SearchField(),
-          IconButtonWithCounter(
-            svgPicture: "assets/icons/Cart Icon.svg",
-            numberCount: "0",
-            press: () {},
-          ),
-          IconButtonWithCounter(
-            svgPicture: "assets/icons/Bell.svg",
-            numberCount: "3",
-            press: () {},
-          )
+          IconButton(
+              icon: FaIcon(
+                FontAwesomeIcons.facebookMessenger,
+                color: Colors.blue,
+              ),
+              onPressed: () {})
         ],
       ),
     );

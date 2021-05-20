@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../size_config.dart';
+
 class FormError extends StatelessWidget {
   const FormError({
     Key key,
-    this.errors,
+    @required this.errors,
   }) : super(key: key);
-  final List errors;
+
+  final List<String> errors;
+
   @override
   Widget build(BuildContext context) {
     return Column(
-        children: List.generate(
-      errors.length,
-      (index) => formErrorText(
-        error: errors[index],
-      ),
-    ));
+      children: List.generate(
+          errors.length, (index) => formErrorText(error: errors[index])),
+    );
   }
 
   Row formErrorText({String error}) {
@@ -23,13 +24,13 @@ class FormError extends StatelessWidget {
       children: [
         SvgPicture.asset(
           "assets/icons/Error.svg",
-          height: 14,
-          width: 14,
+          height: getProportionateScreenWidth(14),
+          width: getProportionateScreenWidth(14),
         ),
         SizedBox(
-          width: 10,
+          width: getProportionateScreenWidth(10),
         ),
-        Text(error)
+        Text(error),
       ],
     );
   }

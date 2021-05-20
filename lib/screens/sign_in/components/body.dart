@@ -1,14 +1,8 @@
-import 'package:commerce/components/No_account_text.dart';
-import 'package:commerce/components/custom_suffix_icon.dart';
-import 'package:commerce/components/default_button.dart';
-import 'package:commerce/components/form_error.dart';
-import 'package:commerce/components/social_card.dart';
-import 'package:commerce/constants.dart';
-import 'package:commerce/screens/forget_password/forget_password_screen.dart';
-import 'package:commerce/screens/sign_in/components/sign_in_form.dart';
-import 'package:commerce/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:commerce/components/no_account_text.dart';
+import 'package:commerce/components/socal_card.dart';
+import '../../../size_config.dart';
+import 'sign_form.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -17,17 +11,14 @@ class Body extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20.0,
-          ),
+          padding:
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(
-                  height: SizeConfig.screenHeight * 0.04,
-                ),
+                SizedBox(height: SizeConfig.screenHeight * 0.04),
                 Text(
-                  "Welcome back",
+                  "Welcome Back",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: getProportionateScreenWidth(28),
@@ -35,37 +26,31 @@ class Body extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Sign in with your email and password \nor continue with social media",
+                  "Sign in with your email and password  \nor continue with social media",
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(
-                  height: SizeConfig.screenHeight * 0.08,
-                ),
-                SigninForm(),
-                SizedBox(
-                  height: SizeConfig.screenHeight * 0.08,
-                ),
+                SizedBox(height: SizeConfig.screenHeight * 0.08),
+                SignForm(),
+                SizedBox(height: SizeConfig.screenHeight * 0.08),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SocialCard(
+                    SocalCard(
                       icon: "assets/icons/google-icon.svg",
-                      press: () {
-                        print("me");
-                      },
+                      press: () {},
                     ),
-                    SocialCard(
+                    SocalCard(
                       icon: "assets/icons/facebook-2.svg",
+                      press: () {},
                     ),
-                    SocialCard(
+                    SocalCard(
                       icon: "assets/icons/twitter.svg",
+                      press: () {},
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: getProportionateScreenHeight(20),
-                ),
-                NoAccountText()
+                SizedBox(height: getProportionateScreenHeight(20)),
+                NoAccountText(),
               ],
             ),
           ),

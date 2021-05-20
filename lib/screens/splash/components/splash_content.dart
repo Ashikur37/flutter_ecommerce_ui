@@ -10,13 +10,14 @@ class SplashContent extends StatelessWidget {
     this.image,
   }) : super(key: key);
   final String text, image;
+
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      children: <Widget>[
         Spacer(),
         Text(
-          "Easymert",
+          "EASYMERT",
           style: TextStyle(
             fontSize: getProportionateScreenWidth(36),
             color: kPrimaryColor,
@@ -27,9 +28,7 @@ class SplashContent extends StatelessWidget {
           text,
           textAlign: TextAlign.center,
         ),
-        Spacer(
-          flex: 2,
-        ),
+        Spacer(flex: 2),
         Image.asset(
           image,
           height: getProportionateScreenHeight(265),

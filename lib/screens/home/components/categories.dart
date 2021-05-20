@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../size_config.dart';
 
@@ -7,25 +7,26 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> categories = [
-      {"icon": "assets/icons/Flash Icon.svg", "text": "Flash Deal"},
-      {"icon": "assets/icons/Bill Icon.svg", "text": "Bill"},
-      {"icon": "assets/icons/Game Icon.svg", "text": "Game"},
-      {"icon": "assets/icons/Gift Icon.svg", "text": "Daily Gift"},
-      {"icon": "assets/icons/Discover.svg", "text": "More"},
+      {"icon": "assets/icons/Flash Icon.svg", "text": "Bouchers"},
+      {"icon": "assets/icons/Bill Icon.svg", "text": "Categories"},
+      {"icon": "assets/icons/Game Icon.svg", "text": "Order"},
+      {"icon": "assets/icons/Gift Icon.svg", "text": "Easymert Offer"},
+      {"icon": "assets/icons/Discover.svg", "text": "Shop"},
     ];
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ...List.generate(
+    return Padding(
+      padding: EdgeInsets.all(getProportionateScreenWidth(20)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: List.generate(
           categories.length,
           (index) => CategoryCard(
             icon: categories[index]["icon"],
             text: categories[index]["text"],
             press: () {},
           ),
-        )
-      ],
+        ),
+      ),
     );
   }
 }
@@ -33,12 +34,14 @@ class Categories extends StatelessWidget {
 class CategoryCard extends StatelessWidget {
   const CategoryCard({
     Key key,
-    this.icon,
-    this.text,
-    this.press,
+    @required this.icon,
+    @required this.text,
+    @required this.press,
   }) : super(key: key);
+
   final String icon, text;
   final GestureTapCallback press;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -47,26 +50,18 @@ class CategoryCard extends StatelessWidget {
         width: getProportionateScreenWidth(55),
         child: Column(
           children: [
-            AspectRatio(
-              aspectRatio: 1,
-              child: Container(
-                padding: EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: Color(0xFFFFECDF),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: SvgPicture.asset(
-                  icon,
-                ),
+            Container(
+              padding: EdgeInsets.all(getProportionateScreenWidth(15)),
+              height: getProportionateScreenWidth(55),
+              width: getProportionateScreenWidth(55),
+              decoration: BoxDecoration(
+                color: Color(0xFFFFECDF),
+                borderRadius: BorderRadius.circular(10),
               ),
+              child: SvgPicture.asset(icon),
             ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              text,
-              textAlign: TextAlign.center,
-            ),
+            SizedBox(height: 5),
+            Text(text, textAlign: TextAlign.center)
           ],
         ),
       ),
