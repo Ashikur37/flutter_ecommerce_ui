@@ -3,11 +3,6 @@ import 'package:flutter/material.dart';
 class ShopScreen extends StatelessWidget {
   List data = [
     {
-      "name": "Rose Gold",
-      "image":
-          "https://dhamakashopping.com/_next/static/images/logoToggle-f152ea78662039c5bea630103f06ebfa.png"
-    },
-    {
       "name": "Electra BD",
       "image":
           "https://dhamaka-production.s3-ap-southeast-1.amazonaws.com/images/7ae32776e8199c3a2035c552a4538dd8_1602997184070.jpeg"

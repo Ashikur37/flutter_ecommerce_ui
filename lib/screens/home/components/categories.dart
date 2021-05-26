@@ -1,3 +1,4 @@
+import 'package:commerce/screens/categories/categories_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -7,11 +8,31 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> categories = [
-      {"icon": "assets/icons/Flash Icon.svg", "text": "Bouchers"},
-      {"icon": "assets/icons/Bill Icon.svg", "text": "Categories"},
-      {"icon": "assets/icons/Game Icon.svg", "text": "Order"},
-      {"icon": "assets/icons/Gift Icon.svg", "text": "Easymert Offer"},
-      {"icon": "assets/icons/Discover.svg", "text": "Shop"},
+      {
+        "icon": "assets/icons/Flash Icon.svg",
+        "text": "Bouchers",
+        "route": CategoriesScreen.routeName
+      },
+      {
+        "icon": "assets/icons/Bill Icon.svg",
+        "text": "Categories",
+        "route": CategoriesScreen.routeName
+      },
+      {
+        "icon": "assets/icons/Game Icon.svg",
+        "text": "Order",
+        "route": CategoriesScreen.routeName
+      },
+      {
+        "icon": "assets/icons/Gift Icon.svg",
+        "text": "Easymert Offer",
+        "route": CategoriesScreen.routeName
+      },
+      {
+        "icon": "assets/icons/Discover.svg",
+        "text": "Shop",
+        "route": CategoriesScreen.routeName
+      },
     ];
     return Padding(
       padding: EdgeInsets.all(getProportionateScreenWidth(20)),
@@ -23,7 +44,9 @@ class Categories extends StatelessWidget {
           (index) => CategoryCard(
             icon: categories[index]["icon"],
             text: categories[index]["text"],
-            press: () {},
+            press: () {
+              Navigator.pushNamed(context, categories[index]["route"]);
+            },
           ),
         ),
       ),

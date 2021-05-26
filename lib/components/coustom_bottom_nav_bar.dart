@@ -19,7 +19,7 @@ class CustomBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final Color inActiveIconColor = Color(0xFFB6B6B6);
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 14),
+      padding: EdgeInsets.only(top: 10),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -39,35 +39,72 @@ class CustomBottomNavBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              IconButton(
-                icon: SvgPicture.asset(
-                  "assets/icons/Shop Icon.svg",
-                  color: MenuState.home == selectedMenu
-                      ? kPrimaryColor
-                      : inActiveIconColor,
-                ),
-                onPressed: () =>
-                    Navigator.pushNamed(context, HomeScreen.routeName),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: SvgPicture.asset(
+                      "assets/icons/Shop Icon.svg",
+                      color: MenuState.home == selectedMenu
+                          ? kPrimaryColor
+                          : inActiveIconColor,
+                    ),
+                    onPressed: () =>
+                        Navigator.pushNamed(context, HomeScreen.routeName),
+                  ),
+                  Text("Home")
+                ],
               ),
-              IconButton(
-                icon: SvgPicture.asset("assets/icons/Heart Icon.svg"),
-                onPressed: () {},
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: SvgPicture.asset("assets/icons/Heart Icon.svg"),
+                    onPressed: () {},
+                  ),
+                  Text("wishlist")
+                ],
               ),
-              IconButton(
-                icon: SvgPicture.asset("assets/icons/Cart Icon.svg"),
-                onPressed: () {
-                  Navigator.pushNamed(context, CartScreen.routeName);
-                },
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: SvgPicture.asset(
+                      "assets/icons/campaign.svg",
+                      color: Colors.grey,
+                    ),
+                    onPressed: () {},
+                  ),
+                  Text("Campaign")
+                ],
               ),
-              IconButton(
-                icon: SvgPicture.asset(
-                  "assets/icons/User Icon.svg",
-                  color: MenuState.profile == selectedMenu
-                      ? kPrimaryColor
-                      : inActiveIconColor,
-                ),
-                onPressed: () =>
-                    Navigator.pushNamed(context, ProfileScreen.routeName),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: SvgPicture.asset("assets/icons/Cart Icon.svg"),
+                    onPressed: () {
+                      Navigator.pushNamed(context, CartScreen.routeName);
+                    },
+                  ),
+                  Text("Cart")
+                ],
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: SvgPicture.asset(
+                      "assets/icons/User Icon.svg",
+                      color: MenuState.profile == selectedMenu
+                          ? kPrimaryColor
+                          : inActiveIconColor,
+                    ),
+                    onPressed: () =>
+                        Navigator.pushNamed(context, ProfileScreen.routeName),
+                  ),
+                  Text("Account")
+                ],
               ),
             ],
           )),
