@@ -1,35 +1,28 @@
+import 'package:commerce/helper/http.dart';
+import 'package:commerce/screens/shop/shops_screen.dart';
+import 'package:commerce/utilities/const.dart';
 import 'package:flutter/material.dart';
 
-class ShopScreen extends StatelessWidget {
-  List data = [
-    {
-      "name": "Electra BD",
-      "image":
-          "https://dhamaka-production.s3-ap-southeast-1.amazonaws.com/images/7ae32776e8199c3a2035c552a4538dd8_1602997184070.jpeg"
-    },
-    {
-      "name": "Redience",
-      "image":
-          "https://dhamaka-production.s3-ap-southeast-1.amazonaws.com/images/f596361f321cb5e2145bc1ebd93e46e4_1603172452612.jpeg"
-    },
-    {
-      "name": "Eshop Plus",
-      "image":
-          "https://dhamaka-production.s3-ap-southeast-1.amazonaws.com/images/9f96fc6ecc2fa28a7d4d6e3e4d586d34_1603688350255.png"
-    },
-    {
-      "name": "Zara",
-      "image":
-          "https://dhamaka-production.s3-ap-southeast-1.amazonaws.com/images/0e39fbbac46e5d26dd06cd2a058c7ee5_1602921740310.png"
-    },
-    {
-      "name": "Digitron",
-      "image":
-          "https://dhamaka-production.s3-ap-southeast-1.amazonaws.com/images/f329cbd9967c9ea1099364e1e7877a31_1610007879663.png"
-    }
-  ];
+class ShopScreen extends StatefulWidget {
   @override
+  _ShopScreenState createState() => _ShopScreenState();
+}
+
+class _ShopScreenState extends State<ShopScreen> {
+  var shops;
+  var isLoading = true;
+  void loadShop() async {
+    if (isLoading) {
+      var data = await getHttp("$baseUrl$shopURL");
+      setState(() {
+        shops = data["data"];
+        isLoading = false;
+      });
+    }
+  }
+
   Widget build(BuildContext context) {
+    loadShop();
     return Container(
       height: 310,
       child: Column(
@@ -54,23 +47,32 @@ class ShopScreen extends StatelessWidget {
             height: 20,
           ),
           Expanded(
-            child: GridView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: data.length,
-              gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-              itemBuilder: (BuildContext context, int index) {
-                return Column(
-                  children: [
-                    Image.network(
-                      data[index]['image'],
-                      width: 100,
-                    ),
-                    Text(data[index]['name']),
-                  ],
-                );
-              },
-            ),
+            child: isLoading
+                ? CircularProgressIndicator()
+                : GridView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: shops.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3),
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () => Navigator.pushNamed(
+                          context,
+                          ShopsScreen.routeName,
+                          arguments: ShopsArguments(shops[index]),
+                        ),
+                        child: Column(
+                          children: [
+                            Image.network(
+                              shops[index]['image'],
+                              width: 100,
+                            ),
+                            Text(shops[index]['name']),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
           ),
         ],
       ),

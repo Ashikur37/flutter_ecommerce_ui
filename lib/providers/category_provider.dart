@@ -5,6 +5,9 @@ class CategoryProvider extends ChangeNotifier {
   bool isLoaded = false;
   String activeCategory = "";
   List _products = [];
+  bool isLoadingProduct = false;
+  bool loadingMore = false;
+  String nextPageURL = "";
 
   List get getCategories {
     return _categories;
@@ -21,6 +24,11 @@ class CategoryProvider extends ChangeNotifier {
 
   void setProducts(list) {
     _products = list;
+    notifyListeners();
+  }
+
+  void mergeProducts(list) {
+    _products.addAll(list);
     notifyListeners();
   }
 }

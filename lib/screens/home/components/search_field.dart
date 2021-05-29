@@ -1,3 +1,4 @@
+import 'package:commerce/screens/search/search_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants.dart';
@@ -17,7 +18,10 @@ class SearchField extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
       ),
       child: TextField(
-        onChanged: (value) => print(value),
+        autofocus: false,
+        onTap: () => Navigator.pushNamed(context, SearchScreen.routeName),
+        onChanged: (value) =>
+            Navigator.pushNamed(context, SearchScreen.routeName),
         decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(
                 horizontal: getProportionateScreenWidth(20),

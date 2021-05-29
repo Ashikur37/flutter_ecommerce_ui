@@ -1,3 +1,4 @@
+import 'package:commerce/screens/campaign/campaign_screen.dart';
 import 'package:commerce/screens/cart/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -73,7 +74,9 @@ class CustomBottomNavBar extends StatelessWidget {
                       "assets/icons/campaign.svg",
                       color: Colors.grey,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, CampaignScreen.routeName);
+                    },
                   ),
                   Text("Campaign")
                 ],

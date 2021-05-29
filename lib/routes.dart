@@ -1,4 +1,8 @@
+import 'package:commerce/screens/campaign/campaign_product_screen.dart';
+import 'package:commerce/screens/campaign/campaign_screen.dart';
 import 'package:commerce/screens/categories/categories_screen.dart';
+import 'package:commerce/screens/search/search_screen.dart';
+import 'package:commerce/screens/shop/shops_screen.dart';
 import 'package:flutter/widgets.dart';
 import 'package:commerce/screens/cart/cart_screen.dart';
 import 'package:commerce/screens/complete_profile/complete_profile_screen.dart';
@@ -28,4 +32,8 @@ final Map<String, WidgetBuilder> routes = {
   CartScreen.routeName: (context) => CartScreen(),
   ProfileScreen.routeName: (context) => ProfileScreen(),
   CategoriesScreen.routeName: (context) => CategoriesScreen(),
+  ShopsScreen.routeName: (context) => ShopsScreen(),
+  CampaignScreen.routeName: (context) => CampaignScreen(),
+  CampaignProductScreen.routeName: (context) => CampaignProductScreen(),
+  SearchScreen.routeName: (context) => SearchScreen(),
 };

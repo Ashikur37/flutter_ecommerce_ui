@@ -1,16 +1,29 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:commerce/helper/http.dart';
+import 'package:commerce/utilities/const.dart';
 import 'package:flutter/material.dart';
 
-class Carousel extends StatelessWidget {
-  final List<String> imgList = [
-    'https://dhamaka-production.s3-ap-southeast-1.amazonaws.com/images/0cef7071d9993f0dbe218e00a950ca83_1620309987100.jpeg',
-    'https://dhamaka-production.s3-ap-southeast-1.amazonaws.com/images/fdc9908ba3fdfdb88367fc2f1d827054_1619932090157.jpeg',
-    'https://dhamaka-production.s3-ap-southeast-1.amazonaws.com/images/525f950996c7932bfe06982d27a3c658_1620022288413.jpeg',
-    'https://dhamaka-production.s3-ap-southeast-1.amazonaws.com/images/fe215b1e0252033ceeaf7464adfd1289_1620022104066.jpeg'
-  ];
+class Carousel extends StatefulWidget {
+  @override
+  _CarouselState createState() => _CarouselState();
+}
+
+class _CarouselState extends State<Carousel> {
+  List imgList = [];
+  bool isLoading = true;
+  void loadCarousel() async {
+    if (isLoading) {
+      var data = await getHttp("$baseUrl$slideUrl");
+      setState(() {
+        imgList = data["data"];
+        isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    loadCarousel();
     return CarouselSlider(
       options: CarouselOptions(
         autoPlay: true,
@@ -24,7 +37,7 @@ class Carousel extends StatelessWidget {
                 },
                 child: Container(
                   child: Center(
-                      child: Image.network(item,
+                      child: Image.network(item["image"],
                           fit: BoxFit.cover, width: double.infinity)),
                 ),
               ))
