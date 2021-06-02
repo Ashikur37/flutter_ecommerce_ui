@@ -18,7 +18,6 @@ class SearchField extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
       ),
       child: TextField(
-        readOnly: true,
         autofocus: false,
         onTap: () => Navigator.pushNamed(context, SearchScreen.routeName),
         onChanged: (value) =>

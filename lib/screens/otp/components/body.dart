@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'package:commerce/constants.dart';
 import 'package:commerce/size_config.dart';
 
 import 'otp_form.dart';
 
 class Body extends StatelessWidget {
+  final String phone;
+  Body({
+    this.phone,
+  });
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -20,7 +25,7 @@ class Body extends StatelessWidget {
                 "OTP Verification",
                 style: headingStyle,
               ),
-              Text("We sent your code to +1 898 860 ***"),
+              Text("We sent your code to $phone"),
               buildTimer(),
               OtpForm(),
               SizedBox(height: SizeConfig.screenHeight * 0.1),

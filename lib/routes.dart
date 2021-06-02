@@ -3,6 +3,7 @@ import 'package:commerce/screens/campaign/campaign_screen.dart';
 import 'package:commerce/screens/categories/categories_screen.dart';
 import 'package:commerce/screens/search/search_screen.dart';
 import 'package:commerce/screens/shop/shops_screen.dart';
+import 'package:commerce/screens/sub_category/sub_category_screen.dart';
 import 'package:flutter/widgets.dart';
 import 'package:commerce/screens/cart/cart_screen.dart';
 import 'package:commerce/screens/complete_profile/complete_profile_screen.dart';
@@ -36,4 +37,5 @@ final Map<String, WidgetBuilder> routes = {
   CampaignScreen.routeName: (context) => CampaignScreen(),
   CampaignProductScreen.routeName: (context) => CampaignProductScreen(),
   SearchScreen.routeName: (context) => SearchScreen(),
+  SubCategoryScreen.routeName: (context) => SubCategoryScreen(),
 };
