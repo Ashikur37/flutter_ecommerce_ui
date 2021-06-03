@@ -1,3 +1,6 @@
+import 'package:commerce/helper/auth.dart';
+import 'package:commerce/helper/http.dart';
+import 'package:commerce/utilities/const.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/components/custom_surfix_icon.dart';
 import 'package:commerce/components/form_error.dart';
@@ -72,12 +75,21 @@ class _SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
             text: "Continue",
-            press: () {
+            press: () async {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 // if all are valid then go to success screen
-                KeyboardUtil.hideKeyboard(context);
-                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                //signin
+                var data = await postHttp("$baseUrl$loginUrl",
+                    {"email": email, "password": password});
+                print(data);
+                if (data["success"]) {
+                  await localLogin(data["user"], data["token"]);
+                } else {
+                  print("Invalid mobile number or password");
+                }
+                // KeyboardUtil.hideKeyboard(context);
+                // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }
             },
           ),
