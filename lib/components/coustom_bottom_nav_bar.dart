@@ -106,6 +106,7 @@ class CustomBottomNavBar extends StatelessWidget {
                       ),
                       onPressed: () async {
                         var isLoggedIn = await localIsLoggedIn();
+                        print(isLoggedIn);
                         if (isLoggedIn) {
                           Navigator.pushNamed(context, ProfileScreen.routeName);
                         } else {

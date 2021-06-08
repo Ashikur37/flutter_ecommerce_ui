@@ -6,6 +6,9 @@ import 'package:commerce/size_config.dart';
 import 'sign_up_form.dart';
 
 class Body extends StatelessWidget {
+  final Function showMessage;
+
+  const Body({Key key, this.showMessage}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -24,7 +27,7 @@ class Body extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
-                SignUpForm(),
+                SignUpForm(showMessage: showMessage),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
 
                 Text(

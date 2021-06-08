@@ -1,10 +1,19 @@
+import 'package:commerce/helper/http.dart';
+import 'package:commerce/utilities/const.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/size_config.dart';
 
 import 'components/body.dart';
 
-class OtpScreen extends StatelessWidget {
+class OtpScreen extends StatefulWidget {
   static String routeName = "/otp";
+
+  @override
+  _OtpScreenState createState() => _OtpScreenState();
+}
+
+class _OtpScreenState extends State<OtpScreen> {
+  int attempt = 0;
   @override
   Widget build(BuildContext context) {
     final OtpArguments agrs = ModalRoute.of(context).settings.arguments;
@@ -16,6 +25,27 @@ class OtpScreen extends StatelessWidget {
       ),
       body: Body(
         phone: agrs.phone,
+        submitReg: (var otp) async {
+          setState(() {
+            attempt++;
+          });
+          if (attempt < 5) {
+            var data = await postHttp("$baseUrl$registerUrl", {
+              "firstname": agrs.firstName,
+              "lastname": agrs.lastName,
+              "mobile": agrs.phone,
+              "password": agrs.password,
+              "otp": otp
+            });
+            if (!data["success"]) {
+              final snackBar = SnackBar(
+                content: Text(data["message"]),
+                backgroundColor: Colors.redAccent,
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            }
+          }
+        },
       ),
     );
   }

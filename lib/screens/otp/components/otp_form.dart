@@ -5,8 +5,10 @@ import 'package:commerce/size_config.dart';
 import '../../../constants.dart';
 
 class OtpForm extends StatefulWidget {
+  final Function submitReg;
   const OtpForm({
     Key key,
+    this.submitReg,
   }) : super(key: key);
 
   @override
@@ -17,6 +19,10 @@ class _OtpFormState extends State<OtpForm> {
   FocusNode pin2FocusNode;
   FocusNode pin3FocusNode;
   FocusNode pin4FocusNode;
+  var number1 = "";
+  var number2 = "";
+  var number3 = "";
+  var number4 = "";
 
   @override
   void initState() {
@@ -59,6 +65,9 @@ class _OtpFormState extends State<OtpForm> {
                   textAlign: TextAlign.center,
                   decoration: otpInputDecoration,
                   onChanged: (value) {
+                    setState(() {
+                      number1 = value;
+                    });
                     nextField(value, pin2FocusNode);
                   },
                 ),
@@ -72,7 +81,12 @@ class _OtpFormState extends State<OtpForm> {
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
                   decoration: otpInputDecoration,
-                  onChanged: (value) => nextField(value, pin3FocusNode),
+                  onChanged: (value) {
+                    setState(() {
+                      number2 = value;
+                    });
+                    nextField(value, pin3FocusNode);
+                  },
                 ),
               ),
               SizedBox(
@@ -84,7 +98,12 @@ class _OtpFormState extends State<OtpForm> {
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
                   decoration: otpInputDecoration,
-                  onChanged: (value) => nextField(value, pin4FocusNode),
+                  onChanged: (value) {
+                    nextField(value, pin4FocusNode);
+                    setState(() {
+                      number3 = value;
+                    });
+                  },
                 ),
               ),
               SizedBox(
@@ -98,7 +117,11 @@ class _OtpFormState extends State<OtpForm> {
                   decoration: otpInputDecoration,
                   onChanged: (value) {
                     if (value.length == 1) {
+                      setState(() {
+                        number4 = value;
+                      });
                       pin4FocusNode.unfocus();
+
                       // Then you need to check is the code is correct or not
                     }
                   },
@@ -109,7 +132,9 @@ class _OtpFormState extends State<OtpForm> {
           SizedBox(height: SizeConfig.screenHeight * 0.15),
           DefaultButton(
             text: "Continue",
-            press: () {},
+            press: () {
+              widget.submitReg("$number1$number2$number3$number4");
+            },
           )
         ],
       ),

@@ -7,8 +7,10 @@ import 'otp_form.dart';
 
 class Body extends StatelessWidget {
   final String phone;
+  final Function submitReg;
   Body({
     this.phone,
+    this.submitReg,
   });
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class Body extends StatelessWidget {
               ),
               Text("We sent your code to $phone"),
               buildTimer(),
-              OtpForm(),
+              OtpForm(submitReg: submitReg),
               SizedBox(height: SizeConfig.screenHeight * 0.1),
               GestureDetector(
                 onTap: () {

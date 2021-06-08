@@ -28,5 +28,8 @@ localGetToken() async {
 
 localIsLoggedIn() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
+  if (prefs.getBool('loggedin') == null) {
+    return false;
+  }
   return prefs.getBool('loggedin');
 }

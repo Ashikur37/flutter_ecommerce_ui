@@ -11,6 +11,9 @@ import '../../../constants.dart';
 import '../../../size_config.dart';
 
 class SignUpForm extends StatefulWidget {
+  final Function showMessage;
+
+  const SignUpForm({Key key, this.showMessage}) : super(key: key);
   @override
   _SignUpFormState createState() => _SignUpFormState();
 }
@@ -62,6 +65,10 @@ class _SignUpFormState extends State<SignUpForm> {
                 //send otp
                 var res =
                     await postHttp("$baseUrl$registerOtp", {'mobile': email});
+                if (!res["success"]) {
+                  widget.showMessage(res["message"], Colors.redAccent);
+                  return;
+                }
                 Navigator.pushNamed(
                   context,
                   OtpScreen.routeName,
