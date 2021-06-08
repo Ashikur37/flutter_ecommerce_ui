@@ -5,6 +5,9 @@ import '../../../size_config.dart';
 import 'sign_form.dart';
 
 class Body extends StatelessWidget {
+  final Function showMessage;
+
+  const Body({Key key, this.showMessage}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -30,7 +33,7 @@ class Body extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
-                SignForm(),
+                SignForm(showMessage: showMessage),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

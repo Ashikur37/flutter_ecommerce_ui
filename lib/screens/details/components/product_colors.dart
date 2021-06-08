@@ -1,44 +1,44 @@
-import 'package:flutter/material.dart';
 import 'package:commerce/components/rounded_icon_btn.dart';
-import 'package:commerce/models/Product.dart';
+import 'package:commerce/screens/details/components/color_dots.dart';
+import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
-class ColorDots extends StatelessWidget {
-  const ColorDots({
-    Key key,
-    @required this.colors,
-  }) : super(key: key);
-
+class ProductColors extends StatefulWidget {
   final colors;
+  const ProductColors({this.colors, this.setColor});
+  final Function setColor;
+  @override
+  _ProductColorsState createState() => _ProductColorsState();
+}
 
+class _ProductColorsState extends State<ProductColors> {
+  int selectedColor = -1;
   @override
   Widget build(BuildContext context) {
-    // Now this is fixed and only for demo
-    int selectedColor = 3;
+    selectColor(index) {
+      setState(() {
+        selectedColor = index;
+      });
+      widget.setColor(index);
+    }
+
     return Padding(
       padding:
           EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
       child: Row(
         children: [
           ...List.generate(
-            colors.length,
-            (index) => ColorDot(
-              color: colors[index],
-              isSelected: index == selectedColor,
+            widget.colors.length,
+            (index) => GestureDetector(
+              onTap: () => selectColor(index),
+              child: ColorDot(
+                color: HexColor(widget.colors[index]["color"]["code"]),
+                isSelected: index == selectedColor,
+              ),
             ),
-          ),
-          Spacer(),
-          RoundedIconBtn(
-            icon: Icons.remove,
-            press: () {},
-          ),
-          SizedBox(width: getProportionateScreenWidth(20)),
-          RoundedIconBtn(
-            icon: Icons.add,
-            showShadow: true,
-            press: () {},
           ),
         ],
       ),
@@ -50,7 +50,7 @@ class ColorDot extends StatelessWidget {
   const ColorDot({
     Key key,
     @required this.color,
-    this.isSelected = false,
+    this.isSelected,
   }) : super(key: key);
 
   final color;

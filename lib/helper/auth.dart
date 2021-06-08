@@ -1,9 +1,11 @@
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 localLogin(user, token) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setBool('loggedin', true);
-  prefs.setString('user', user);
+  prefs.setString('user', jsonEncode(user));
   prefs.setString('token', token);
 }
 
@@ -16,7 +18,7 @@ localLogout() async {
 
 localGetUser() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  return prefs.getString('user');
+  return jsonDecode(prefs.getString('user'));
 }
 
 localGetToken() async {

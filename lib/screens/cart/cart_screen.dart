@@ -1,18 +1,34 @@
 import 'package:commerce/models/Cart.dart';
 import 'package:commerce/test.dart';
+import 'package:commerce/utilities/my_cart.dart';
 import 'package:flutter/material.dart';
 
 import 'components/body.dart';
 import 'components/check_out_card.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
   static String routeName = "/cart";
+
+  @override
+  _CartScreenState createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  var myCart = MyCart();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context),
-      body: Body(),
-      bottomNavigationBar: CheckoutCard(),
+      body: Body(
+        updateCart: () {
+          setState(() {
+            myCart = MyCart();
+          });
+        },
+      ),
+      bottomNavigationBar: CheckoutCard(
+        myCart: myCart,
+      ),
     );
   }
 
@@ -25,7 +41,7 @@ class CartScreen extends StatelessWidget {
             style: TextStyle(color: Colors.black),
           ),
           Text(
-            "${demoCarts.length} items",
+            "${myCart.getItems().length} items",
             style: Theme.of(context).textTheme.caption,
           ),
         ],

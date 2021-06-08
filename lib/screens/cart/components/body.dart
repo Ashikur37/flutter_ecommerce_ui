@@ -1,3 +1,4 @@
+import 'package:commerce/utilities/my_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:commerce/models/Cart.dart';
@@ -6,22 +7,27 @@ import '../../../size_config.dart';
 import 'cart_card.dart';
 
 class Body extends StatefulWidget {
+  final Function updateCart;
+
+  const Body({Key key, this.updateCart}) : super(key: key);
   @override
   _BodyState createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
+  var myCart = MyCart();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding:
           EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
       child: ListView.builder(
-        itemCount: demoCarts.length,
+        itemCount: myCart.getItems().length,
         itemBuilder: (context, index) => Padding(
           padding: EdgeInsets.symmetric(vertical: 10),
           child: Dismissible(
-            key: Key(demoCarts[index].product.id.toString()),
+            key: Key(index.toString()),
             direction: DismissDirection.endToStart,
             onDismissed: (direction) {
               setState(() {
@@ -41,7 +47,23 @@ class _BodyState extends State<Body> {
                 ],
               ),
             ),
-            child: CartCard(cart: demoCarts[index]),
+            child: CartCard(
+              cart: myCart.cart.cartItem[index],
+              increment: () {
+                myCart.cart.incrementItemToCart(index);
+                setState(() {
+                  myCart = MyCart();
+                });
+                widget.updateCart();
+              },
+              decrement: () {
+                myCart.cart.decrementItemFromCart(index);
+                setState(() {
+                  myCart = MyCart();
+                });
+                widget.updateCart();
+              },
+            ),
           ),
         ),
       ),

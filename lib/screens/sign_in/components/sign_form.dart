@@ -1,5 +1,6 @@
 import 'package:commerce/helper/auth.dart';
 import 'package:commerce/helper/http.dart';
+import 'package:commerce/screens/profile/profile_screen.dart';
 import 'package:commerce/utilities/const.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/components/custom_surfix_icon.dart';
@@ -13,6 +14,9 @@ import '../../../constants.dart';
 import '../../../size_config.dart';
 
 class SignForm extends StatefulWidget {
+  final Function showMessage;
+
+  const SignForm({Key key, this.showMessage}) : super(key: key);
   @override
   _SignFormState createState() => _SignFormState();
 }
@@ -85,8 +89,10 @@ class _SignFormState extends State<SignForm> {
                 print(data);
                 if (data["success"]) {
                   await localLogin(data["user"], data["token"]);
+                  widget.showMessage("Signin success", Colors.greenAccent);
+                  Navigator.popAndPushNamed(context, ProfileScreen.routeName);
                 } else {
-                  print("Invalid mobile number or password");
+                  widget.showMessage("Signin failed", Colors.redAccent);
                 }
                 // KeyboardUtil.hideKeyboard(context);
                 // Navigator.pushNamed(context, LoginSuccessScreen.routeName);

@@ -13,6 +13,7 @@ class ProductDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var price = product['price'];
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(
@@ -49,6 +50,23 @@ class ProductDetail extends StatelessWidget {
             maxLines: 2,
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "৳$price",
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                product['price'] == product['old_price']
+                    ? ""
+                    : product['old_price'],
+                style: TextStyle(decoration: TextDecoration.lineThrough),
+              ),
+            ],
+          )
         ],
       ),
     );

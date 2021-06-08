@@ -25,8 +25,6 @@ class Body extends StatelessWidget {
             ShopScreen(),
             SpecialOffers(),
             SizedBox(height: getProportionateScreenWidth(30)),
-            PopularProducts(),
-            SizedBox(height: getProportionateScreenWidth(30)),
           ],
         ),
       ),

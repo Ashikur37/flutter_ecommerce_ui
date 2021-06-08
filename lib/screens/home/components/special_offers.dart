@@ -1,47 +1,113 @@
+import 'package:commerce/components/load_more.dart';
+import 'package:commerce/components/product_detail.dart';
+import 'package:commerce/helper/http.dart';
+import 'package:commerce/utilities/const.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../size_config.dart';
 import 'section_title.dart';
 
-class SpecialOffers extends StatelessWidget {
+class SpecialOffers extends StatefulWidget {
   const SpecialOffers({
     Key key,
   }) : super(key: key);
 
   @override
+  _SpecialOffersState createState() => _SpecialOffersState();
+}
+
+class _SpecialOffersState extends State<SpecialOffers> {
+  bool isLoading = true;
+  List products = [];
+  bool isLoadingMore = false;
+  String nextPageURL;
+  void loadProducts() async {
+    if (isLoading) {
+      var prod = await getHttp("$baseUrl$topProducts");
+      setState(() {
+        products = prod["data"];
+        isLoading = false;
+        nextPageURL = prod["links"]["next"];
+      });
+    }
+  }
+
+  _loadMoreProducts() async {
+    setState(() {
+      isLoadingMore = true;
+    });
+    var prods = await getHttp(nextPageURL);
+    setState(() {
+      products.addAll(prods["data"]);
+      nextPageURL = prods["links"]["next"];
+      isLoadingMore = false;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-          child: SectionTitle(
-            title: "Special for you",
-            press: () {},
+    ScrollController _scrollController = ScrollController();
+    loadProducts();
+    _scrollController.addListener(() {
+      if (_scrollController.hasClients) {
+        if (_scrollController.offset ==
+            _scrollController.position.maxScrollExtent) {
+          _loadMoreProducts();
+          print("load more");
+        }
+      }
+    });
+    return Container(
+      height: 510,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Top Products",
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        SizedBox(height: getProportionateScreenWidth(20)),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              SpecialOfferCard(
-                image: "assets/images/Image Banner 2.png",
-                category: "Smartphone",
-                numOfBrands: 18,
-                press: () {},
-              ),
-              SpecialOfferCard(
-                image: "assets/images/Image Banner 3.png",
-                category: "Fashion",
-                numOfBrands: 24,
-                press: () {},
-              ),
-              SizedBox(width: getProportionateScreenWidth(20)),
-            ],
+          SizedBox(
+            height: 20,
           ),
-        ),
-      ],
+          Expanded(
+            child: isLoading
+                ? Shimmer.fromColors(
+                    baseColor: Colors.red,
+                    highlightColor: Colors.yellow,
+                    child: Text(
+                      'Easymert',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 40.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )
+                : GridView.builder(
+                    shrinkWrap: false,
+                    itemCount: products.length,
+                    controller: _scrollController,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2),
+                    itemBuilder: (BuildContext context, int index) {
+                      return ProductDetail(product: products[index]);
+                    },
+                  ),
+          ),
+          isLoadingMore ? LoadMore() : SizedBox()
+        ],
+      ),
     );
   }
 }
