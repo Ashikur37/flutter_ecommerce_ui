@@ -1,4 +1,5 @@
 import 'package:commerce/components/checkout_navigation.dart';
+import 'package:commerce/screens/address/address_list.dart';
 import 'package:commerce/screens/address/create_address.dart';
 import 'package:flutter/material.dart';
 
@@ -29,22 +30,32 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       ),
       body: Column(
         children: [
-          Container(
-            child: Column(
-              children: [
-                Text("Select address"),
-              ],
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, AddressList.routeName);
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              child: Column(
+                children: [
+                  Text(
+                    "Select address",
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
+                  ),
+                ],
+              ),
             ),
           )
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        backgroundColor: Colors.redAccent,
-        onPressed: () {
-          Navigator.pushNamed(context, CreateAddress.routeName);
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(Icons.add),
+      //   backgroundColor: Colors.redAccent,
+      //   onPressed: () {
+      //     Navigator.pushNamed(context, CreateAddress.routeName);
+      //   },
+      // ),
       bottomNavigationBar: CheckoutNavigation(placeOrder: placeOrder),
     );
   }

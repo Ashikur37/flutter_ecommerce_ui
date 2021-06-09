@@ -100,7 +100,8 @@ class _SpecialOffersState extends State<SpecialOffers> {
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         mainAxisSpacing: 2,
                         crossAxisSpacing: 2,
-                        crossAxisCount: 2),
+                        crossAxisCount: 2,
+                        childAspectRatio: 0.9),
                     itemBuilder: (BuildContext context, int index) {
                       return ProductDetail(product: products[index]);
                     },
