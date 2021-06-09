@@ -1,6 +1,8 @@
+import 'package:commerce/screens/address/create_address.dart';
 import 'package:commerce/screens/campaign/campaign_product_screen.dart';
 import 'package:commerce/screens/campaign/campaign_screen.dart';
 import 'package:commerce/screens/categories/categories_screen.dart';
+import 'package:commerce/screens/checkout/checkout_screen.dart';
 import 'package:commerce/screens/search/search_screen.dart';
 import 'package:commerce/screens/shop/shops_screen.dart';
 import 'package:commerce/screens/sub_category/sub_category_screen.dart';
@@ -38,4 +40,6 @@ final Map<String, WidgetBuilder> routes = {
   CampaignProductScreen.routeName: (context) => CampaignProductScreen(),
   SearchScreen.routeName: (context) => SearchScreen(),
   SubCategoryScreen.routeName: (context) => SubCategoryScreen(),
+  CheckoutScreen.routeName: (context) => CheckoutScreen(),
+  CreateAddress.routeName: (context) => CreateAddress(),
 };

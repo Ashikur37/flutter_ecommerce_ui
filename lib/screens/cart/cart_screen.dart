@@ -17,6 +17,14 @@ class _CartScreenState extends State<CartScreen> {
   var myCart = MyCart();
   @override
   Widget build(BuildContext context) {
+    showMessage(String msg, Color color) {
+      final snackBar = SnackBar(
+        content: Text(msg),
+        backgroundColor: color,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+
     return Scaffold(
       appBar: buildAppBar(context),
       body: Body(
@@ -27,6 +35,7 @@ class _CartScreenState extends State<CartScreen> {
         },
       ),
       bottomNavigationBar: CheckoutCard(
+        showMessage: showMessage,
         myCart: myCart,
       ),
     );

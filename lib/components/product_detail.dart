@@ -60,13 +60,30 @@ class ProductDetail extends StatelessWidget {
                 width: 10,
               ),
               Text(
-                product['price'] == product['old_price']
-                    ? ""
-                    : product['old_price'],
+                product['discount_percent'] > 0 ? product['old_price'] : "",
                 style: TextStyle(decoration: TextDecoration.lineThrough),
               ),
             ],
-          )
+          ),
+          product['discount_percent'] > 0
+              ? Container(
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  decoration: BoxDecoration(
+                    color: Colors.redAccent,
+                  ),
+                  child: Text(
+                    "${product['discount_percent']}% OFF",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                )
+              : SizedBox(),
+          product['stock']
+              ? Container(
+                  child: Text("Stock available"),
+                )
+              : Container(
+                  child: Text("Out of stock"),
+                )
         ],
       ),
     );

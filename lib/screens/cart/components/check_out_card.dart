@@ -1,4 +1,5 @@
 import 'package:commerce/helper/auth.dart';
+import 'package:commerce/screens/checkout/checkout_screen.dart';
 import 'package:commerce/screens/sign_in/sign_in_screen.dart';
 import 'package:commerce/utilities/my_cart.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +11,11 @@ import '../../../size_config.dart';
 
 class CheckoutCard extends StatelessWidget {
   final myCart;
+  final Function showMessage;
   const CheckoutCard({
     Key key,
     this.myCart,
+    this.showMessage,
   }) : super(key: key);
 
   @override
@@ -73,7 +76,7 @@ class CheckoutCard extends StatelessWidget {
                     text: "Total:\n",
                     children: [
                       TextSpan(
-                        text: "\$" + myCart.cart.getTotalAmount().toString(),
+                        text: "৳" + myCart.cart.getTotalAmount().toString(),
                         style: TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ],
@@ -86,7 +89,12 @@ class CheckoutCard extends StatelessWidget {
                     press: () async {
                       var isLoggedIn = await localIsLoggedIn();
                       if (isLoggedIn) {
-                        print(isLoggedIn);
+                        if (MyCart().cart.getCartItemCount() == 0) {
+                          showMessage("Empty cart", Colors.redAccent);
+                        } else {
+                          Navigator.pushNamed(
+                              context, CheckoutScreen.routeName);
+                        }
                       } else {
                         Navigator.pushNamed(context, SignInScreen.routeName);
                       }

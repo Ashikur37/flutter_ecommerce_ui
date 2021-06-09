@@ -1,4 +1,5 @@
 import 'package:commerce/helper/http.dart';
+import 'package:commerce/screens/sign_in/sign_in_screen.dart';
 import 'package:commerce/utilities/const.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/size_config.dart';
@@ -43,7 +44,20 @@ class _OtpScreenState extends State<OtpScreen> {
                 backgroundColor: Colors.redAccent,
               );
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            } else {
+              final snackBar = SnackBar(
+                content: Text("Account created successfully"),
+                backgroundColor: Colors.greenAccent,
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              Navigator.popAndPushNamed(context, SignInScreen.routeName);
             }
+          } else {
+            final snackBar = SnackBar(
+              content: Text("Too many attempt.Try again later"),
+              backgroundColor: Colors.redAccent,
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
           }
         },
       ),

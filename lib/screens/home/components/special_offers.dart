@@ -95,10 +95,11 @@ class _SpecialOffersState extends State<SpecialOffers> {
                     ),
                   )
                 : GridView.builder(
-                    shrinkWrap: false,
                     itemCount: products.length,
                     controller: _scrollController,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        mainAxisSpacing: 2,
+                        crossAxisSpacing: 2,
                         crossAxisCount: 2),
                     itemBuilder: (BuildContext context, int index) {
                       return ProductDetail(product: products[index]);

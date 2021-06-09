@@ -166,17 +166,12 @@ class _SignUpFormState extends State<SignUpForm> {
           addError(error: kEmailNullError);
           return "";
         }
-        // else if (!emailValidatorRegExp.hasMatch(value)) {
-        //   addError(error: kInvalidEmailError);
-        //   return "";
-        // }
+
         return null;
       },
       decoration: InputDecoration(
         labelText: "First Name",
         hintText: "Enter your first name",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: Icon(Icons.person),
       ),
