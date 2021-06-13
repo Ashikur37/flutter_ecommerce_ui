@@ -3,7 +3,11 @@ import 'package:commerce/screens/address/create_address.dart';
 import 'package:commerce/screens/campaign/campaign_product_screen.dart';
 import 'package:commerce/screens/campaign/campaign_screen.dart';
 import 'package:commerce/screens/categories/categories_screen.dart';
+import 'package:commerce/screens/change_password/change_password.dart';
 import 'package:commerce/screens/checkout/checkout_screen.dart';
+import 'package:commerce/screens/order/order_list.dart';
+import 'package:commerce/screens/order/order_screen.dart';
+import 'package:commerce/screens/profile/components/basic.dart';
 import 'package:commerce/screens/search/search_screen.dart';
 import 'package:commerce/screens/shop/shops_screen.dart';
 import 'package:commerce/screens/sub_category/sub_category_screen.dart';
@@ -44,4 +48,8 @@ final Map<String, WidgetBuilder> routes = {
   CheckoutScreen.routeName: (context) => CheckoutScreen(),
   CreateAddress.routeName: (context) => CreateAddress(),
   AddressList.routeName: (context) => AddressList(),
+  BasicProfile.routeName: (context) => BasicProfile(),
+  ChangePassword.routeName: (context) => ChangePassword(),
+  OrderScreen.routeName: (context) => OrderScreen(),
+  OrderList.routeName: (context) => OrderList(),
 };

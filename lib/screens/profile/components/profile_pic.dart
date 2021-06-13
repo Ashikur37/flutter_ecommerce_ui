@@ -14,17 +14,21 @@ class ProfilePic extends StatefulWidget {
 class _ProfilePicState extends State<ProfilePic> {
   String username = "";
   String phone = "";
+  bool isLoad = true;
   getUser() async {
     var user = await localGetUser();
     setState(() {
       username = '${user["name"]}  ${user["lastname"]}';
       phone = user["email"];
+      isLoad = false;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    getUser();
+    if (isLoad) {
+      getUser();
+    }
     return Column(
       children: [
         SizedBox(

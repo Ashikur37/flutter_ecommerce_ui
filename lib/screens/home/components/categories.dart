@@ -1,4 +1,5 @@
 import 'package:commerce/screens/categories/categories_screen.dart';
+import 'package:commerce/screens/order/order_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -21,7 +22,7 @@ class Categories extends StatelessWidget {
       {
         "icon": "assets/icons/Game Icon.svg",
         "text": "Order",
-        "route": CategoriesScreen.routeName
+        "route": OrderList.routeName
       },
       {
         "icon": "assets/icons/Gift Icon.svg",

@@ -29,6 +29,7 @@ postAuthHttp(uri, body) async {
   try {
     var response = await post(Uri.parse(uri), body: body, headers: {
       'Authorization': 'Bearer $token',
+      "Content-Type": "application/json"
     });
     return jsonDecode(response.body);
   } catch (e) {

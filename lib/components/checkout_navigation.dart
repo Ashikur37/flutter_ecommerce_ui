@@ -47,7 +47,7 @@ class CheckoutNavigation extends StatelessWidget {
                     color: Colors.redAccent,
                   ),
                   child: Text(
-                    "Place Order",
+                    "Proceed to pay",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,

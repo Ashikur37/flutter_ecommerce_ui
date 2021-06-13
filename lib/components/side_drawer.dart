@@ -1,7 +1,9 @@
 import 'package:commerce/constants.dart';
+import 'package:commerce/helper/auth.dart';
 import 'package:commerce/screens/cart/cart_screen.dart';
 import 'package:commerce/screens/home/home_screen.dart';
 import 'package:commerce/screens/login_success/login_success_screen.dart';
+import 'package:commerce/screens/profile/profile_screen.dart';
 import 'package:commerce/screens/sign_in/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -78,8 +80,13 @@ class SideDrawer extends StatelessWidget {
                 ),
               ),
             ]),
-            onTap: () {
-              Navigator.popAndPushNamed(context, SignInScreen.routeName);
+            onTap: () async {
+              var isLoggedIn = await localIsLoggedIn();
+              if (isLoggedIn) {
+                Navigator.pushNamed(context, ProfileScreen.routeName);
+              } else {
+                Navigator.pushNamed(context, SignInScreen.routeName);
+              }
             },
           ),
           ListTile(

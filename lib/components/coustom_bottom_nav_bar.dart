@@ -21,7 +21,6 @@ class CustomBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final Color inActiveIconColor = Color(0xFFB6B6B6);
     return Container(
-      padding: EdgeInsets.only(top: 10),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -67,20 +66,23 @@ class CustomBottomNavBar extends StatelessWidget {
                   Text("wishlist")
                 ],
               ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                    icon: SvgPicture.asset(
-                      "assets/icons/campaign.svg",
-                      color: Colors.grey,
+              Container(
+                padding: EdgeInsets.only(bottom: 10),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: SvgPicture.asset(
+                        "assets/icons/campaign.svg",
+                        color: Colors.redAccent,
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, CampaignScreen.routeName);
+                      },
                     ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, CampaignScreen.routeName);
-                    },
-                  ),
-                  Text("Campaign")
-                ],
+                    Text("Campaign")
+                  ],
+                ),
               ),
               Column(
                 mainAxisSize: MainAxisSize.min,
