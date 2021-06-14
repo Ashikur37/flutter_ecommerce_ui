@@ -58,59 +58,70 @@ class _SpecialOffersState extends State<SpecialOffers> {
         }
       }
     });
-    return Container(
-      height: 510,
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Top Products",
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.black,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Expanded(
-            child: isLoading
-                ? Shimmer.fromColors(
-                    baseColor: Colors.red,
-                    highlightColor: Colors.yellow,
-                    child: Text(
-                      'Easymert',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 40.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  )
-                : GridView.builder(
-                    itemCount: products.length,
-                    controller: _scrollController,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        mainAxisSpacing: 2,
-                        crossAxisSpacing: 2,
-                        crossAxisCount: 2,
-                        childAspectRatio: 0.8),
-                    itemBuilder: (BuildContext context, int index) {
-                      return ProductDetail(product: products[index]);
-                    },
-                  ),
-          ),
-          isLoadingMore ? LoadMore() : SizedBox()
-        ],
+    return SliverGrid(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+      ),
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          return ProductDetail(product: products[index]);
+        },
+        childCount: products.length,
       ),
     );
+    // return Container(
+    //   height: 510,
+    //   child: Column(
+    //     children: [
+    //       Padding(
+    //         padding: const EdgeInsets.symmetric(horizontal: 10),
+    //         child: Row(
+    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //           children: [
+    //             Text(
+    //               "Top Products",
+    //               style: TextStyle(
+    //                 fontSize: 18.0,
+    //                 color: Colors.black,
+    //               ),
+    //             ),
+    //           ],
+    //         ),
+    //       ),
+    //       SizedBox(
+    //         height: 20,
+    //       ),
+    //       Expanded(
+    //         child: isLoading
+    //             ? Shimmer.fromColors(
+    //                 baseColor: Colors.red,
+    //                 highlightColor: Colors.yellow,
+    //                 child: Text(
+    //                   'Easymert',
+    //                   textAlign: TextAlign.center,
+    //                   style: TextStyle(
+    //                     fontSize: 40.0,
+    //                     fontWeight: FontWeight.bold,
+    //                   ),
+    //                 ),
+    //               )
+    //             : GridView.builder(
+    //                 itemCount: products.length,
+    //                 controller: _scrollController,
+    //                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    //                     mainAxisSpacing: 2,
+    //                     crossAxisSpacing: 2,
+    //                     crossAxisCount: 2,
+    //                     childAspectRatio: 0.8),
+    //                 itemBuilder: (BuildContext context, int index) {
+    //                   return ProductDetail(product: products[index]);
+    //                 },
+    //               ),
+    //       ),
+    //       isLoadingMore ? LoadMore() : SizedBox()
+    //     ],
+    //   ),
+    // );
   }
 }
 

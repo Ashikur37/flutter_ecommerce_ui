@@ -19,6 +19,7 @@ class SearchField extends StatelessWidget {
       ),
       child: TextField(
         autofocus: false,
+        readOnly: true,
         onTap: () => Navigator.pushNamed(context, SearchScreen.routeName),
         onChanged: (value) =>
             Navigator.pushNamed(context, SearchScreen.routeName),

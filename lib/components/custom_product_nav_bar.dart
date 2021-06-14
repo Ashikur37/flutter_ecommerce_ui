@@ -1,5 +1,6 @@
 import 'package:commerce/screens/campaign/campaign_screen.dart';
 import 'package:commerce/screens/cart/cart_screen.dart';
+import 'package:commerce/screens/chatscreen/chat_screen.dart';
 import 'package:commerce/screens/sign_in/sign_in_screen.dart';
 import 'package:commerce/screens/store/store_screen.dart';
 import 'package:flutter/material.dart';
@@ -48,11 +49,18 @@ class CustomProductNavBar extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.20,
-                child: Text(
-                  "CHAT",
-                  textAlign: TextAlign.center,
+              GestureDetector(
+                onTap: () => Navigator.pushNamed(
+                  context,
+                  ChatScreen.routeName,
+                  arguments: ChatArguments(productId),
+                ),
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.20,
+                  child: Text(
+                    "CHAT",
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
               GestureDetector(

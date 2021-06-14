@@ -31,6 +31,7 @@ postAuthHttp(uri, body) async {
       'Authorization': 'Bearer $token',
       "Content-Type": "application/json"
     });
+    print(response.body);
     return jsonDecode(response.body);
   } catch (e) {
     print(e);

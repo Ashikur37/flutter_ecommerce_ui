@@ -4,6 +4,7 @@ import 'package:commerce/screens/campaign/campaign_product_screen.dart';
 import 'package:commerce/screens/campaign/campaign_screen.dart';
 import 'package:commerce/screens/categories/categories_screen.dart';
 import 'package:commerce/screens/change_password/change_password.dart';
+import 'package:commerce/screens/chatscreen/chat_screen.dart';
 import 'package:commerce/screens/checkout/checkout_screen.dart';
 import 'package:commerce/screens/order/order_list.dart';
 import 'package:commerce/screens/order/order_screen.dart';
@@ -54,4 +55,5 @@ final Map<String, WidgetBuilder> routes = {
   OrderScreen.routeName: (context) => OrderScreen(),
   OrderList.routeName: (context) => OrderList(),
   StoreScreen.routeName: (context) => StoreScreen(),
+  ChatScreen.routeName: (context) => ChatScreen(),
 };
