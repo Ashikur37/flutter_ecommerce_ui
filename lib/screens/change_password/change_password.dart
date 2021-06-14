@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:commerce/components/custom_surfix_icon.dart';
 import 'package:commerce/components/default_button.dart';
 import 'package:commerce/components/form_error.dart';
@@ -44,33 +46,52 @@ class _ChangePasswordState extends State<ChangePassword> {
       body: SafeArea(
         child: Form(
           key: _formKey,
-          child: Column(
-            children: [
-              SizedBox(height: getProportionateScreenHeight(30)),
-              buildOldPasswordFormField(),
-              SizedBox(height: getProportionateScreenHeight(30)),
-              buildPasswordFormField(),
-              SizedBox(height: getProportionateScreenHeight(30)),
-              FormError(errors: errors),
-              SizedBox(height: getProportionateScreenHeight(20)),
-              DefaultButton(
-                text: "Continue",
-                press: () async {
-                  if (_formKey.currentState.validate()) {
-                    _formKey.currentState.save();
-                    // if all are valid then go to success screen
-                    //signin
-                    var data = await postHttp(
-                        "$baseUrl$loginUrl", {"password": password});
-                    print(data);
-                    if (data["success"]) {
-                    } else {}
-                    // KeyboardUtil.hideKeyboard(context);
-                    // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
-                  }
-                },
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: Column(
+              children: [
+                SizedBox(height: getProportionateScreenHeight(30)),
+                buildOldPasswordFormField(),
+                SizedBox(height: getProportionateScreenHeight(30)),
+                buildPasswordFormField(),
+                SizedBox(height: getProportionateScreenHeight(30)),
+                FormError(errors: errors),
+                SizedBox(height: getProportionateScreenHeight(20)),
+                DefaultButton(
+                  text: "Continue",
+                  press: () async {
+                    if (_formKey.currentState.validate()) {
+                      _formKey.currentState.save();
+                      // if all are valid then go to success screen
+                      //signin
+                      var data = await postAuthHttp(
+                          "$baseUrl$changePassword",
+                          jsonEncode({
+                            "password": password,
+                            "old_password": oldPassword
+                          }));
+
+                      if (!data["success"]) {
+                        final snackBar = SnackBar(
+                          content: Text(data["msg"]),
+                          backgroundColor: Colors.redAccent,
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      } else {
+                        final snackBar = SnackBar(
+                          content: Text(data["msg"]),
+                          backgroundColor: Colors.greenAccent,
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        Navigator.pop(context);
+                      }
+                      // KeyboardUtil.hideKeyboard(context);
+                      // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -84,7 +105,7 @@ class _ChangePasswordState extends State<ChangePassword> {
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPassNullError);
-        } else if (value.length >= 8) {
+        } else if (value.length >= 6) {
           removeError(error: kShortPassError);
         }
         return null;
@@ -93,7 +114,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         if (value.isEmpty) {
           addError(error: kPassNullError);
           return "";
-        } else if (value.length < 8) {
+        } else if (value.length < 6) {
           addError(error: kShortPassError);
           return "";
         }

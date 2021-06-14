@@ -26,7 +26,6 @@ class _OrderListState extends State<OrderList> {
   ];
   int activeIndex = 0;
   void loadOrder() async {
-    print("$baseUrl/orders");
     if (isLoading) {
       var ord = await getAuthHttp("$baseUrl/orders");
       setState(() {
@@ -34,7 +33,6 @@ class _OrderListState extends State<OrderList> {
         isLoading = false;
       });
     }
-    print(orders);
   }
 
   @override
@@ -59,34 +57,35 @@ class _OrderListState extends State<OrderList> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: List.generate(
-                        status.length,
-                        (index) => GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  activeIndex = index;
-                                });
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border(
-                                    bottom: BorderSide(
-                                      color: index == activeIndex
-                                          ? kPrimaryColor
-                                          : Colors.transparent,
-                                      width: 4,
-                                    ),
-                                  ),
-                                ),
-                                padding: EdgeInsets.symmetric(horizontal: 10.0),
-                                child: Text(
-                                  status[index],
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                      status.length,
+                      (index) => GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            activeIndex = index;
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                color: index == activeIndex
+                                    ? kPrimaryColor
+                                    : Colors.transparent,
+                                width: 4,
                               ),
-                            )),
+                            ),
+                          ),
+                          padding: EdgeInsets.symmetric(horizontal: 10.0),
+                          child: Text(
+                            status[index],
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 Container(
@@ -96,67 +95,78 @@ class _OrderListState extends State<OrderList> {
                 Column(
                   children: List.generate(
                     orders.length,
-                    (index) => GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          OrderScreen.routeName,
-                          arguments: OrderDetailsArguments(orders[index]["id"]),
-                        );
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              width: 3.0,
-                              color: Colors.grey[200],
+                    (index) => (int.parse(
+                                      orders[index]["status"],
+                                    ) +
+                                    1 ==
+                                activeIndex ||
+                            activeIndex == 0)
+                        ? GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                OrderScreen.routeName,
+                                arguments:
+                                    OrderDetailsArguments(orders[index]["id"]),
+                              );
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    width: 3.0,
+                                    color: Colors.grey[200],
+                                  ),
+                                ),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 30.0, vertical: 10.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        orders[index]["number"],
+                                        style: TextStyle(
+                                          fontSize: 20.0,
+                                        ),
+                                      ),
+                                      Text(
+                                        "৳" + orders[index]["total"],
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                          color: Colors.redAccent,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        status[int.parse(
+                                              orders[index]["status"],
+                                            ) +
+                                            1],
+                                      ),
+                                      Text(
+                                        orders[index]["order_at"],
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                        ),
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 30.0, vertical: 10.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  orders[index]["number"],
-                                  style: TextStyle(
-                                    fontSize: 20.0,
-                                  ),
-                                ),
-                                Text(
-                                  "৳" + orders[index]["total"],
-                                  style: TextStyle(
-                                    fontSize: 18.0,
-                                    color: Colors.redAccent,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  status[int.parse(
-                                        orders[index]["status"],
-                                      ) +
-                                      1],
-                                ),
-                                Text(
-                                  orders[index]["order_at"],
-                                  style: TextStyle(
-                                    fontSize: 18.0,
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
+                          )
+                        : SizedBox(),
                   ),
                 ),
               ],

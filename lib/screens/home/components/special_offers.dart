@@ -101,7 +101,7 @@ class _SpecialOffersState extends State<SpecialOffers> {
                         mainAxisSpacing: 2,
                         crossAxisSpacing: 2,
                         crossAxisCount: 2,
-                        childAspectRatio: 0.9),
+                        childAspectRatio: 0.8),
                     itemBuilder: (BuildContext context, int index) {
                       return ProductDetail(product: products[index]);
                     },

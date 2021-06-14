@@ -74,7 +74,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
       appBar: CustomAppBar(
         rating: 1.0,
       ),
-      bottomNavigationBar: CustomProductNavBar(addToCart: addToCart),
+      bottomNavigationBar: CustomProductNavBar(
+        addToCart: addToCart,
+        productId: agrs.productId,
+      ),
       body: isLoading
           ? SizedBox()
           : Body(

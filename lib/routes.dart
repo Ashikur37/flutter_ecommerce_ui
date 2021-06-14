@@ -10,6 +10,7 @@ import 'package:commerce/screens/order/order_screen.dart';
 import 'package:commerce/screens/profile/components/basic.dart';
 import 'package:commerce/screens/search/search_screen.dart';
 import 'package:commerce/screens/shop/shops_screen.dart';
+import 'package:commerce/screens/store/store_screen.dart';
 import 'package:commerce/screens/sub_category/sub_category_screen.dart';
 import 'package:flutter/widgets.dart';
 import 'package:commerce/screens/cart/cart_screen.dart';
@@ -52,4 +53,5 @@ final Map<String, WidgetBuilder> routes = {
   ChangePassword.routeName: (context) => ChangePassword(),
   OrderScreen.routeName: (context) => OrderScreen(),
   OrderList.routeName: (context) => OrderList(),
+  StoreScreen.routeName: (context) => StoreScreen(),
 };
