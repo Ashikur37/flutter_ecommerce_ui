@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Easymert',
+        title: 'Easymert ',
         theme: theme(),
         // home: SplashScreen(),
         // We use routeName so that we dont need to remember the name
