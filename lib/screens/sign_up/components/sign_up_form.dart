@@ -25,6 +25,7 @@ class _SignUpFormState extends State<SignUpForm> {
   String email;
   String password;
   bool remember = false;
+  bool hide = true;
   final List<String> errors = [];
 
   void addError({String error}) {
@@ -84,7 +85,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField buildPasswordFormField() {
     return TextFormField(
-      obscureText: true,
+      obscureText: hide,
       onSaved: (newValue) => password = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -110,7 +111,13 @@ class _SignUpFormState extends State<SignUpForm> {
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
+        suffixIcon: GestureDetector(
+            onTap: () {
+              setState(() {
+                hide = !hide;
+              });
+            },
+            child: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg")),
       ),
     );
   }

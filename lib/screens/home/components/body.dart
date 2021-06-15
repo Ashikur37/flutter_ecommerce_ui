@@ -65,6 +65,7 @@ class _BodyState extends State<Body> {
         slivers: [
           SliverAppBar(
             pinned: true,
+            
             flexibleSpace: HomeHeader(),
           ),
           SliverToBoxAdapter(

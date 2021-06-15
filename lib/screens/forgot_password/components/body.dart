@@ -50,6 +50,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
   final _formKey = GlobalKey<FormState>();
   List<String> errors = [];
   String email;
+  bool hide = true;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -128,7 +129,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
           ),
           SizedBox(height: getProportionateScreenHeight(30)),
           TextFormField(
-            obscureText: true,
+            obscureText: hide,
             onSaved: (newValue) {},
             onChanged: (value) {
               if (value.isNotEmpty) {
@@ -149,7 +150,13 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
               // If  you are using latest version of flutter then lable text and hint text shown like this
               // if you r using flutter less then 1.20.* then maybe this is not working properly
               floatingLabelBehavior: FloatingLabelBehavior.always,
-              suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
+              suffixIcon: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      hide = !hide;
+                    });
+                  },
+                  child: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg")),
             ),
           ),
           FormError(errors: errors),
