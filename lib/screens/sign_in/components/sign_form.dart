@@ -87,7 +87,6 @@ class _SignFormState extends State<SignForm> {
                 //signin
                 var data = await postHttp("$baseUrl$loginUrl",
                     {"email": email, "password": password});
-                print(data);
                 if (data["success"]) {
                   await localLogin(data["user"], data["token"]);
                   widget.showMessage("Signin success", Colors.greenAccent);

@@ -1,3 +1,0 @@
-D:/StudioProjects/SSLCommerzSDK/sslcommerzlibrary/.cxx/cmake/debug/x86_64/CMakeFiles/sdklibc.dir
-D:/StudioProjects/SSLCommerzSDK/sslcommerzlibrary/.cxx/cmake/debug/x86_64/CMakeFiles/edit_cache.dir
-D:/StudioProjects/SSLCommerzSDK/sslcommerzlibrary/.cxx/cmake/debug/x86_64/CMakeFiles/rebuild_cache.dir

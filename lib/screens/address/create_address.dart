@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:commerce/components/default_button.dart';
 import 'package:commerce/constants.dart';
 import 'package:commerce/helper/http.dart';
@@ -77,17 +79,19 @@ class _CreateAddressState extends State<CreateAddress> {
                       if (_formKey.currentState.validate()) {
                         _formKey.currentState.save();
 
-                        var data =
-                            await postAuthHttp("$baseUrl$createAddress", {
-                          "first_name": firstName,
-                          "last_name": lastName,
-                          "mobile": mobile,
-                          "city": city,
-                          "email": email,
-                          "zip": postCode,
-                          "street_address": address,
-                          "region": region
-                        });
+                        var data = await postAuthHttp(
+                          "$baseUrl$createAddress",
+                          jsonEncode({
+                            "first_name": firstName,
+                            "last_name": lastName,
+                            "mobile": mobile,
+                            "city": city,
+                            "email": email,
+                            "zip": postCode,
+                            "street_address": address,
+                            "region": region
+                          }),
+                        );
                         Navigator.pushNamed(context, AddressList.routeName);
                       }
                     },
