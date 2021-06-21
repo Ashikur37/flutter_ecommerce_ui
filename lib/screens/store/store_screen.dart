@@ -20,9 +20,14 @@ class _StoreScreenState extends State<StoreScreen> {
   bool isLoadingMore = false;
   var store;
   String nextPageURL;
-  void loadProducts(id) async {
+  void loadProducts(id, isMerchant) async {
     if (isLoading) {
-      var prod = await getHttp("$baseUrl/store/$id/products");
+      var prod;
+      if (isMerchant) {
+        prod = await getHttp("$baseUrl/merchant/$id/products");
+      } else {
+        prod = await getHttp("$baseUrl/store/$id/products");
+      }
       setState(() {
         products = prod["data"];
         isLoading = false;
@@ -31,14 +36,16 @@ class _StoreScreenState extends State<StoreScreen> {
     }
   }
 
-  void loadStore(id) async {
+  void loadStore(id, isMerchant) async {
     print(id);
     if (isStoreLoading) {
-      var st = await getHttp("$baseUrl/store/$id");
-      print("***************");
-      print(st);
+      var st;
+      if (isMerchant) {
+        st = await getHttp("$baseUrl/merchant/$id");
+      } else {
+        st = await getHttp("$baseUrl/store/$id");
+      }
 
-      print("-------------");
       setState(() {
         store = st["data"];
         isStoreLoading = false;
@@ -62,8 +69,8 @@ class _StoreScreenState extends State<StoreScreen> {
   Widget build(BuildContext context) {
     ScrollController _scrollController = ScrollController();
     final StoreArguments agrs = ModalRoute.of(context).settings.arguments;
-    loadStore(agrs.productId);
-    loadProducts(agrs.productId);
+    loadStore(agrs.productId, agrs.merchant);
+    loadProducts(agrs.productId, agrs.merchant);
     _scrollController.addListener(() {
       if (_scrollController.hasClients) {
         if (_scrollController.offset ==
@@ -142,78 +149,14 @@ class _StoreScreenState extends State<StoreScreen> {
                 SliverToBoxAdapter(
                   child: isLoadingMore ? LoadMore() : SizedBox(),
                 ),
-
-                //isLoadingMore ? LoadMore() : SizedBox()
               ],
             ),
-      // body: Column(
-      //   children: [
-      //     isStoreLoading
-      //         ? CircularProgressIndicator()
-      //         : Padding(
-      //             padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      //             child: Column(
-      //               children: [
-      //                 Image.network(
-      //                   store["image"],
-      //                   height: 200,
-      //                 ),
-      //                 Row(
-      //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //                   children: [
-      //                     Row(
-      //                       children: [
-      //                         Icon(
-      //                           Icons.call_outlined,
-      //                           size: 19,
-      //                         ),
-      //                         Text(
-      //                           store["phone"],
-      //                           style: TextStyle(
-      //                             fontWeight: FontWeight.w600,
-      //                           ),
-      //                         ),
-      //                       ],
-      //                     ),
-      //                     Row(
-      //                       children: [
-      //                         Icon(Icons.location_on_outlined, size: 19),
-      //                         Text(
-      //                           store["address"],
-      //                           style: TextStyle(
-      //                             fontWeight: FontWeight.w600,
-      //                           ),
-      //                         ),
-      //                       ],
-      //                     ),
-      //                   ],
-      //                 ),
-      //               ],
-      //             ),
-      //           ),
-      //     SizedBox(
-      //       height: 15,
-      //     ),
-      //     Expanded(
-      //       child: GridView.builder(
-      //         controller: _scrollController,
-      //         itemCount: products.length,
-      //         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-      //           crossAxisCount: 2,
-      //         ),
-      //         itemBuilder: (BuildContext context, int index) {
-      //           return ProductDetail(product: products[index]);
-      //         },
-      //       ),
-      //     ),
-      //     isLoadingMore ? LoadMore() : SizedBox()
-      //   ],
-      // ),
     );
   }
 }
 
 class StoreArguments {
   final productId;
-  StoreArguments(this.productId);
+  final merchant;
+  StoreArguments(this.productId, this.merchant);
 }

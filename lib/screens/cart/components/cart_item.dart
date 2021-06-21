@@ -88,7 +88,10 @@ class CartItem extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
+            Text("Delivery charge: ৳" +
+                cart.productDetails["product"]["delivery_charge"].toString())
+            //cart.productDetails["product"]["delivery_charge"]
           ],
         )
       ],

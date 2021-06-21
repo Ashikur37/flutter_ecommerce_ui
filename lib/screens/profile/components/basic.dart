@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:commerce/components/default_button.dart';
 import 'package:commerce/helper/auth.dart';
 import 'package:commerce/helper/http.dart';
@@ -76,11 +78,12 @@ class _BasicProfileState extends State<BasicProfile> {
                             if (_formKey.currentState.validate()) {
                               _formKey.currentState.save();
 
-                              var data =
-                                  await postAuthHttp("$baseUrl$updateBasic", {
-                                "first_name": firstName,
-                                "last_name": lastName,
-                              });
+                              var data = await postAuthHttp(
+                                  "$baseUrl$updateBasic",
+                                  jsonEncode({
+                                    "first_name": firstName,
+                                    "last_name": lastName,
+                                  }));
                               await localSetUser(data["user"]);
                               final snackBar = SnackBar(
                                 content: Text(data["msg"]),

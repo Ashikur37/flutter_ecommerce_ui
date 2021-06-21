@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:progress_hud/progress_hud.dart';
 
-class PaymentScreen extends StatefulWidget {
-  static String routeName = "/payment";
+class DeliveryChargeScreen extends StatefulWidget {
+  static String routeName = "/delivery_payment";
   @override
-  _PaymentScreenState createState() => _PaymentScreenState();
+  _DeliveryChargeScreenState createState() => _DeliveryChargeScreenState();
 }
 
-class _PaymentScreenState extends State<PaymentScreen> {
+class _DeliveryChargeScreenState extends State<DeliveryChargeScreen> {
   WebViewController _webViewController;
   String filePath = '';
 
@@ -50,7 +50,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final PaymentArguments agrs = ModalRoute.of(context).settings.arguments;
+    final DeliveryArguments agrs = ModalRoute.of(context).settings.arguments;
+    print('$baseUrl/order/${agrs.orderId}/pay-delivery');
     return WillPopScope(
         child: Scaffold(
           appBar: _appbar(),
@@ -62,7 +63,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 height: MediaQuery.of(context).size.height,
                 color: Colors.transparent,
                 child: WebView(
-                  initialUrl: '$baseUrl/pay-now/${agrs.paymentId}',
+                  initialUrl: '$baseUrl/order/${agrs.orderId}/pay-delivery',
                   javascriptMode: JavascriptMode.unrestricted,
                   javascriptChannels: <JavascriptChannel>[
                     _alertJavascriptChannel(context),
@@ -93,13 +94,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     } else if (url.contains("cancel")) {
                       isSuccessfull = false;
                       _onBackPressed();
-                    } else if (url.contains("fail") && url.contains(rootUrl)) {
+                    } else if (url.contains("fail")) {
                       isSuccessfull = false;
-                      Navigator.popAndPushNamed(
-                        context,
-                        OrderScreen.routeName,
-                        arguments: OrderDetailsArguments(agrs.orderId),
-                      );
                       _onBackPressed();
                     } else if (url.contains("payment/error")) {
                       isSuccessfull = false;
@@ -152,8 +148,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   }
 }
 
-class PaymentArguments {
-  final paymentId;
+class DeliveryArguments {
   final orderId;
-  PaymentArguments(this.paymentId, this.orderId);
+  DeliveryArguments(this.orderId);
 }

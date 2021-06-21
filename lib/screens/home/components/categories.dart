@@ -1,4 +1,7 @@
+import 'package:commerce/screens/boucher/boucher_screen.dart';
 import 'package:commerce/screens/categories/categories_screen.dart';
+import 'package:commerce/screens/merchant/merchant_screen.dart';
+import 'package:commerce/screens/offer/offer_screen.dart';
 import 'package:commerce/screens/order/order_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,7 +15,7 @@ class Categories extends StatelessWidget {
       {
         "icon": "assets/icons/Flash Icon.svg",
         "text": "Bouchers",
-        "route": CategoriesScreen.routeName
+        "route": BoucherScreen.routeName
       },
       {
         "icon": "assets/icons/Bill Icon.svg",
@@ -27,27 +30,37 @@ class Categories extends StatelessWidget {
       {
         "icon": "assets/icons/Gift Icon.svg",
         "text": "Easymert Offer",
-        "route": CategoriesScreen.routeName
+        "route": OfferScreen.routeName
       },
       {
         "icon": "assets/icons/Discover.svg",
         "text": "Shop",
-        "route": CategoriesScreen.routeName
+        "route": MerchantScreen.routeName
       },
     ];
     return Padding(
       padding: EdgeInsets.all(getProportionateScreenWidth(20)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: List.generate(
-          categories.length,
-          (index) => CategoryCard(
-            icon: categories[index]["icon"],
-            text: categories[index]["text"],
-            press: () {
-              Navigator.pushNamed(context, categories[index]["route"]);
-            },
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: List.generate(
+            categories.length,
+            (index) => Row(
+              children: [
+                CategoryCard(
+                  icon: categories[index]["icon"],
+                  text: categories[index]["text"],
+                  press: () {
+                    Navigator.pushNamed(context, categories[index]["route"]);
+                  },
+                ),
+                SizedBox(
+                  width: 5.0,
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -71,7 +84,6 @@ class CategoryCard extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: SizedBox(
-        width: getProportionateScreenWidth(55),
         child: Column(
           children: [
             Container(

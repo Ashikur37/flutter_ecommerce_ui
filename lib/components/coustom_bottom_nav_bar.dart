@@ -1,6 +1,7 @@
 import 'package:commerce/screens/campaign/campaign_screen.dart';
 import 'package:commerce/screens/cart/cart_screen.dart';
 import 'package:commerce/screens/sign_in/sign_in_screen.dart';
+import 'package:commerce/screens/wishlist/wishlist_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:commerce/screens/home/home_screen.dart';
@@ -61,7 +62,9 @@ class CustomBottomNavBar extends StatelessWidget {
                 children: [
                   IconButton(
                     icon: SvgPicture.asset("assets/icons/Heart Icon.svg"),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, WishListsScreen.routeName);
+                    },
                   ),
                   Text("wishlist")
                 ],

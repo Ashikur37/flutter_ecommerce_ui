@@ -39,7 +39,7 @@ class CustomProductNavBar extends StatelessWidget {
                 onTap: () => Navigator.pushNamed(
                   context,
                   StoreScreen.routeName,
-                  arguments: StoreArguments(productId),
+                  arguments: StoreArguments(productId, false),
                 ),
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.20,

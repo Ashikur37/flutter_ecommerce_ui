@@ -14,6 +14,7 @@ getHttp(uri) async {
 
 getAuthHttp(uri) async {
   String token = await localGetToken();
+  print(token);
   try {
     var response = await get(Uri.parse(uri), headers: {
       'Authorization': 'Bearer $token',

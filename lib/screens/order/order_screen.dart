@@ -1,5 +1,4 @@
 import 'package:commerce/helper/http.dart';
-import 'package:commerce/screens/cart/components/cart_item.dart';
 import 'package:commerce/screens/cart/components/cart_single.dart';
 import 'package:commerce/screens/cart/components/order_card.dart';
 import 'package:commerce/utilities/const.dart';
@@ -20,6 +19,7 @@ class _OrderScreenState extends State<OrderScreen> {
   void loadOrder(id) async {
     if (isLoading) {
       var ord = await getAuthHttp("$baseUrl/orders/$id");
+      print(ord["data"]["tracks"]);
       setState(() {
         order = ord["data"];
         isLoading = false;
@@ -32,6 +32,14 @@ class _OrderScreenState extends State<OrderScreen> {
     final OrderDetailsArguments agrs =
         ModalRoute.of(context).settings.arguments;
     loadOrder(agrs.orderId);
+    showMessage(String msg, Color color) {
+      final snackBar = SnackBar(
+        content: Text(msg),
+        backgroundColor: color,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Order Details"),
@@ -44,13 +52,14 @@ class _OrderScreenState extends State<OrderScreen> {
               slivers: [
                 SliverToBoxAdapter(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding: EdgeInsets.all(15),
                         child: Row(
                           children: [
                             Text(
-                              "INVOICE",
+                              "Order",
                               style: TextStyle(
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.bold,
@@ -70,15 +79,118 @@ class _OrderScreenState extends State<OrderScreen> {
                           ],
                         ),
                       ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(
+                              "Order track",
+                              style: TextStyle(
+                                fontSize: 20.0,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: double.infinity,
+                            color: Colors.grey[100],
+                            height: 6,
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: List.generate(
+                          order["tracks"]["data"].length,
+                          (index) => Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 80,
+                                margin: EdgeInsets.only(right: 10.0, top: 1.0),
+                                child: Text(
+                                  order["tracks"]["data"][index]["at"],
+                                  textAlign: TextAlign.right,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontSize: 15.0,
+                                    color: Colors.grey[600],
+                                  ),
+                                  maxLines: 2,
+                                ),
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Column(
+                                        children: [
+                                          Container(
+                                            padding: EdgeInsets.all(7),
+                                            decoration: BoxDecoration(
+                                              color: Colors.redAccent,
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                          index !=
+                                                  (order["tracks"]["data"]
+                                                          .length -
+                                                      1)
+                                              ? Container(
+                                                  height: 100,
+                                                  margin: EdgeInsets.only(
+                                                      left: 1.0),
+                                                  width: 2,
+                                                  color: Colors.grey[400],
+                                                )
+                                              : SizedBox()
+                                        ],
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(left: 10.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              order["tracks"]["data"][index]
+                                                  ["title"],
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 10.0,
+                                            ),
+                                            Text(order["tracks"]["data"][index]
+                                                ["details"])
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       Container(
                         width: double.infinity,
                         color: Colors.grey[100],
                         height: 6,
                       ),
-                      Text(
-                        "Delivery Address",
-                        style: TextStyle(
-                          fontSize: 20.0,
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          "Shipping Address",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                          ),
                         ),
                       ),
                       Container(
@@ -86,6 +198,7 @@ class _OrderScreenState extends State<OrderScreen> {
                         width: SizeConfig.screenWidth,
                         padding: EdgeInsets.all(5.0),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(order["order"]["customer_first_name"] +
                                 " " +
@@ -93,7 +206,6 @@ class _OrderScreenState extends State<OrderScreen> {
                             Text(order["order"]["customer_email"]),
                             Text(order["order"]["billing_address_1"]),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(order["order"]["billing_address_1"]),
                                 Text(order["order"]["billing_city"]),
@@ -107,10 +219,13 @@ class _OrderScreenState extends State<OrderScreen> {
                         color: Colors.grey[100],
                         height: 6,
                       ),
-                      Text(
-                        "Products",
-                        style: TextStyle(
-                          fontSize: 20.0,
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          "Products",
+                          style: TextStyle(
+                            fontSize: 20.0,
+                          ),
                         ),
                       ),
                     ],
@@ -144,13 +259,12 @@ class _OrderScreenState extends State<OrderScreen> {
                   child: Container(
                     padding: EdgeInsets.all(20.0),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Center(
-                          child: Text(
-                            "Payment",
-                            style: TextStyle(
-                              fontSize: 20.0,
-                            ),
+                        Text(
+                          "Payment",
+                          style: TextStyle(
+                            fontSize: 20.0,
                           ),
                         ),
                         Container(
@@ -159,6 +273,7 @@ class _OrderScreenState extends State<OrderScreen> {
                           height: 6,
                         ),
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("Grand total ৳${order["order"]["total"]}"),
                             Text(
@@ -169,14 +284,17 @@ class _OrderScreenState extends State<OrderScreen> {
                       ],
                     ),
                   ),
-                )
+                ),
               ],
             ),
       bottomNavigationBar: OrderCard(
-        total: isLoading ? "0" : order["order"]["total"],
-        orderId: isLoading ? "0" : order["order"]["id"],
-        due: isLoading ? "0" : order["due"],
-      ),
+          showMessage: showMessage,
+          paymentMethod: isLoading ? "" : order["order"]["payment_method"],
+          total: isLoading ? "0" : order["order"]["total"],
+          orderId: isLoading ? "0" : order["order"]["id"],
+          due: isLoading ? "0" : order["due"],
+          shippingPaid: isLoading ? 0 : order["order"]["shipping_paid"],
+          isLoading: isLoading),
     );
   }
 }

@@ -1,16 +1,10 @@
 import 'dart:convert';
-
-import 'package:commerce/helper/auth.dart';
 import 'package:commerce/helper/http.dart';
-import 'package:commerce/screens/checkout/checkout_screen.dart';
+import 'package:commerce/screens/order/order_screen.dart';
+import 'package:commerce/screens/payment/delivery_charge_screen.dart';
 import 'package:commerce/screens/payment/payment_screen.dart';
-import 'package:commerce/screens/sign_in/sign_in_screen.dart';
 import 'package:commerce/utilities/const.dart';
-import 'package:commerce/utilities/my_cart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:commerce/components/default_button.dart';
-
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
@@ -18,11 +12,19 @@ class OrderCard extends StatefulWidget {
   final total;
   final orderId;
   final due;
+  final paymentMethod;
+  final bool isLoading;
+  final Function showMessage;
+  final int shippingPaid;
   const OrderCard({
     Key key,
     this.total,
     this.orderId,
     this.due,
+    this.showMessage,
+    this.paymentMethod,
+    this.isLoading,
+    this.shippingPaid,
   }) : super(key: key);
 
   @override
@@ -101,6 +103,7 @@ class _OrderCardState extends State<OrderCard> {
                   var data = await postAuthHttp(
                       '$baseUrl/order/${widget.orderId}/partial-payment',
                       jsonEncode({"amount": amount}));
+
                   // data["data"]["id"]
                   Navigator.pushNamed(
                     context,
@@ -141,44 +144,115 @@ class _OrderCardState extends State<OrderCard> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text.rich(
-                  TextSpan(
-                    text: "Total:\n",
+            widget.isLoading
+                ? SizedBox()
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      TextSpan(
-                        text: "৳" + widget.total,
-                        style: TextStyle(fontSize: 16, color: Colors.black),
+                      Text.rich(
+                        TextSpan(
+                          text: "Total:\n",
+                          children: [
+                            TextSpan(
+                              text: "৳" + widget.total,
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.black),
+                            ),
+                          ],
+                        ),
                       ),
+                      //Cash On Delivery
+                      widget.paymentMethod == "Cash On Delivery"
+                          ? CashOnDelivery(
+                              shippingPaid: widget.shippingPaid,
+                              orderId: widget.orderId,
+                            )
+                          : GestureDetector(
+                              onTap: () async {
+                                var data = await postAuthHttp(
+                                    '$baseUrl/order/${widget.orderId}/cash-on-delivery',
+                                    jsonEncode({"amount": amount}));
+                                widget.showMessage(
+                                    "Payment updated to cash on delivery",
+                                    Colors.green);
+                                Navigator.popAndPushNamed(
+                                  context,
+                                  OrderScreen.routeName,
+                                  arguments:
+                                      OrderDetailsArguments(widget.orderId),
+                                );
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 10.0, vertical: 5.0),
+                                color: Colors.redAccent,
+                                child: Text(
+                                  "Cash on delivery",
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                      widget.paymentMethod == "Cash On Delivery"
+                          ? SizedBox()
+                          : GestureDetector(
+                              onTap: () {
+                                _showMyDialog();
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 10.0, vertical: 5.0),
+                                color: Colors.redAccent,
+                                child: Text(
+                                  "Pay Now",
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            )
                     ],
                   ),
-                ),
-                GestureDetector(
-                  child: Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                    color: Colors.redAccent,
-                    child: Text(
-                      "Cash on delivery",
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CashOnDelivery extends StatelessWidget {
+  final int shippingPaid;
+  final int orderId;
+
+  const CashOnDelivery({
+    Key key,
+    this.shippingPaid,
+    this.orderId,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return shippingPaid == 0
+        ? Container(
+            child: Row(
+              children: [
                 GestureDetector(
                   onTap: () {
-                    _showMyDialog();
+                    Navigator.pushNamed(
+                      context,
+                      DeliveryChargeScreen.routeName,
+                      arguments: DeliveryArguments(orderId),
+                    );
                   },
                   child: Container(
                     padding:
                         EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                     color: Colors.redAccent,
                     child: Text(
-                      "Pay Now",
+                      "Pay Delivery Charge",
                       style: TextStyle(
                         fontSize: 18.0,
                         color: Colors.white,
@@ -188,10 +262,11 @@ class _OrderCardState extends State<OrderCard> {
                 )
               ],
             ),
-          ],
-        ),
-      ),
-    );
+          )
+        : Text(
+            "Cash on delivery",
+            style: TextStyle(fontSize: 20.0, color: Colors.green),
+          );
   }
 }
 //easymertlive

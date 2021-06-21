@@ -1,12 +1,16 @@
+import 'package:commerce/helper/http.dart';
 import 'package:commerce/screens/details/components/product_colors.dart';
 import 'package:commerce/screens/details/components/product_sizes.dart';
+import 'package:commerce/utilities/const.dart';
 import 'package:commerce/utilities/my_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/components/default_button.dart';
 import 'package:commerce/models/Product.dart';
 import 'package:commerce/size_config.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_svg/svg.dart';
 
+import '../../../constants.dart';
 import 'color_dots.dart';
 import 'product_description.dart';
 import 'top_rounded_container.dart';
@@ -60,9 +64,30 @@ class _BodyState extends State<Body> {
                   Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: getProportionateScreenWidth(20)),
-                    child: Text(
-                      widget.product["name"],
-                      style: Theme.of(context).textTheme.headline6,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          widget.product["name"],
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                        GestureDetector(
+                          onTap: () async {
+                            var prod = await getAuthHttp(
+                                "$baseUrl/wish-list/add/${widget.product["id"]}");
+                            widget.showMessage(
+                                prod["msg"],
+                                prod["success"]
+                                    ? Colors.green
+                                    : Colors.redAccent);
+                          },
+                          child: SvgPicture.asset(
+                            "assets/icons/Heart Icon.svg",
+                            color: kPrimaryColor,
+                            width: 22,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   Padding(
