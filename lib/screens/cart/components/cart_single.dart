@@ -38,10 +38,13 @@ class CartSingle extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              cart["name"],
-              style: TextStyle(color: Colors.black, fontSize: 16),
-              maxLines: 2,
+            Container(
+              width: MediaQuery.of(context).size.width * 0.6,
+              child: Text(
+                cart["name"],
+                style: TextStyle(color: Colors.black, fontSize: 16),
+                maxLines: 2,
+              ),
             ),
             // Row(
             //   children: [

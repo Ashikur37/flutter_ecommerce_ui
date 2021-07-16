@@ -75,6 +75,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
         rating: 1.0,
       ),
       bottomNavigationBar: CustomProductNavBar(
+        stock: isLoading ? true : product['stock'],
         addToCart: addToCart,
         productId: agrs.productId,
       ),
@@ -92,7 +93,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
               updateSize: (index, price) {
                 setState(() {
                   sizeIndex = index;
-                  sizePrice = product["sizes"][index]["price"];
+                  sizePrice =
+                      int.parse(product["sizes"][index]["price"].toString());
                 });
               },
             ),

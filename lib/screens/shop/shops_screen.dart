@@ -97,8 +97,7 @@ class _ShopsScreenState extends State<ShopsScreen> {
               controller: _scrollController,
               itemCount: products.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-              ),
+                  crossAxisCount: 2, childAspectRatio: 0.8),
               itemBuilder: (BuildContext context, int index) {
                 return ProductDetail(product: products[index]);
               },

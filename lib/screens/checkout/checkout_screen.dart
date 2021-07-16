@@ -26,6 +26,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   var address;
   var myCart = MyCart();
   var amount = 0;
+  var region = "inside_charge";
+  bool addressLoading = false;
+  bool orderLoading = false;
   @override
   Widget build(BuildContext context) {
     Future<void> _showMyDialog() async {
@@ -76,6 +79,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     }
 
     placeOrder() async {
+      if (addressLoading || orderLoading) {
+        return;
+      }
       if (addressId == -1) {
         final snackBar = SnackBar(
           content: Text("Please select an address"),
@@ -83,14 +89,12 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
+        setState(() {
+          orderLoading = true;
+        });
         // await _showMyDialog();
         var item = [];
         for (var i = 0; i < myCart.cart.cartItem.length; i++) {
-          // print(myCart.cart.cartItem[i].productDetails["product"]["id"]);
-          // print(myCart.cart.cartItem[i].quantity);
-          // print(myCart.cart.cartItem[i].productDetails["product"]["sizes"]
-          //         [myCart.cart.cartItem[i].productDetails["sizeIndex"]]["size"]
-          //     ["id"]);
           item.add({
             "id": myCart.cart.cartItem[i].productDetails["product"]["id"],
             "quantity": myCart.cart.cartItem[i].quantity,
@@ -125,6 +129,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         children: [
           GestureDetector(
             onTap: () async {
+              setState(() {
+                addressLoading = true;
+              });
               var id =
                   await Navigator.pushNamed(context, AddressList.routeName);
               if (id != null) {
@@ -133,6 +140,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 setState(() {
                   addressId = id;
                   address = data;
+                  region = data["region"] == "Inside Dhaka"
+                      ? "inside_charge"
+                      : "outside_charge";
+                  addressLoading = false;
                 });
               }
             },
@@ -178,14 +189,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           )
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: Icon(Icons.add),
-      //   backgroundColor: Colors.redAccent,
-      //   onPressed: () {
-      //     Navigator.pushNamed(context, CreateAddress.routeName);
-      //   },
-      // ),
-      bottomNavigationBar: CheckoutNavigation(placeOrder: placeOrder),
+      bottomNavigationBar: CheckoutNavigation(
+          addressLoading: addressLoading,
+          placeOrder: placeOrder,
+          region: region),
     );
   }
 }

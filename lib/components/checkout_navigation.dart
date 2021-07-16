@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 
 class CheckoutNavigation extends StatefulWidget {
   final Function placeOrder;
-
-  const CheckoutNavigation({Key key, this.placeOrder}) : super(key: key);
+  final String region;
+  final bool addressLoading;
+  const CheckoutNavigation(
+      {Key key, this.placeOrder, this.region, this.addressLoading})
+      : super(key: key);
 
   @override
   _CheckoutNavigationState createState() => _CheckoutNavigationState();
@@ -12,12 +15,16 @@ class CheckoutNavigation extends StatefulWidget {
 
 class _CheckoutNavigationState extends State<CheckoutNavigation> {
   var deliveryCharge = 0;
+
   @override
   void loadDelivery() {
     var charge = 0;
     for (var i = 0; i < MyCart().cart.cartItem.length; i++) {
-      charge += MyCart().cart.cartItem[i].productDetails["product"]
-          ["delivery_charge"];
+      charge += int.parse(MyCart()
+          .cart
+          .cartItem[i]
+          .productDetails["product"][widget.region]
+          .toString());
     }
     setState(() {
       deliveryCharge = charge;
@@ -29,6 +36,9 @@ class _CheckoutNavigationState extends State<CheckoutNavigation> {
   Widget build(BuildContext context) {
     loadDelivery();
     return Container(
+      margin: EdgeInsets.only(
+        bottom: 10,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -62,13 +72,16 @@ class _CheckoutNavigationState extends State<CheckoutNavigation> {
               GestureDetector(
                 onTap: () => widget.placeOrder(),
                 child: Container(
-                  width: MediaQuery.of(context).size.width * 0.30,
-                  padding: EdgeInsets.symmetric(vertical: 15),
-                  decoration: BoxDecoration(
-                    color: Colors.redAccent,
+                  width: MediaQuery.of(context).size.width * 0.35,
+                  padding: EdgeInsets.symmetric(
+                    vertical: 15,
+                    horizontal: 10,
                   ),
+                  decoration: BoxDecoration(
+                      color: Colors.redAccent,
+                      borderRadius: BorderRadius.circular(10)),
                   child: Text(
-                    "Proceed to pay",
+                    "Process to Order",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,

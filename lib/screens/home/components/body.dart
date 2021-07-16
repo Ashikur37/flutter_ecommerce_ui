@@ -24,6 +24,7 @@ class _BodyState extends State<Body> {
   bool isLoadingMore = false;
   String nextPageURL;
   void loadProducts() async {
+    print("$baseUrl$topProducts");
     if (isLoading) {
       var prod = await getHttp("$baseUrl$topProducts");
       setState(() {
@@ -35,6 +36,9 @@ class _BodyState extends State<Body> {
   }
 
   _loadMoreProducts() async {
+    if (nextPageURL == null) {
+      return;
+    }
     setState(() {
       isLoadingMore = true;
     });
@@ -65,15 +69,18 @@ class _BodyState extends State<Body> {
         slivers: [
           SliverAppBar(
             pinned: true,
-            
             flexibleSpace: HomeHeader(),
           ),
           SliverToBoxAdapter(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: getProportionateScreenWidth(10)),
                 Carousel(),
                 // DiscountBanner(),
+                SizedBox(
+                  height: 10,
+                ),
                 Categories(),
                 ShopScreen(),
                 Padding(
@@ -97,8 +104,7 @@ class _BodyState extends State<Body> {
           ),
           SliverGrid(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-            ),
+                crossAxisCount: 2, childAspectRatio: 0.8),
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
                 return ProductDetail(product: products[index]);

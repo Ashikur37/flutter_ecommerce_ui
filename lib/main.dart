@@ -1,4 +1,5 @@
 import 'package:commerce/providers/category_provider.dart';
+import 'package:commerce/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/routes.dart';
 import 'package:commerce/screens/splash/splash_screen.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         theme: theme(),
         // home: SplashScreen(),
         // We use routeName so that we dont need to remember the name
-        initialRoute: SplashScreen.routeName,
+        initialRoute: HomeScreen.routeName,
         routes: routes,
       ),
     );

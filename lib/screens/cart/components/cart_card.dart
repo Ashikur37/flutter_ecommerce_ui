@@ -28,6 +28,7 @@ class CartCard extends StatelessWidget {
           child: AspectRatio(
             aspectRatio: 0.88,
             child: Container(
+              width: MediaQuery.of(context).size.width * 0.35,
               padding: EdgeInsets.all(getProportionateScreenWidth(10)),
               decoration: BoxDecoration(
                 color: Color(0xFFF5F6F9),
@@ -42,10 +43,13 @@ class CartCard extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              cart.productDetails["product"]["name"],
-              style: TextStyle(color: Colors.black, fontSize: 16),
-              maxLines: 2,
+            Container(
+              width: MediaQuery.of(context).size.width * 0.6,
+              child: Text(
+                cart.productDetails["product"]["name"],
+                style: TextStyle(color: Colors.black, fontSize: 16),
+                maxLines: 2,
+              ),
             ),
             Row(
               children: [

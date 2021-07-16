@@ -11,13 +11,16 @@ import 'profile_menu.dart';
 import 'profile_pic.dart';
 
 class Body extends StatelessWidget {
+  final Function showMessage;
+
+  const Body({Key key, this.showMessage}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(vertical: 20),
       child: Column(
         children: [
-          ProfilePic(),
+          ProfilePic(showMessage: showMessage),
           SizedBox(height: 20),
           ProfileMenu(
             text: "Basic Info",

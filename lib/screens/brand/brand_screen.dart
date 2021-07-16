@@ -1,23 +1,25 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:commerce/components/load_more.dart';
 import 'package:commerce/components/product_detail.dart';
 import 'package:commerce/helper/http.dart';
+import 'package:commerce/screens/details/details_screen.dart';
 import 'package:commerce/utilities/const.dart';
 import 'package:flutter/material.dart';
 
-class SubCategoryScreen extends StatefulWidget {
-  static String routeName = "/sub_category";
+class BrandScreen extends StatefulWidget {
+  static String routeName = "/brand";
   @override
-  _SubCategoryScreenState createState() => _SubCategoryScreenState();
+  _BrandScreenState createState() => _BrandScreenState();
 }
 
-class _SubCategoryScreenState extends State<SubCategoryScreen> {
+class _BrandScreenState extends State<BrandScreen> {
   bool isLoading = true;
   List products = [];
   bool isLoadingMore = false;
   String nextPageURL;
   void loadProducts(id) async {
     if (isLoading) {
-      var prod = await getHttp("$baseUrl/sub_category/$id/products");
+      var prod = await getHttp("$baseUrl/brand/$id/products");
       setState(() {
         products = prod["data"];
         isLoading = false;
@@ -41,9 +43,8 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
   @override
   Widget build(BuildContext context) {
     ScrollController _scrollController = ScrollController();
-    final SubCategoryArgumentsArguments agrs =
-        ModalRoute.of(context).settings.arguments;
-    loadProducts(agrs.subCategory["id"]);
+    final BrandArguments agrs = ModalRoute.of(context).settings.arguments;
+    loadProducts(agrs.brand["id"]);
     _scrollController.addListener(() {
       if (_scrollController.hasClients) {
         if (_scrollController.offset ==
@@ -54,10 +55,23 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
     });
     return Scaffold(
       appBar: AppBar(
-        title: Text(agrs.subCategory["name"]),
+        title: Text(agrs.brand["name"]),
       ),
       body: Column(
         children: [
+          Container(
+            height: 100,
+            decoration: BoxDecoration(
+                image:
+                    DecorationImage(image: NetworkImage(agrs.brand["image"]))),
+          ),
+          Text(
+            agrs.brand["name"],
+            style: TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           SizedBox(
             height: 15,
           ),
@@ -66,7 +80,8 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
               controller: _scrollController,
               itemCount: products.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, childAspectRatio: 0.8),
+                crossAxisCount: 2,
+              ),
               itemBuilder: (BuildContext context, int index) {
                 return ProductDetail(product: products[index]);
               },
@@ -79,7 +94,7 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
   }
 }
 
-class SubCategoryArgumentsArguments {
-  final subCategory;
-  SubCategoryArgumentsArguments(this.subCategory);
+class BrandArguments {
+  final brand;
+  BrandArguments(this.brand);
 }

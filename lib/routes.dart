@@ -1,6 +1,7 @@
 import 'package:commerce/screens/address/address_list.dart';
 import 'package:commerce/screens/address/create_address.dart';
 import 'package:commerce/screens/boucher/boucher_screen.dart';
+import 'package:commerce/screens/brand/brand_screen.dart';
 import 'package:commerce/screens/campaign/campaign_product_screen.dart';
 import 'package:commerce/screens/campaign/campaign_screen.dart';
 import 'package:commerce/screens/categories/categories_screen.dart';
@@ -9,6 +10,7 @@ import 'package:commerce/screens/chatscreen/chat_screen.dart';
 import 'package:commerce/screens/checkout/checkout_screen.dart';
 import 'package:commerce/screens/merchant/merchant_screen.dart';
 import 'package:commerce/screens/messagescreen/message_screen.dart';
+import 'package:commerce/screens/offer/offer_details.dart';
 import 'package:commerce/screens/offer/offer_screen.dart';
 import 'package:commerce/screens/order/order_list.dart';
 import 'package:commerce/screens/order/order_screen.dart';
@@ -70,4 +72,6 @@ final Map<String, WidgetBuilder> routes = {
   MerchantScreen.routeName: (context) => MerchantScreen(),
   MessageScreen.routeName: (context) => MessageScreen(),
   DeliveryChargeScreen.routeName: (context) => DeliveryChargeScreen(),
+  OfferDetails.routeName: (context) => OfferDetails(),
+  BrandScreen.routeName: (context) => BrandScreen(),
 };

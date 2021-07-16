@@ -9,11 +9,21 @@ class ProfileScreen extends StatelessWidget {
   static String routeName = "/profile";
   @override
   Widget build(BuildContext context) {
+    showMessage(String msg, Color color) {
+      final snackBar = SnackBar(
+        content: Text(msg),
+        backgroundColor: color,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Profile"),
       ),
-      body: Body(),
+      body: Body(
+        showMessage: showMessage,
+      ),
       bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.profile),
     );
   }

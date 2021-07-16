@@ -1,8 +1,10 @@
+import 'package:commerce/helper/auth.dart';
 import 'package:commerce/screens/boucher/boucher_screen.dart';
 import 'package:commerce/screens/categories/categories_screen.dart';
 import 'package:commerce/screens/merchant/merchant_screen.dart';
 import 'package:commerce/screens/offer/offer_screen.dart';
 import 'package:commerce/screens/order/order_list.dart';
+import 'package:commerce/screens/sign_in/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -12,11 +14,7 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> categories = [
-      {
-        "icon": "assets/icons/Flash Icon.svg",
-        "text": "Bouchers",
-        "route": BoucherScreen.routeName
-      },
+      // Categories, Door to Door, doddle Offer, prime Shop, Regular shop, order Boucher, Boucher shop, Doddle Ride,Doddle Food
       {
         "icon": "assets/icons/Bill Icon.svg",
         "text": "Categories",
@@ -29,21 +27,60 @@ class Categories extends StatelessWidget {
       },
       {
         "icon": "assets/icons/Gift Icon.svg",
-        "text": "Easymert Offer",
+        "text": "Doddle Offer",
         "route": OfferScreen.routeName
       },
       {
         "icon": "assets/icons/Discover.svg",
-        "text": "Shop",
+        "text": "Regular Shop",
         "route": MerchantScreen.routeName
       },
+      {
+        "icon": "assets/icons/Flash Icon.svg",
+        "text": "Door To Door",
+        "route": BoucherScreen.routeName
+      },
+
+      {
+        "icon": "assets/icons/Discover.svg",
+        "text": "Prime Shop",
+        "route": MerchantScreen.routeName
+      },
+
+      {
+        "icon": "assets/icons/Flash Icon.svg",
+        "text": "Boucher",
+        "route": BoucherScreen.routeName
+      },
+      {
+        "icon": "assets/icons/Flash Icon.svg",
+        "text": "Boucher Shop",
+        "route": BoucherScreen.routeName
+      },
+      {
+        "icon": "assets/icons/Flash Icon.svg",
+        "text": "Doddle Ride",
+        "route": BoucherScreen.routeName
+      },
+      {
+        "icon": "assets/icons/Flash Icon.svg",
+        "text": "Doddle Food",
+        "route": BoucherScreen.routeName
+      },
+      {
+        "icon": "assets/icons/Flash Icon.svg",
+        "text": "Doddle Courier",
+        "route": BoucherScreen.routeName
+      },
+      // Doddle Ride,Doddle Food
     ];
-    return Padding(
-      padding: EdgeInsets.all(getProportionateScreenWidth(20)),
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(getProportionateScreenWidth(10)),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: List.generate(
             categories.length,
@@ -52,12 +89,25 @@ class Categories extends StatelessWidget {
                 CategoryCard(
                   icon: categories[index]["icon"],
                   text: categories[index]["text"],
-                  press: () {
-                    Navigator.pushNamed(context, categories[index]["route"]);
+                  press: () async {
+                    if (index == 2) {
+                      var login = await localIsLoggedIn();
+                      if (!login) {
+                        Navigator.pushNamed(
+                          context,
+                          SignInScreen.routeName,
+                        );
+                      } else {
+                        Navigator.pushNamed(
+                            context, categories[index]["route"]);
+                      }
+                    } else {
+                      Navigator.pushNamed(context, categories[index]["route"]);
+                    }
                   },
                 ),
                 SizedBox(
-                  width: 5.0,
+                  width: 15.0,
                 )
               ],
             ),
@@ -88,16 +138,27 @@ class CategoryCard extends StatelessWidget {
           children: [
             Container(
               padding: EdgeInsets.all(getProportionateScreenWidth(15)),
-              height: getProportionateScreenWidth(55),
-              width: getProportionateScreenWidth(55),
+              height: getProportionateScreenWidth(52),
+              width: getProportionateScreenWidth(52),
               decoration: BoxDecoration(
                 color: Color(0xFFFFECDF),
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(26),
               ),
-              child: SvgPicture.asset(icon),
+              child: SvgPicture.asset(
+                icon,
+              ),
             ),
             SizedBox(height: 5),
-            Text(text, textAlign: TextAlign.center)
+            Container(
+              width: MediaQuery.of(context).size.width * 0.17,
+              child: Text(
+                text,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 11.0,
+                ),
+              ),
+            )
           ],
         ),
       ),

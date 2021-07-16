@@ -1,3 +1,4 @@
+import 'package:commerce/helper/auth.dart';
 import 'package:commerce/helper/http.dart';
 import 'package:commerce/screens/details/components/product_colors.dart';
 import 'package:commerce/screens/details/components/product_sizes.dart';
@@ -67,12 +68,22 @@ class _BodyState extends State<Body> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          widget.product["name"],
-                          style: Theme.of(context).textTheme.headline6,
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          child: Text(
+                            widget.product["name"],
+                            style: Theme.of(context).textTheme.headline6,
+                          ),
                         ),
                         GestureDetector(
                           onTap: () async {
+                            var isLoggedIn = await localIsLoggedIn();
+                            if (!isLoggedIn) {
+                              widget.showMessage(
+                                  "Please login to add product to wishlist",
+                                  Colors.redAccent);
+                              return;
+                            }
                             var prod = await getAuthHttp(
                                 "$baseUrl/wish-list/add/${widget.product["id"]}");
                             widget.showMessage(
@@ -93,15 +104,25 @@ class _BodyState extends State<Body> {
                   Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: getProportionateScreenWidth(20)),
-                    child: Row(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "৳$price",
-                          style: Theme.of(context).textTheme.headline6,
+                        Row(
+                          children: [
+                            Text(
+                              "৳$price",
+                              style: Theme.of(context).textTheme.headline6,
+                            ),
+                            Text(price == old_price ? "" : "৳$old_price",
+                                style: TextStyle(
+                                    decoration: TextDecoration.lineThrough)),
+                          ],
                         ),
-                        Text(price == old_price ? "" : "৳$old_price",
-                            style: TextStyle(
-                                decoration: TextDecoration.lineThrough)),
+                        Text(
+                          "Cashback ৳" + widget.product["cashback"].toString(),
+                          style: TextStyle(
+                              fontSize: 17.0, fontWeight: FontWeight.w600),
+                        )
                       ],
                     ),
                   ),
@@ -127,8 +148,9 @@ class _BodyState extends State<Body> {
                                 index, widget.product["sizes"][index]["price"]);
                             setState(() {
                               sizeIndex = index;
-                              sizePrice =
-                                  widget.product["sizes"][index]["price"];
+                              sizePrice = int.parse(widget.product["sizes"]
+                                      [index]["price"]
+                                  .toString());
                             });
                           },
                         )

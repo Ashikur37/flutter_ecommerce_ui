@@ -65,6 +65,23 @@ class ProductDetail extends StatelessWidget {
               ),
             ],
           ),
+          int.parse(product['cashback'].toString()) > 0
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Cashback",
+                        style: TextStyle(
+                          color: Colors.redAccent,
+                        ),
+                      ),
+                      Text("৳${product['cashback']}"),
+                    ],
+                  ),
+                )
+              : SizedBox(),
           product['discount_percent'] > 0
               ? Container(
                   padding: EdgeInsets.symmetric(horizontal: 5),

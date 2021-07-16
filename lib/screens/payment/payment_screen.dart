@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:commerce/screens/order/order_screen.dart';
 import 'package:commerce/utilities/const.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +46,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
     }
   }
 
+  @override
+  void initState() {
+    super.initState();
+    if (Platform.isAndroid)
+      WebView.platform = SurfaceAndroidWebView(); // <<== THIS
+  }
+
   Future<bool> _onBackPressed() async {
     return true;
   }
@@ -53,6 +62,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     final PaymentArguments agrs = ModalRoute.of(context).settings.arguments;
     return WillPopScope(
         child: Scaffold(
+          resizeToAvoidBottomInset: true,
           appBar: _appbar(),
           body: Stack(
             fit: StackFit.expand,
@@ -74,7 +84,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
                     _webViewController.loadUrl(filePath);
                   },
-                  onPageStarted: (String url) {
+                  onPageStarted: (String url) async {
                     print(
                         "==============================================================");
                     print('Page started loading: $url');
@@ -83,6 +93,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     _showProgressHud();
 
                     if (url.contains("success") && url.contains(rootUrl)) {
+                      await new Future.delayed(
+                          const Duration(seconds: 2), () => "1");
                       isSuccessfull = true;
                       Navigator.popAndPushNamed(
                         context,
@@ -92,9 +104,19 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       _onBackPressed();
                     } else if (url.contains("cancel")) {
                       isSuccessfull = false;
+                      Navigator.popAndPushNamed(
+                        context,
+                        OrderScreen.routeName,
+                        arguments: OrderDetailsArguments(agrs.orderId),
+                      );
                       _onBackPressed();
                     } else if (url.contains("fail") && url.contains(rootUrl)) {
                       isSuccessfull = false;
+                      Navigator.popAndPushNamed(
+                        context,
+                        OrderScreen.routeName,
+                        arguments: OrderDetailsArguments(agrs.orderId),
+                      );
                       Navigator.popAndPushNamed(
                         context,
                         OrderScreen.routeName,

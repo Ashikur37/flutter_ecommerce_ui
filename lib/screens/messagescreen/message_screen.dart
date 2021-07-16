@@ -75,35 +75,45 @@ class _MessageScreenState extends State<MessageScreen> {
                     arguments: ChatArguments(chats[index]["id"]),
                   );
                 },
-                child: Container(
-                  margin: EdgeInsets.only(top: 10, left: 5.0),
-                  child: Row(
-                    children: [
-                      CachedNetworkImage(
-                        height: 50,
-                        imageUrl: chats[index]["product_image"],
-                        placeholder: (context, url) => new Icon(Icons.shop),
-                        errorWidget: (context, url, error) =>
-                            new Icon(Icons.store_mall_directory),
-                      ),
-                      SizedBox(
-                        width: 20.0,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(top: 10, left: 5.0),
+                      child: Row(
                         children: [
-                          Text(
-                            chats[index]["message"],
-                            style: TextStyle(fontSize: 19.0),
+                          CachedNetworkImage(
+                            height: 50,
+                            imageUrl: chats[index]["product_image"],
+                            placeholder: (context, url) => new Icon(Icons.shop),
+                            errorWidget: (context, url, error) =>
+                                new Icon(Icons.store_mall_directory),
                           ),
-                          Text(
-                            chats[index]["sent"],
-                            style: TextStyle(fontSize: 16.0),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                chats[index]["message"],
+                                style: TextStyle(fontSize: 19.0),
+                              ),
+                              Text(
+                                chats[index]["sent"],
+                                style: TextStyle(fontSize: 16.0),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 2),
+                      height: 2,
+                      width: double.infinity,
+                      color: Colors.grey[200],
+                    )
+                  ],
                 ),
               ),
             ),

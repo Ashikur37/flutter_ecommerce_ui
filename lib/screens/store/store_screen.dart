@@ -26,6 +26,7 @@ class _StoreScreenState extends State<StoreScreen> {
       if (isMerchant) {
         prod = await getHttp("$baseUrl/merchant/$id/products");
       } else {
+        print("$baseUrl/store/$id/products");
         prod = await getHttp("$baseUrl/store/$id/products");
       }
       setState(() {
@@ -137,8 +138,7 @@ class _StoreScreenState extends State<StoreScreen> {
                 ),
                 SliverGrid(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                  ),
+                      crossAxisCount: 2, childAspectRatio: 0.8),
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
                       return ProductDetail(product: products[index]);

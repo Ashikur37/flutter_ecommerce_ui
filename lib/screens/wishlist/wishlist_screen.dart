@@ -1,10 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:commerce/components/coustom_bottom_nav_bar.dart';
 import 'package:commerce/components/load_more.dart';
 import 'package:commerce/components/product_detail.dart';
 import 'package:commerce/helper/http.dart';
 import 'package:commerce/screens/details/details_screen.dart';
 import 'package:commerce/utilities/const.dart';
 import 'package:flutter/material.dart';
+
+import '../../enums.dart';
 
 class WishListsScreen extends StatefulWidget {
   static String routeName = "/wish_list";
@@ -68,8 +71,7 @@ class _WishListsScreenState extends State<WishListsScreen> {
                     controller: _scrollController,
                     itemCount: products.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                    ),
+                        crossAxisCount: 2, childAspectRatio: 0.9),
                     itemBuilder: (BuildContext context, int index) {
                       return ProductDetail(product: products[index]);
                     },
@@ -84,6 +86,7 @@ class _WishListsScreenState extends State<WishListsScreen> {
                 style: TextStyle(fontSize: 22.0, color: Colors.redAccent),
               ),
             ),
+      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
     );
   }
 }

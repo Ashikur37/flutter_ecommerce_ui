@@ -38,10 +38,13 @@ class CartItem extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              cart.productDetails["product"]["name"],
-              style: TextStyle(color: Colors.black, fontSize: 16),
-              maxLines: 2,
+            Container(
+              width: MediaQuery.of(context).size.width * 0.6,
+              child: Text(
+                cart.productDetails["product"]["name"],
+                style: TextStyle(color: Colors.black, fontSize: 16),
+                maxLines: 2,
+              ),
             ),
             Row(
               children: [
@@ -89,8 +92,8 @@ class CartItem extends StatelessWidget {
                 ),
               ],
             ),
-            Text("Delivery charge: ৳" +
-                cart.productDetails["product"]["delivery_charge"].toString())
+            // Text("Delivery charge: ৳" +
+            //     cart.productDetails["product"]["delivery_charge"].toString())
             //cart.productDetails["product"]["delivery_charge"]
           ],
         )

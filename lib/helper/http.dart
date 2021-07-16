@@ -19,6 +19,7 @@ getAuthHttp(uri) async {
     var response = await get(Uri.parse(uri), headers: {
       'Authorization': 'Bearer $token',
     });
+    print(response.body);
     return jsonDecode(response.body);
   } catch (e) {
     print(e);

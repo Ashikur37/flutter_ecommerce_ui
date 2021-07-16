@@ -65,7 +65,7 @@ class _ShopScreenState extends State<ShopScreen> {
                     physics: NeverScrollableScrollPhysics(),
                     itemCount: shops.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3),
+                        childAspectRatio: 0.9, crossAxisCount: 3),
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () => Navigator.pushNamed(

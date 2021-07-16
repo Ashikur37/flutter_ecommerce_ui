@@ -18,13 +18,19 @@ localLogout() async {
 
 localGetUser() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  print(jsonDecode(prefs.getString('user')));
 
   return jsonDecode(prefs.getString('user'));
 }
 
 localSetUser(user) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setString('user', jsonEncode(user));
+}
+
+updateAvatar(String avatar) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  var user = jsonDecode(prefs.getString('user'));
+  user["avatar"] = avatar;
   prefs.setString('user', jsonEncode(user));
 }
 
