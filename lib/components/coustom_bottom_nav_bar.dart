@@ -77,7 +77,7 @@ class CustomBottomNavBar extends StatelessWidget {
                     IconButton(
                       icon: SvgPicture.asset(
                         "assets/icons/campaign.svg",
-                        color: Colors.redAccent,
+                        color: kPrimaryColor,
                       ),
                       onPressed: () {
                         Navigator.pushNamed(context, CampaignScreen.routeName);

@@ -34,7 +34,7 @@ class _ShopScreenState extends State<ShopScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Easymert Shop",
+                  "Ddddlemart Shop",
                   style: TextStyle(
                     fontSize: 18.0,
                     color: Colors.black,
@@ -53,7 +53,7 @@ class _ShopScreenState extends State<ShopScreen> {
                     baseColor: Colors.red,
                     highlightColor: Colors.yellow,
                     child: Text(
-                      'Easymert',
+                      'Ddddlemart',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 40.0,

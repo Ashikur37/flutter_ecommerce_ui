@@ -33,7 +33,7 @@ class ProductDetail extends StatelessWidget {
               baseColor: Colors.red,
               highlightColor: Colors.yellow,
               child: Text(
-                'Easymert',
+                'Doddlemart',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 40.0,

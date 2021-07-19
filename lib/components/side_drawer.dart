@@ -54,7 +54,7 @@ class _SideDrawerState extends State<SideDrawer> {
               child: Column(
                 children: [
                   Text(
-                    'Easymert',
+                    'Ddddlemart',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: kPrimaryColor,
