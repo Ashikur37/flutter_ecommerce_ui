@@ -25,7 +25,7 @@ class _ShopScreenState extends State<ShopScreen> {
   Widget build(BuildContext context) {
     loadShop();
     return Container(
-      height: 310,
+      height: 340,
       child: Column(
         children: [
           Padding(
@@ -34,7 +34,7 @@ class _ShopScreenState extends State<ShopScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Ddddlemart Shop",
+                  "Doddlemart Shop",
                   style: TextStyle(
                     fontSize: 18.0,
                     color: Colors.black,
@@ -53,7 +53,7 @@ class _ShopScreenState extends State<ShopScreen> {
                     baseColor: Colors.red,
                     highlightColor: Colors.yellow,
                     child: Text(
-                      'Ddddlemart',
+                      'Doddlemart',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 40.0,
@@ -65,7 +65,9 @@ class _ShopScreenState extends State<ShopScreen> {
                     physics: NeverScrollableScrollPhysics(),
                     itemCount: shops.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio: 0.9, crossAxisCount: 3),
+                        childAspectRatio: 0.9,
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 2),
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () => Navigator.pushNamed(
@@ -74,6 +76,7 @@ class _ShopScreenState extends State<ShopScreen> {
                           arguments: ShopsArguments(shops[index]),
                         ),
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.network(
                               shops[index]['image'],

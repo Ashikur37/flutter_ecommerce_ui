@@ -97,7 +97,7 @@ class _OrderCardState extends State<OrderCard> {
                       EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                   color: Colors.redAccent,
                   child: const Text(
-                    'Pay With Easy Balance',
+                    'Pay With Doddle Balance',
                     style: TextStyle(
                       color: Colors.white,
                     ),

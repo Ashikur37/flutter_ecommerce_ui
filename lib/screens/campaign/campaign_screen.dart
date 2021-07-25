@@ -31,37 +31,25 @@ class _CampaignScreenState extends State<CampaignScreen> {
         title: Text("Campaign"),
       ),
       body: Column(
-        children: [
-          Expanded(
-            child: GridView.builder(
-              itemCount: campaigns.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  onTap: () => Navigator.pushNamed(
-                    context,
-                    CampaignProductScreen.routeName,
-                    arguments: CampaignProductArguments(campaigns[index]),
-                  ),
-                  child: Column(
-                    children: [
-                      Flexible(
-                        child: Image.network(campaigns[index]["image"]),
-                      ),
-                      Text(
-                        campaigns[index]["title"],
-                        style: TextStyle(fontWeight: FontWeight.w600),
-                      )
-                    ],
-                  ),
-                );
-                ;
-              },
+        children: List.generate(
+          campaigns.length,
+          (index) => GestureDetector(
+            onTap: () => Navigator.pushNamed(
+              context,
+              CampaignProductScreen.routeName,
+              arguments: CampaignProductArguments(campaigns[index]),
+            ),
+            child: Column(
+              children: [
+                Center(child: Image.network(campaigns[index]["image"])),
+                Text(
+                  campaigns[index]["title"],
+                  style: TextStyle(fontWeight: FontWeight.w600),
+                )
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

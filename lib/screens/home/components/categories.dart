@@ -107,7 +107,7 @@ class Categories extends StatelessWidget {
                   },
                 ),
                 SizedBox(
-                  width: 15.0,
+                  width: 10.0,
                 )
               ],
             ),

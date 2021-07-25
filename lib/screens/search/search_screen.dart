@@ -35,7 +35,7 @@ class _SearchScreenState extends State<SearchScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(height: getProportionateScreenHeight(20)),
+            SizedBox(height: getProportionateScreenHeight(25)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
