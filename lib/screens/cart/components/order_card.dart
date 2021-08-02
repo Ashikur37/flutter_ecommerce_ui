@@ -19,6 +19,7 @@ class OrderCard extends StatefulWidget {
   final int shippingPaid;
   final int paymentStatus;
   final int status;
+  final int isCod;
   const OrderCard({
     Key key,
     this.total,
@@ -31,6 +32,7 @@ class OrderCard extends StatefulWidget {
     this.paidAmount,
     this.paymentStatus,
     this.status,
+    this.isCod,
   }) : super(key: key);
 
   @override
@@ -95,7 +97,7 @@ class _OrderCardState extends State<OrderCard> {
                 child: Container(
                   padding:
                       EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                  color: Colors.redAccent,
+                  color: kPrimaryColor,
                   child: const Text(
                     'Pay With Doddle Balance',
                     style: TextStyle(
@@ -214,34 +216,39 @@ class _OrderCardState extends State<OrderCard> {
                                             0 ||
                                         widget.paymentStatus == 1
                                     ? SizedBox()
-                                    : GestureDetector(
-                                        onTap: () async {
-                                          var data = await postAuthHttp(
-                                              '$baseUrl/order/${widget.orderId}/cash-on-delivery',
-                                              jsonEncode({"amount": amount}));
-                                          widget.showMessage(
-                                              "Payment updated to cash on delivery",
-                                              Colors.green);
-                                          Navigator.popAndPushNamed(
-                                            context,
-                                            OrderScreen.routeName,
-                                            arguments: OrderDetailsArguments(
-                                                widget.orderId),
-                                          );
-                                        },
-                                        child: Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 10.0, vertical: 5.0),
-                                          color: Colors.redAccent,
-                                          child: Text(
-                                            "Cash On Delivery",
-                                            style: TextStyle(
-                                              fontSize: 18.0,
-                                              color: Colors.white,
+                                    : widget.isCod == 1
+                                        ? GestureDetector(
+                                            onTap: () async {
+                                              var data = await postAuthHttp(
+                                                  '$baseUrl/order/${widget.orderId}/cash-on-delivery',
+                                                  jsonEncode(
+                                                      {"amount": amount}));
+                                              widget.showMessage(
+                                                  "Payment updated to cash on delivery",
+                                                  Colors.green);
+                                              Navigator.popAndPushNamed(
+                                                context,
+                                                OrderScreen.routeName,
+                                                arguments:
+                                                    OrderDetailsArguments(
+                                                        widget.orderId),
+                                              );
+                                            },
+                                            child: Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 10.0,
+                                                  vertical: 5.0),
+                                              color: kPrimaryColor,
+                                              child: Text(
+                                                "Cash On Delivery",
+                                                style: TextStyle(
+                                                  fontSize: 18.0,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                      )),
+                                          )
+                                        : SizedBox()),
                             widget.paymentMethod == "Cash On Delivery"
                                 ? SizedBox()
                                 : (widget.paymentStatus == 0
@@ -252,7 +259,7 @@ class _OrderCardState extends State<OrderCard> {
                                         child: Container(
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 10.0, vertical: 5.0),
-                                          color: Colors.redAccent,
+                                          color: kPrimaryColor,
                                           child: Text(
                                             "Pay Now",
                                             style: TextStyle(

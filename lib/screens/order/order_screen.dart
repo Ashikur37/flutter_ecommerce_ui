@@ -23,12 +23,14 @@ class _OrderScreenState extends State<OrderScreen> {
   String reason = "";
   String method = "";
   Color methodColor = Colors.redAccent;
+  int isCod = 1;
   var order = null;
   void loadOrder(id) async {
     if (isLoading) {
       var ord = await getAuthHttp("$baseUrl/orders/$id");
 
       setState(() {
+        isCod = int.parse(ord["data"]["order"]["is_cod"]);
         order = ord["data"];
         isLoading = false;
       });
@@ -200,7 +202,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                 Text(
                                   "#" + order["order"]["order_number"],
                                   style: TextStyle(
-                                    color: Colors.redAccent,
+                                    color: kPrimaryColor,
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -244,7 +246,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                                       width: 10,
                                                       height: 10,
                                                       decoration: BoxDecoration(
-                                                          color: Colors.red,
+                                                          color: kPrimaryColor,
                                                           shape:
                                                               BoxShape.circle),
                                                     ),
@@ -290,7 +292,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                                             : (int.parse(order["order"]
                                                                         ["status"]) ==
                                                                     6
-                                                                ? Colors.red
+                                                                ? kPrimaryColor
                                                                 : Colors.grey[300]),
                                                         shape: BoxShape.circle),
                                                   ),
@@ -384,7 +386,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                           Container(
                                             padding: EdgeInsets.all(7),
                                             decoration: BoxDecoration(
-                                              color: Colors.redAccent,
+                                              color: kPrimaryColor,
                                               shape: BoxShape.circle,
                                             ),
                                           ),
@@ -727,6 +729,7 @@ class _OrderScreenState extends State<OrderScreen> {
               ],
             ),
       bottomNavigationBar: OrderCard(
+          isCod: isCod,
           showMessage: showMessage,
           paymentMethod: isLoading ? "" : order["order"]["payment_method"],
           total: isLoading ? "0" : order["order"]["total"],

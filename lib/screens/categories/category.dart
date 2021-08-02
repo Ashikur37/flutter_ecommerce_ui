@@ -1,3 +1,4 @@
+import 'package:commerce/constants.dart';
 import 'package:commerce/helper/http.dart';
 import 'package:commerce/providers/category_provider.dart';
 import 'package:commerce/screens/categories/category_list.dart';
@@ -50,7 +51,7 @@ class CategoriesScreen extends StatelessWidget {
       _globalKey.currentState.showSnackBar(
         SnackBar(
           content: Text("Loading more products"),
-          backgroundColor: Colors.redAccent,
+          backgroundColor: kPrimaryColor,
         ),
       );
       var prods = await getHttp(provider.nextPageURL);

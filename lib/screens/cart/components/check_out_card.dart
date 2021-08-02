@@ -90,7 +90,7 @@ class CheckoutCard extends StatelessWidget {
                       var isLoggedIn = await localIsLoggedIn();
                       if (isLoggedIn) {
                         if (MyCart().cart.getCartItemCount() == 0) {
-                          showMessage("Empty cart", Colors.redAccent);
+                          showMessage("Empty cart", kPrimaryColor);
                         } else {
                           Navigator.pushNamed(
                               context, CheckoutScreen.routeName);

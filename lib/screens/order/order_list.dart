@@ -1,3 +1,6 @@
+import 'package:commerce/components/coustom_bottom_nav_bar.dart';
+import 'package:commerce/components/side_drawer.dart';
+import 'package:commerce/enums.dart';
 import 'package:commerce/helper/http.dart';
 import 'package:commerce/screens/order/order_screen.dart';
 import 'package:commerce/utilities/const.dart';
@@ -73,6 +76,8 @@ class _OrderListState extends State<OrderList> {
   Widget build(BuildContext context) {
     loadOrder();
     return Scaffold(
+        drawer: SideDrawer(),
+        bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.abc),
         appBar: AppBar(
           title: Text(
             "Order List",
@@ -241,11 +246,13 @@ class _OrderListState extends State<OrderList> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             3),
-                                                    color: (orders[index][
-                                                                    "payment_status"] ==
+                                                    color: (int.parse(orders[
+                                                                        index][
+                                                                    "payment_status"]) ==
                                                                 0 &&
-                                                            orders[index][
-                                                                    "paid_amount"] >
+                                                            int.parse(orders[
+                                                                        index][
+                                                                    "paid_amount"]) >
                                                                 0)
                                                         ? Colors.pinkAccent
                                                         : (orders[index][
@@ -255,11 +262,13 @@ class _OrderListState extends State<OrderList> {
                                                             : Colors
                                                                 .greenAccent),
                                                   ),
-                                                  child: (orders[index][
-                                                                  "payment_status"] ==
+                                                  child: (int.parse(orders[
+                                                                      index][
+                                                                  "payment_status"]) ==
                                                               0 &&
-                                                          orders[index][
-                                                                  "paid_amount"] >
+                                                          int.parse(orders[
+                                                                      index][
+                                                                  "paid_amount"]) >
                                                               0)
                                                       ? Text(
                                                           "Partial",

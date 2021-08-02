@@ -60,7 +60,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             width: SizeConfig.screenWidth,
                             color: messages[index]["sender"]
                                 ? Colors.blueAccent
-                                : Colors.redAccent,
+                                : kPrimaryColor,
                             child: Column(
                               crossAxisAlignment: messages[index]["sender"]
                                   ? CrossAxisAlignment.end
@@ -109,7 +109,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                 _sendMessage(agrs.productId);
                               },
                               child: Container(
-                                color: Colors.redAccent,
+                                color: kPrimaryColor,
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 20.0, vertical: 22.0),
                                 margin: EdgeInsets.only(right: 0.0),

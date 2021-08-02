@@ -1,3 +1,4 @@
+import 'package:commerce/constants.dart';
 import 'package:commerce/providers/category_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -36,7 +37,7 @@ class CategoryList extends StatelessWidget {
                   decoration: BoxDecoration(
                     border: Border(
                       left: BorderSide(
-                          color: Colors.redAccent,
+                          color: kPrimaryColor,
                           width: activeCategory == categories[index]["name"]
                               ? 2
                               : 0),

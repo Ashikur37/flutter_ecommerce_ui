@@ -1,3 +1,4 @@
+import 'package:commerce/constants.dart';
 import 'package:commerce/utilities/my_cart.dart';
 import 'package:flutter/material.dart';
 
@@ -78,7 +79,7 @@ class _CheckoutNavigationState extends State<CheckoutNavigation> {
                     horizontal: 10,
                   ),
                   decoration: BoxDecoration(
-                      color: Colors.redAccent,
+                      color: kPrimaryColor,
                       borderRadius: BorderRadius.circular(10)),
                   child: Text(
                     "Process to Order",

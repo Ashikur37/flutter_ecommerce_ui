@@ -8,6 +8,7 @@ import 'package:commerce/screens/categories/categories_screen.dart';
 import 'package:commerce/screens/change_password/change_password.dart';
 import 'package:commerce/screens/chatscreen/chat_screen.dart';
 import 'package:commerce/screens/checkout/checkout_screen.dart';
+import 'package:commerce/screens/contact/contact_details.dart';
 import 'package:commerce/screens/merchant/merchant_screen.dart';
 import 'package:commerce/screens/messagescreen/message_screen.dart';
 import 'package:commerce/screens/offer/offer_details.dart';
@@ -74,4 +75,5 @@ final Map<String, WidgetBuilder> routes = {
   DeliveryChargeScreen.routeName: (context) => DeliveryChargeScreen(),
   OfferDetails.routeName: (context) => OfferDetails(),
   BrandScreen.routeName: (context) => BrandScreen(),
+  ContactDetails.routeName: (context) => ContactDetails(),
 };

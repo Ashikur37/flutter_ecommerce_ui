@@ -1,3 +1,4 @@
+import 'package:commerce/constants.dart';
 import 'package:commerce/helper/http.dart';
 import 'package:commerce/screens/address/create_address.dart';
 import 'package:commerce/size_config.dart';
@@ -53,7 +54,7 @@ class _AddressListState extends State<AddressList> {
                 )),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        backgroundColor: Colors.redAccent,
+        backgroundColor: kPrimaryColor,
         onPressed: () {
           Navigator.pushNamed(context, CreateAddress.routeName);
         },

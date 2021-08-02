@@ -61,7 +61,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 child: Container(
                     padding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                    color: Colors.redAccent,
+                    color: kPrimaryColor,
                     child: const Text(
                       'Pay Now',
                       style: TextStyle(

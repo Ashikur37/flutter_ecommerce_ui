@@ -1,6 +1,7 @@
 import 'package:commerce/constants.dart';
 import 'package:commerce/helper/auth.dart';
 import 'package:commerce/screens/cart/cart_screen.dart';
+import 'package:commerce/screens/contact/contact_details.dart';
 import 'package:commerce/screens/home/home_screen.dart';
 import 'package:commerce/screens/login_success/login_success_screen.dart';
 import 'package:commerce/screens/messagescreen/message_screen.dart';
@@ -210,6 +211,24 @@ class _SideDrawerState extends State<SideDrawer> {
               } else {
                 Navigator.popAndPushNamed(context, MessageScreen.routeName);
               }
+            },
+          ),
+          ListTile(
+            title: Row(children: [
+              Icon(Icons.contact_support_sharp),
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                'Contact Us',
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                ),
+              ),
+            ]),
+            onTap: () {
+              Navigator.popAndPushNamed(context, ContactDetails.routeName);
             },
           ),
         ],

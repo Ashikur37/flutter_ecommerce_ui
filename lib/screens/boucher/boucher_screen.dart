@@ -1,4 +1,5 @@
 import 'package:commerce/components/coustom_bottom_nav_bar.dart';
+import 'package:commerce/constants.dart';
 import 'package:flutter/material.dart';
 
 import '../../enums.dart';
@@ -20,7 +21,7 @@ class _BoucherScreenState extends State<BoucherScreen> {
         child: Center(
           child: Text(
             "Coming soon...",
-            style: TextStyle(fontSize: 23.0, color: Colors.redAccent),
+            style: TextStyle(fontSize: 23.0, color: kPrimaryColor),
           ),
         ),
       ),

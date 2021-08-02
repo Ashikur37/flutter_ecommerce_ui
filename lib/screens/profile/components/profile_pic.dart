@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:commerce/constants.dart';
 import 'package:commerce/helper/auth.dart';
 import 'package:commerce/helper/http.dart';
 import 'package:commerce/utilities/const.dart';
@@ -146,7 +147,7 @@ class _ProfilePicState extends State<ProfilePic> {
                   margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 3.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    color: Colors.redAccent,
+                    color: kPrimaryColor,
                   ),
                   child: Text(
                     "Update",

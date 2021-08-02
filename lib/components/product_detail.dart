@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:commerce/constants.dart';
 import 'package:commerce/screens/details/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
@@ -74,7 +75,7 @@ class ProductDetail extends StatelessWidget {
                       Text(
                         "Cashback",
                         style: TextStyle(
-                          color: Colors.redAccent,
+                          color: kPrimaryColor,
                         ),
                       ),
                       Text("৳${product['cashback']}"),
@@ -86,7 +87,7 @@ class ProductDetail extends StatelessWidget {
               ? Container(
                   padding: EdgeInsets.symmetric(horizontal: 5),
                   decoration: BoxDecoration(
-                    color: Colors.redAccent,
+                    color: kPrimaryColor,
                   ),
                   child: Text(
                     "${product['discount_percent']}% OFF",

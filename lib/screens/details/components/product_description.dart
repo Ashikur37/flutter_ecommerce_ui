@@ -122,6 +122,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
                         widget.showMessage(
                             "Please select size", Colors.redAccent);
                       } else {
+                        // print(MyCart().getCart().size);
                         MyCart().addToCart({
                           "product": widget.product,
                           "colorIndex": colorIndex,
