@@ -43,6 +43,7 @@ class _BodyState extends State<Body> {
   var sizeIndex = -1;
   @override
   Widget build(BuildContext context) {
+    print(widget.product);
     var price = widget.product["price"] + colorPrice + sizePrice;
     var old_price = widget.product["old_price"];
     if (widget.product["images"].length == 0) {

@@ -30,26 +30,29 @@ class _OrderScreenState extends State<OrderScreen> {
       var ord = await getAuthHttp("$baseUrl/orders/$id");
 
       setState(() {
-        isCod = int.parse(ord["data"]["order"]["is_cod"]);
+        isCod = int.parse(ord["data"]["order"]["is_cod"].toString());
         order = ord["data"];
         isLoading = false;
       });
+      print(order["order"]["paid_amount"]);
       if (order["order"]["payment_method"] == "Cash On Delivery") {
         setState(() {
           method = "COD";
           methodColor = Colors.green;
         });
-      } else if (order["order"]["payment_status"] == 1) {
+      } else if (int.parse(order["order"]["payment_status"]) == 1) {
         setState(() {
           method = "Paid";
           methodColor = Colors.green;
         });
-      } else if (order["order"]["paid_amount"] == 0) {
+      } else if (int.parse(order["order"]["paid_amount"]) == 0) {
         setState(() {
           method = "Unpaid";
           methodColor = Colors.red;
         });
       } else {
+        print(2);
+
         setState(() {
           method = "Partial";
           methodColor = Colors.pink;
@@ -624,6 +627,7 @@ class _OrderScreenState extends State<OrderScreen> {
                           padding: EdgeInsets.all(5.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
                                 decoration: BoxDecoration(

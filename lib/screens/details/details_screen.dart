@@ -28,6 +28,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
   var sizeIndex = -1;
   void loadProduct(id) async {
     if (isLoading) {
+      print("$baseUrl/products/$id");
       var prod = await getHttp("$baseUrl/products/$id");
       setState(() {
         product = prod["data"];

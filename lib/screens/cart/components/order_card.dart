@@ -117,6 +117,10 @@ class _OrderCardState extends State<OrderCard> {
                       OrderScreen.routeName,
                       arguments: OrderDetailsArguments(widget.orderId),
                     );
+                  } else {
+                    Navigator.pop(context);
+                    widget.showMessage(
+                        "Insufficient balance", Colors.redAccent);
                   }
 
                   // data["data"]["id"]

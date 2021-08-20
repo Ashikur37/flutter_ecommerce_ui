@@ -247,12 +247,16 @@ class _OrderListState extends State<OrderList> {
                                                         BorderRadius.circular(
                                                             3),
                                                     color: (int.parse(orders[
-                                                                        index][
-                                                                    "payment_status"]) ==
+                                                                            index]
+                                                                        [
+                                                                        "payment_status"]
+                                                                    .toString()) ==
                                                                 0 &&
                                                             int.parse(orders[
-                                                                        index][
-                                                                    "paid_amount"]) >
+                                                                            index]
+                                                                        [
+                                                                        "paid_amount"]
+                                                                    .toString()) >
                                                                 0)
                                                         ? Colors.pinkAccent
                                                         : (orders[index][
@@ -263,12 +267,16 @@ class _OrderListState extends State<OrderList> {
                                                                 .greenAccent),
                                                   ),
                                                   child: (int.parse(orders[
-                                                                      index][
-                                                                  "payment_status"]) ==
+                                                                          index]
+                                                                      [
+                                                                      "payment_status"]
+                                                                  .toString()) ==
                                                               0 &&
                                                           int.parse(orders[
-                                                                      index][
-                                                                  "paid_amount"]) >
+                                                                          index]
+                                                                      [
+                                                                      "paid_amount"]
+                                                                  .toString()) >
                                                               0)
                                                       ? Text(
                                                           "Partial",
