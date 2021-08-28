@@ -70,7 +70,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
     }
 
     return Scaffold(
-      backgroundColor: Color(0xFFF5F6F9),
+      // backgroundColor: Color(0XFFf7f8fa),
       // appBar: AppBar(),
       appBar: CustomAppBar(
         rating: 1.0,

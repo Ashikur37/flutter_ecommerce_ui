@@ -76,6 +76,7 @@ class Categories extends StatelessWidget {
     ];
     return Container(
       width: double.infinity,
+      decoration: BoxDecoration(color: Colors.white),
       padding: EdgeInsets.all(getProportionateScreenWidth(10)),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -133,15 +134,18 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: press,
-      child: SizedBox(
+      child: Container(
+        // color: Colors.red,
+        width: getProportionateScreenWidth(70),
         child: Column(
           children: [
             Container(
               padding: EdgeInsets.all(getProportionateScreenWidth(15)),
-              height: getProportionateScreenWidth(52),
-              width: getProportionateScreenWidth(52),
+              height: getProportionateScreenWidth(55),
+              width: getProportionateScreenWidth(55),
               decoration: BoxDecoration(
                 color: Color(0xFFebb2f7).withOpacity(0.2),
+                // color: Colors.blue,
                 borderRadius: BorderRadius.circular(26),
               ),
               child: SvgPicture.asset(
@@ -151,12 +155,14 @@ class CategoryCard extends StatelessWidget {
             ),
             SizedBox(height: 5),
             Container(
-              width: MediaQuery.of(context).size.width * 0.17,
+              // color: Colors.red,
+              // width: MediaQuery.of(context).size.width * 0.20,
               child: Text(
                 text,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 11.0,
+                  fontSize: 12.0,
+                  // fontWeight: FontWeight.00,
                 ),
               ),
             )

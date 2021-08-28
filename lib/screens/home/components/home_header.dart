@@ -30,12 +30,15 @@ class HomeHeader extends StatelessWidget {
           //     }),
           SizedBox(),
           SearchField(),
-          IconButton(
-            icon: FaIcon(
-              FontAwesomeIcons.facebookMessenger,
-              color: Colors.blue,
+          Container(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: IconButton(
+              icon: FaIcon(
+                FontAwesomeIcons.facebookMessenger,
+                // color: Colors.blue,
+              ),
+              onPressed: _launchURL,
             ),
-            onPressed: _launchURL,
           )
         ],
       ),

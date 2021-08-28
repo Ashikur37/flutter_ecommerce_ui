@@ -20,6 +20,7 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
+  bool hidePassword = true;
   String firstName;
   String lastName;
   String email;
@@ -49,11 +50,11 @@ class _SignUpFormState extends State<SignUpForm> {
       child: Column(
         children: [
           buildFirstNameFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
+          SizedBox(height: getProportionateScreenHeight(15)),
           buildLastNameFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
+          SizedBox(height: getProportionateScreenHeight(15)),
           buildMobileFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
+          SizedBox(height: getProportionateScreenHeight(15)),
           buildPasswordFormField(),
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(40)),
@@ -85,7 +86,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField buildPasswordFormField() {
     return TextFormField(
-      obscureText: hide,
+      obscureText: hidePassword,
       onSaved: (newValue) => password = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -106,18 +107,58 @@ class _SignUpFormState extends State<SignUpForm> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Password",
-        hintText: "Enter your password",
+        fillColor: Color(0XFFf5f5f5),
+        // fillColor: Colors.blue.shade100.withOpacity(.09),
+        filled: true,
+        contentPadding: EdgeInsets.only(top: 27),
+        // isDense: true,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Color(0XFFFf6f6f6), width: 1.0),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(
+            color: Color(0XFFFf6f6f6),
+            width: 1.0,
+          ),
+        ),
+
+        hintText: "Enter password",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: GestureDetector(
-            onTap: () {
-              setState(() {
-                hide = !hide;
-              });
-            },
-            child: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg")),
+        // floatingLabelBehavior: FloatingLabelBehavior.always,
+        prefixIconConstraints: BoxConstraints(
+          minWidth: 40,
+        ),
+        prefixIcon: GestureDetector(
+          onTap: () {
+            setState(() {
+              hide = !hide;
+            });
+          },
+          child: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
+        ),
+        suffixIcon: IconButton(
+          icon: Icon(
+            hidePassword ? Icons.visibility_off : Icons.visibility,
+            size: 22,
+            color: Color(0XFF464646),
+          ),
+          onPressed: () {
+            setState(() {
+              hidePassword = !hidePassword;
+            });
+          },
+        ),
       ),
     );
   }
@@ -146,12 +187,42 @@ class _SignUpFormState extends State<SignUpForm> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Phone",
-        hintText: "Enter your phone",
+        fillColor: Color(0XFFf5f5f5),
+        // fillColor: Colors.blue.shade100.withOpacity(.09),
+        filled: true,
+        contentPadding: EdgeInsets.only(top: 27),
+        // isDense: true,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Color(0XFFFf6f6f6), width: 1.0),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(
+            color: Color(0XFFFf6f6f6),
+            width: 1.0,
+          ),
+        ),
+
+        hintText: "Enter phone",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Icon(Icons.phone_outlined),
+        prefixIcon: Icon(
+          Icons.phone_outlined,
+          size: 18,
+        ),
+        prefixIconConstraints: BoxConstraints(
+          minWidth: 40,
+        ),
       ),
     );
   }
@@ -177,10 +248,41 @@ class _SignUpFormState extends State<SignUpForm> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: "First Name",
-        hintText: "Enter your first name",
+        fillColor: Color(0XFFf5f5f5),
+        // fillColor: Colors.blue.shade100.withOpacity(.09),
+        filled: true,
+        contentPadding: EdgeInsets.only(top: 27),
+        // isDense: true,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Color(0XFFFf6f6f6), width: 1.0),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(
+            color: Color(0XFFFf6f6f6),
+            width: 1.0,
+          ),
+        ),
+
+        // labelText: "First Name",
+        hintText: "Enter first name",
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Icon(Icons.person),
+        prefixIcon: Icon(
+          Icons.person,
+          size: 20,
+        ),
+        prefixIconConstraints: BoxConstraints(
+          minWidth: 40,
+        ),
       ),
     );
   }
@@ -209,12 +311,42 @@ class _SignUpFormState extends State<SignUpForm> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Last Name",
-        hintText: "Enter your last name",
+        fillColor: Color(0XFFf5f5f5),
+        // fillColor: Colors.blue.shade100.withOpacity(.09),
+        filled: true,
+        contentPadding: EdgeInsets.only(top: 27),
+        // isDense: true,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Color(0XFFFf6f6f6), width: 1.0),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(
+            color: Color(0XFFFf6f6f6),
+            width: 1.0,
+          ),
+        ),
+
+        hintText: "Enter last name",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Icon(Icons.person),
+        // floatingLabelBehavior: FloatingLabelBehavior.always,
+        prefixIcon: Icon(
+          Icons.person,
+          size: 20,
+        ),
+        prefixIconConstraints: BoxConstraints(
+          minWidth: 40,
+        ),
       ),
     );
   }

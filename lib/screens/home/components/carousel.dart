@@ -29,6 +29,7 @@ class _CarouselState extends State<Carousel> {
         autoPlay: true,
         viewportFraction: 1.0,
         enlargeCenterPage: false,
+        height: 150,
       ),
       items: imgList
           .map((item) => GestureDetector(
@@ -36,9 +37,16 @@ class _CarouselState extends State<Carousel> {
                   print("tapped");
                 },
                 child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
                   child: Center(
-                      child: Image.network(item["image"],
-                          fit: BoxFit.cover, width: double.infinity)),
+                    child: Image.network(
+                      item["image"],
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                    ),
+                  ),
                 ),
               ))
           .toList(),

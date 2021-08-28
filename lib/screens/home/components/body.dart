@@ -59,7 +59,7 @@ class _BodyState extends State<Body> {
         if (_scrollController.offset ==
             _scrollController.position.maxScrollExtent) {
           _loadMoreProducts();
-          print("load more");
+          print("load");
         }
       }
     });
@@ -68,49 +68,79 @@ class _BodyState extends State<Body> {
         controller: _scrollController,
         slivers: [
           SliverAppBar(
+            // expandedHeight: 70,
+            // backgroundColor: Colors.red,
             pinned: true,
-            flexibleSpace: HomeHeader(),
+            toolbarHeight: 70,
+            flexibleSpace: Container(
+              // margin: EdgeInsets.only(bottom: 10),
+              child: HomeHeader(),
+            ),
           ),
           SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: getProportionateScreenWidth(10)),
-                Carousel(),
+                // SizedBox(height: getProportionateScreenWidth(10)),
+
                 // DiscountBanner(),
-                SizedBox(
-                  height: 10,
+                // SizedBox(
+                //   height: 10,
+                // ),
+                Container(
+                  color: Colors.white,
+                  // height: 150,
+                  // width: MediaQuery.of(context).size.width * 95,
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: Carousel(),
                 ),
-                Categories(),
+                Container(
+                  color: Colors.white,
+                  padding: EdgeInsets.only(
+                    top: 10,
+                  ),
+                  child: Categories(),
+                ),
+                SizedBox(height: 15),
                 ShopScreen(),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Top Products",
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.black,
+                Container(
+                  // color: Colors.red,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                    child: Row(
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Top Products",
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-                SizedBox(
-                  height: 10,
-                )
+                SizedBox(height: 8),
               ],
             ),
           ),
           SliverGrid(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, childAspectRatio: 0.8),
+                crossAxisCount: 2, childAspectRatio: 0.82),
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
-                return ProductDetail(product: products[index]);
+                return Container(
+                  // padding: EdgeInsets.symmetric(horizontal: 10),
+                  margin: EdgeInsets.only(right: 5, left: 5, top: 5, bottom: 5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.white,
+                  ),
+                  child: ProductDetail(product: products[index]),
+                );
               },
               childCount: products.length,
             ),
