@@ -13,9 +13,18 @@ class HomeScreen extends StatelessWidget {
     SizeConfig().init(context);
 
     return Scaffold(
+      // appBar: AppBar(
+      //   leading: IconButton(
+      //     icon: Icon(Icons.accessible),
+      //     onPressed: () => Scaffold.of(context).openDrawer(),
+      //   ),
+      // ),
+      backgroundColor: Color(0XFFf7f8fa),
       drawer: SideDrawer(),
       body: Body(),
-      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
+      bottomNavigationBar: CustomBottomNavBar(
+        selectedMenu: MenuState.home,
+      ),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:commerce/components/load_more.dart';
 import 'package:commerce/components/product_detail.dart';
+import 'package:commerce/constants.dart';
 import 'package:commerce/helper/http.dart';
 import 'package:commerce/screens/details/details_screen.dart';
 import 'package:commerce/utilities/const.dart';
@@ -54,43 +55,62 @@ class _ShopsScreenState extends State<ShopsScreen> {
       }
     });
     return Scaffold(
+      backgroundColor: Color(0XFFf7f8fa),
       appBar: AppBar(
-        title: Text(agrs.shop["name"]),
+        title: Text(
+          agrs.shop["name"],
+          style: TextStyle(color: kPrimaryColor),
+        ),
       ),
       body: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Row(
+          Container(
+            // width: MediaQuery.of(context).size.width - 30,
+            margin: EdgeInsets.only(top: 10),
+            padding: EdgeInsets.symmetric(vertical: 18, horizontal: 15),
+            // color: Colors.red,
+            decoration: BoxDecoration(color: Colors.white),
+            child: Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Icon(
-                    Icons.call_outlined,
-                    size: 19,
-                  ),
-                  Text(
-                    agrs.shop["phone"],
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
+                  Expanded(
+                    child: Row(
+                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.add_call,
+                          size: 18,
+                        ),
+                        SizedBox(width: 5),
+                        Text(
+                          agrs.shop["phone"],
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        SizedBox(width: 25),
+                        Icon(Icons.location_on_outlined, size: 19),
+                        SizedBox(width: 4),
+                        Expanded(
+                          child: Text(
+                            agrs.shop["location"],
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              height: 1.3,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
-              Row(
-                children: [
-                  Icon(Icons.location_on_outlined, size: 19),
-                  Text(
-                    agrs.shop["location"],
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ],
+            ),
           ),
           SizedBox(
-            height: 15,
+            height: 8,
           ),
           Expanded(
             child: GridView.builder(
@@ -99,7 +119,14 @@ class _ShopsScreenState extends State<ShopsScreen> {
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, childAspectRatio: 0.8),
               itemBuilder: (BuildContext context, int index) {
-                return ProductDetail(product: products[index]);
+                return Container(
+                  margin: EdgeInsets.only(right: 5, left: 5, top: 5, bottom: 5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.white,
+                  ),
+                  child: ProductDetail(product: products[index]),
+                );
               },
             ),
           ),

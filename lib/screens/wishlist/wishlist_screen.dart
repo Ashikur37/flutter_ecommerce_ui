@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:commerce/components/coustom_bottom_nav_bar.dart';
 import 'package:commerce/components/load_more.dart';
 import 'package:commerce/components/product_detail.dart';
+import 'package:commerce/constants.dart';
 import 'package:commerce/helper/http.dart';
 import 'package:commerce/screens/details/details_screen.dart';
 import 'package:commerce/utilities/const.dart';
@@ -58,7 +59,10 @@ class _WishListsScreenState extends State<WishListsScreen> {
     });
     return Scaffold(
       appBar: AppBar(
-        title: Text("Wish List"),
+        title: Text(
+          "Wish List",
+          style: TextStyle(color: kPrimaryColor),
+        ),
       ),
       body: products.length > 0
           ? Column(
@@ -83,7 +87,10 @@ class _WishListsScreenState extends State<WishListsScreen> {
           : Center(
               child: Text(
                 "Empty list",
-                style: TextStyle(fontSize: 22.0, color: Colors.redAccent),
+                style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.redAccent,
+                    fontWeight: FontWeight.w500),
               ),
             ),
       bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),

@@ -16,7 +16,7 @@ class CategoryList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        color: Colors.grey.shade100,
+        color: Color(0XFFF8F9FB),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: List.generate(
@@ -37,19 +37,20 @@ class CategoryList extends StatelessWidget {
                   decoration: BoxDecoration(
                     border: Border(
                       left: BorderSide(
-                          color: kPrimaryColor,
+                          color: Colors.black87,
                           width: activeCategory == categories[index]["name"]
-                              ? 2
+                              ? 4
                               : 0),
-                      bottom: BorderSide(color: Colors.white, width: 2.0),
+                      bottom: BorderSide(color: Colors.white, width: 1.0),
                     ),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        height: 10,
-                      ),
+                      // SizedBox(
+                      //   height: 10,
+                      // ),
                       Image.network(
                         categories[index]["image"],
                         width: 50,
@@ -57,13 +58,16 @@ class CategoryList extends StatelessWidget {
                       SizedBox(
                         height: 10,
                       ),
-                      Text(
-                        categories[index]["name"],
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        style: TextStyle(
-                          fontSize: 11,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                        child: Text(
+                          categories[index]["name"],
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontSize: 14,
+                          ),
                         ),
                       ),
                     ],

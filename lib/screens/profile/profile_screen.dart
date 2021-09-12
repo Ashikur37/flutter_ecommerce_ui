@@ -18,9 +18,10 @@ class ProfileScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Profile"),
-      ),
+      // backgroundColor: Color(0XFFf7f8fa),
+      // appBar: AppBar(
+      //   title: Text("Profile"),
+      // ),
       body: Body(
         showMessage: showMessage,
       ),

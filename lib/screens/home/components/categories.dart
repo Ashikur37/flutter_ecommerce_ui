@@ -16,66 +16,78 @@ class Categories extends StatelessWidget {
     List<Map<String, dynamic>> categories = [
       // Categories, Door to Door, doddle Offer, prime Shop, Regular shop, order Boucher, Boucher shop, Doddle Ride,Doddle Food
       {
-        "icon": "assets/icons/Bill Icon.svg",
+        "icon": "assets/icons/Categories.svg",
         "text": "Categories",
-        "route": CategoriesScreen.routeName
+        "route": CategoriesScreen.routeName,
+        'color': Colors.cyan,
       },
       {
-        "icon": "assets/icons/Game Icon.svg",
+        "icon": "assets/icons/Order.svg",
         "text": "Order",
-        "route": OrderList.routeName
+        "route": OrderList.routeName,
+        'color': Colors.amber.shade300,
       },
       {
         "icon": "assets/icons/Gift Icon.svg",
         "text": "Doddle Offer",
-        "route": OfferScreen.routeName
+        "route": OfferScreen.routeName,
+        'color': Colors.red.shade300,
       },
       {
-        "icon": "assets/icons/Discover.svg",
+        "icon": "assets/icons/store-solid.svg",
         "text": "Regular Shop",
-        "route": MerchantScreen.routeName
+        "route": MerchantScreen.routeName,
+        'color': Colors.blue.shade300,
       },
       {
-        "icon": "assets/icons/Flash Icon.svg",
+        "icon": "assets/icons/Door_to_door.svg",
         "text": "Door To Door",
-        "route": BoucherScreen.routeName
+        "route": BoucherScreen.routeName,
+        'color': Colors.teal,
       },
 
       {
-        "icon": "assets/icons/Discover.svg",
+        "icon": "assets/icons/Prime_shop.svg",
         "text": "Prime Shop",
-        "route": MerchantScreen.routeName
+        "route": MerchantScreen.routeName,
+        'color': Colors.purpleAccent,
       },
 
       {
-        "icon": "assets/icons/Flash Icon.svg",
+        "icon": "assets/icons/Voucher.svg",
         "text": "Boucher",
+        'color': Colors.green.shade300,
         "route": BoucherScreen.routeName
       },
       {
-        "icon": "assets/icons/Flash Icon.svg",
+        "icon": "assets/icons/Voucher_Shop.svg",
         "text": "Boucher Shop",
-        "route": BoucherScreen.routeName
+        "route": BoucherScreen.routeName,
+        'color': Colors.red,
       },
       {
-        "icon": "assets/icons/Flash Icon.svg",
+        "icon": "assets/icons/biking-solid.svg",
         "text": "Doddle Ride",
-        "route": BoucherScreen.routeName
+        "route": BoucherScreen.routeName,
+        'color': Color(0XFF0088ff),
       },
       {
-        "icon": "assets/icons/Flash Icon.svg",
+        "icon": "assets/icons/Food.svg",
         "text": "Doddle Food",
-        "route": BoucherScreen.routeName
+        "route": BoucherScreen.routeName,
+        'color': Colors.green,
       },
       {
-        "icon": "assets/icons/Flash Icon.svg",
+        "icon": "assets/icons/truck-solid.svg",
         "text": "Doddle Courier",
-        "route": BoucherScreen.routeName
+        "route": BoucherScreen.routeName,
+        'color': Color(0XFFf405b5),
       },
       // Doddle Ride,Doddle Food
     ];
     return Container(
       width: double.infinity,
+      decoration: BoxDecoration(color: Colors.white),
       padding: EdgeInsets.all(getProportionateScreenWidth(10)),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -89,6 +101,7 @@ class Categories extends StatelessWidget {
                 CategoryCard(
                   icon: categories[index]["icon"],
                   text: categories[index]["text"],
+                  iconColor: categories[index]["color"],
                   press: () async {
                     if (index == 2) {
                       var login = await localIsLoggedIn();
@@ -124,39 +137,48 @@ class CategoryCard extends StatelessWidget {
     @required this.icon,
     @required this.text,
     @required this.press,
+    this.iconColor,
   }) : super(key: key);
 
   final String icon, text;
   final GestureTapCallback press;
+  final Color iconColor;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: press,
-      child: SizedBox(
+      child: Container(
+        // color: Colors.red,
+        width: getProportionateScreenWidth(70),
         child: Column(
           children: [
             Container(
               padding: EdgeInsets.all(getProportionateScreenWidth(15)),
-              height: getProportionateScreenWidth(52),
-              width: getProportionateScreenWidth(52),
+              height: getProportionateScreenWidth(55),
+              width: getProportionateScreenWidth(55),
               decoration: BoxDecoration(
-                color: Color(0xFFebb2f7).withOpacity(0.2),
+                // color: Color(0xFFebb2f7).withOpacity(0.2),
+                color: Color(0X12AEB400),
+                // color: Colors.blue,
                 borderRadius: BorderRadius.circular(26),
               ),
               child: SvgPicture.asset(
                 icon,
-                color: Color(0XFFD31AF8),
+                // color: Color(0XFFD31AF8),
+                color: iconColor,
               ),
             ),
             SizedBox(height: 5),
             Container(
-              width: MediaQuery.of(context).size.width * 0.17,
+              // color: Colors.red,
+              // width: MediaQuery.of(context).size.width * 0.20,
               child: Text(
                 text,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 11.0,
+                  fontSize: 12.0,
+                  // fontWeight: FontWeight.00,
                 ),
               ),
             )

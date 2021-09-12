@@ -1,3 +1,4 @@
+import 'package:commerce/constants.dart';
 import 'package:commerce/helper/http.dart';
 import 'package:commerce/providers/category_provider.dart';
 import 'package:commerce/screens/categories/category_list.dart';
@@ -44,15 +45,16 @@ class CategoriesScreen extends StatelessWidget {
       provider.notifyListeners();
     }
 
-  
-
     _loadCategories();
-  
+
     return Consumer<CategoryProvider>(builder: (context, value, child) {
       return Scaffold(
         key: _globalKey,
         appBar: AppBar(
-          title: Text("Categories"),
+          title: Text(
+            "Categories",
+            style: TextStyle(color: kPrimaryColor),
+          ),
           centerTitle: false,
         ),
         body: Row(

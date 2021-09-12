@@ -56,13 +56,13 @@ class _ProductImagesState extends State<ProductImages> {
       },
       child: AnimatedContainer(
         duration: defaultDuration,
-        margin: EdgeInsets.only(right: 15),
+        margin: EdgeInsets.only(right: 15, top: 8, bottom: 12),
         padding: EdgeInsets.all(8),
         height: getProportionateScreenWidth(48),
         width: getProportionateScreenWidth(48),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(5),
           border: Border.all(
               color: kPrimaryColor.withOpacity(selectedImage == index ? 1 : 0)),
         ),

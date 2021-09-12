@@ -21,35 +21,41 @@ class SubCategoryDetail extends StatelessWidget {
           arguments: SubCategoryArgumentsArguments(this.subCategory),
         );
       },
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          CachedNetworkImage(
-            imageUrl: subCategory['image'],
-            width: 150,
-            height: 100,
-            placeholder: (context, url) => Shimmer.fromColors(
-              baseColor: Colors.red,
-              highlightColor: Colors.yellow,
-              child: Text(
-                'Doddlemart',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 40.0,
-                  fontWeight: FontWeight.bold,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            CachedNetworkImage(
+              imageUrl: subCategory['image'],
+              width: 140,
+              height: 86,
+              placeholder: (context, url) => Shimmer.fromColors(
+                baseColor: Color(0xFF00AFB4).withOpacity(.9),
+                highlightColor: Colors.amber,
+                child: Center(
+                  child: Text(
+                    'Doddlemart',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ),
               ),
+              errorWidget: (context, url, error) => Icon(Icons.error),
             ),
-            errorWidget: (context, url, error) => Icon(Icons.error),
-          ),
-          Text(
-            subCategory['name'],
-            textAlign: TextAlign.center,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
-            style: TextStyle(fontWeight: FontWeight.w600),
-          ),
-        ],
+            SizedBox(height: 10),
+            Text(
+              subCategory['name'],
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              style: TextStyle(fontWeight: FontWeight.w600),
+            ),
+          ],
+        ),
       ),
     );
   }

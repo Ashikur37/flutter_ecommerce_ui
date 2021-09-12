@@ -61,21 +61,28 @@ class SizeDot extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(right: 2),
-      padding: EdgeInsets.all(getProportionateScreenWidth(8)),
+      // padding: EdgeInsets.all(getProportionateScreenWidth(8)),
+      alignment: Alignment.center,
       height: getProportionateScreenWidth(40),
       width: getProportionateScreenWidth(40),
       decoration: BoxDecoration(
-          color: Colors.transparent,
-          border: Border(
-            bottom: BorderSide(
-              color: isSelected ? kPrimaryColor : Colors.transparent,
-              width: 2,
-            ),
-          )
-          // Border. (color: isSelected ? kPrimaryColor : Colors.transparent),
-          ),
+        color: isSelected ? kPrimaryColor : Colors.transparent,
+        borderRadius: isSelected ? BorderRadius.circular(29) : null,
+        // border: Border(
+        //   bottom: BorderSide(
+        //     color: isSelected ? kPrimaryColor : Colors.transparent,
+        //     width: 2,
+        //   ),
+        // )
+        // Border. (color: isSelected ? kPrimaryColor : Colors.transparent),
+      ),
       child: DecoratedBox(
-        child: Text(name),
+        child: Text(
+          name,
+          style: TextStyle(
+            color: isSelected ? Colors.white : Colors.black87,
+          ),
+        ),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
         ),

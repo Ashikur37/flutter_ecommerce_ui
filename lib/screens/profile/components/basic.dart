@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:commerce/components/default_button.dart';
+import 'package:commerce/constants.dart';
 import 'package:commerce/helper/auth.dart';
 import 'package:commerce/helper/http.dart';
 import 'package:commerce/screens/address/address_list.dart';
@@ -55,7 +56,10 @@ class _BasicProfileState extends State<BasicProfile> {
     getUser();
     return Scaffold(
       appBar: AppBar(
-        title: Text("Basic Profile"),
+        title: Text(
+          "Basic Profile",
+          style: TextStyle(color: kPrimaryColor),
+        ),
       ),
       body: SafeArea(
         child: isLoad
@@ -68,10 +72,11 @@ class _BasicProfileState extends State<BasicProfile> {
                     key: _formKey,
                     child: Column(
                       children: [
+                        SizedBox(height: 20),
                         buildFirstNameFormField(),
-                        SizedBox(height: getProportionateScreenHeight(10)),
+                        SizedBox(height: getProportionateScreenHeight(20)),
                         buildLastNameFormField(),
-                        SizedBox(height: getProportionateScreenHeight(10)),
+                        SizedBox(height: getProportionateScreenHeight(50)),
                         DefaultButton(
                           text: "Save",
                           press: () async {
@@ -124,10 +129,37 @@ class _BasicProfileState extends State<BasicProfile> {
         return null;
       },
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.only(top: 27),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Color(0XFFFf6f6f6), width: 1.0),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(
+            color: Color(0XFFFf6f6f6),
+            width: 1.0,
+          ),
+        ),
         labelText: "First Name",
+        labelStyle: TextStyle(color: Color(0XFF606060)),
         hintText: "Enter your first name",
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Icon(Icons.person),
+        // floatingLabelBehavior: FloatingLabelBehavior.always,
+        prefixIcon: Icon(
+          Icons.person,
+          size: 22,
+        ),
+        prefixIconConstraints: BoxConstraints(
+          minWidth: 40,
+        ),
       ),
     );
   }
@@ -151,10 +183,36 @@ class _BasicProfileState extends State<BasicProfile> {
         return null;
       },
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.only(top: 27),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Color(0XFFFf6f6f6), width: 1.0),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(
+            color: Color(0XFFFf6f6f6),
+            width: 1.0,
+          ),
+        ),
         labelText: "Last Name",
         hintText: "Enter your last name",
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Icon(Icons.person),
+        prefixIcon: Icon(
+          Icons.person,
+          size: 22,
+        ),
+        prefixIconConstraints: BoxConstraints(
+          minWidth: 40,
+        ),
       ),
     );
   }

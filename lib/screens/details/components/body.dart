@@ -56,24 +56,36 @@ class _BodyState extends State<Body> {
         widget.product["images"].length > 0
             ? ProductImages(product: widget.product)
             : SizedBox(),
+        Divider(
+          color: Color(0XFFf7f8fa),
+          // color: Colors.red,
+          thickness: 10,
+        ),
         TopRoundedContainer(
           color: Colors.white,
           child: Column(
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                // mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: getProportionateScreenWidth(20)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.8,
+                          width: MediaQuery.of(context).size.width * 0.82,
                           child: Text(
                             widget.product["name"],
-                            style: Theme.of(context).textTheme.headline6,
+                            // style: Theme.of(context).textTheme.headline6,
+                            style: TextStyle(
+                              fontSize: 19.0,
+                              color: Colors.black87,
+                              height: 1.3,
+                            ),
                           ),
                         ),
                         GestureDetector(
@@ -93,10 +105,13 @@ class _BodyState extends State<Body> {
                                     ? Colors.green
                                     : Colors.redAccent);
                           },
-                          child: SvgPicture.asset(
-                            "assets/icons/Heart Icon.svg",
-                            color: kPrimaryColor,
-                            width: 22,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: SvgPicture.asset(
+                              "assets/icons/Heart Icon.svg",
+                              color: kPrimaryColor,
+                              width: 20,
+                            ),
                           ),
                         ),
                       ],
@@ -104,7 +119,8 @@ class _BodyState extends State<Body> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(
-                        horizontal: getProportionateScreenWidth(20)),
+                        horizontal: getProportionateScreenWidth(19),
+                        vertical: 8),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -112,13 +128,20 @@ class _BodyState extends State<Body> {
                           children: [
                             Text(
                               "৳$price",
-                              style: Theme.of(context).textTheme.headline6,
+                              // style: Theme.of(context).textTheme.headline6,
+                              style: TextStyle(
+                                  color: Colors.orange,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600),
                             ),
+                            SizedBox(width: 5),
                             Text(price == old_price ? "" : "৳$old_price",
                                 style: TextStyle(
-                                    decoration: TextDecoration.lineThrough)),
+                                    decoration: TextDecoration.lineThrough,
+                                    fontSize: 12)),
                           ],
                         ),
+                        // SizedBox(height: 10),
                         Text(
                           "Cashback ৳" + widget.product["cashback"].toString(),
                           style: TextStyle(
@@ -156,10 +179,13 @@ class _BodyState extends State<Body> {
                           },
                         )
                       : SizedBox(),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Padding(
                     padding: EdgeInsets.only(
-                      left: getProportionateScreenWidth(20),
-                      right: getProportionateScreenWidth(64),
+                      left: getProportionateScreenWidth(12),
+                      right: getProportionateScreenWidth(12),
                     ),
                     child: Html(
                         data: widget.product["details"].length > 0

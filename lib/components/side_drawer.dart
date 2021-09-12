@@ -10,6 +10,7 @@ import 'package:commerce/screens/profile/profile_screen.dart';
 import 'package:commerce/screens/sign_in/sign_in_screen.dart';
 import 'package:commerce/utilities/const.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SideDrawer extends StatefulWidget {
   @override
@@ -50,51 +51,81 @@ class _SideDrawerState extends State<SideDrawer> {
         padding: EdgeInsets.zero,
         children: <Widget>[
           Container(
-            height: 250,
+            height: 240,
             child: DrawerHeader(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Doddlemart',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: kPrimaryColor,
-                      fontSize: 28,
+                      fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  // SizedBox(
+                  //   height: 5,
+                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
                         "কেনাকাটা হরদম ",
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      SizedBox(
+                        width: 3,
                       ),
                       Text(
                         "Doddlemart.com",
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                            fontSize: 16, fontWeight: FontWeight.bold),
                       )
                     ],
                   ),
                   isGuest
                       ? SizedBox()
-                      : Column(
+                      : Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             avatar == null
                                 ? SizedBox()
-                                : CircleAvatar(
-                                    backgroundImage: avatar == null
-                                        ? AssetImage("assets/images/user.png")
-                                        : NetworkImage(
-                                            "$rootUrl/images/user/$avatar"),
+                                : Container(
+                                    margin: EdgeInsets.only(top: 20),
+                                    width: 70,
+                                    height: 70,
+                                    child: CircleAvatar(
+                                      backgroundImage: avatar == null
+                                          ? AssetImage(
+                                              "assets/images/user.png",
+                                            )
+                                          : NetworkImage(
+                                              "$rootUrl/images/user/$avatar"),
+                                    ),
                                   ),
-                            Text(
-                              user["name"],
-                            ),
-                            Text(
-                              user["email"],
-                            ),
+                            SizedBox(width: 10),
+                            Container(
+                              margin: EdgeInsets.only(top: 20),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    user["name"],
+                                    style: TextStyle(
+                                        fontSize: 22,
+                                        color: Colors.black54,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    user["email"],
+                                  ),
+                                ],
+                              ),
+                            )
                           ],
                         )
                 ],
@@ -104,7 +135,14 @@ class _SideDrawerState extends State<SideDrawer> {
           ),
           ListTile(
             title: Row(children: [
-              Icon(Icons.home_outlined),
+              Container(
+                width: 25,
+                child: SvgPicture.asset(
+                  'assets/icons/home-solid.svg',
+                  color: Color(0XFF303030),
+                  width: 20,
+                ),
+              ),
               SizedBox(
                 width: 10,
               ),
@@ -121,19 +159,28 @@ class _SideDrawerState extends State<SideDrawer> {
             },
           ),
           ListTile(
-            title: Row(children: [
-              Icon(Icons.account_circle_outlined),
-              SizedBox(
-                width: 10,
-              ),
-              Text(
-                'Dashboard',
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.black,
+            title: Row(
+              children: [
+                // Icon(Icons.account_circle_outlined),
+                Container(
+                  width: 25,
+                  child: SvgPicture.asset(
+                    'assets/icons/tachometer-alt-solid.svg',
+                    width: 24,
+                  ),
                 ),
-              ),
-            ]),
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  'Dashboard',
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
             onTap: () async {
               var isLoggedIn = await localIsLoggedIn();
               if (isLoggedIn) {
@@ -145,7 +192,13 @@ class _SideDrawerState extends State<SideDrawer> {
           ),
           ListTile(
             title: Row(children: [
-              Icon(Icons.shopping_bag_outlined),
+              Container(
+                width: 25,
+                child: SvgPicture.asset(
+                  'assets/icons/Order.svg',
+                  width: 18,
+                ),
+              ),
               SizedBox(
                 width: 10,
               ),
@@ -171,7 +224,14 @@ class _SideDrawerState extends State<SideDrawer> {
           ),
           ListTile(
             title: Row(children: [
-              Icon(Icons.shopping_cart_outlined),
+              Container(
+                width: 25,
+                child: SvgPicture.asset(
+                  "assets/icons/opencart.svg",
+                  width: 20,
+                  color: Color(0XFF303030),
+                ),
+              ),
               SizedBox(
                 width: 10,
               ),
@@ -189,7 +249,13 @@ class _SideDrawerState extends State<SideDrawer> {
           ),
           ListTile(
             title: Row(children: [
-              Icon(Icons.message),
+              Container(
+                width: 25,
+                child: SvgPicture.asset(
+                  'assets/icons/rocketchat.svg',
+                  width: 24,
+                ),
+              ),
               SizedBox(
                 width: 10,
               ),
@@ -215,7 +281,13 @@ class _SideDrawerState extends State<SideDrawer> {
           ),
           ListTile(
             title: Row(children: [
-              Icon(Icons.contact_support_sharp),
+              Container(
+                width: 25,
+                child: SvgPicture.asset(
+                  'assets/icons/phone-volume-solid.svg',
+                  width: 20,
+                ),
+              ),
               SizedBox(
                 width: 10,
               ),

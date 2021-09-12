@@ -81,14 +81,26 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  # fonts:
+  #   - family: Muli
+  #     fonts:
+  #       - asset: assets/fonts/muli/Muli.ttf
+  #       - asset: assets/fonts/muli/Muli-Bold.ttf
+  #         weight: 700
+  #       - asset: assets/fonts/muli/Muli-SemiBold.ttf
+  #         weight: 600
+  #       - asset: assets/fonts/muli/Muli-Light.ttf
+  #         weight: 300
   fonts:
-    - family: Muli
+    - family: Roboto
       fonts:
-        - asset: assets/fonts/muli/Muli.ttf
-        - asset: assets/fonts/muli/Muli-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/muli/Muli-Light.ttf
+        - asset: assets/fonts/Roboto-Light.ttf
           weight: 300
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 700
   
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -30,7 +30,10 @@ class _AddressListState extends State<AddressList> {
     _loadAddress();
     return Scaffold(
       appBar: AppBar(
-        title: Text("Address List"),
+        title: Text(
+          "Address List",
+          style: TextStyle(color: kPrimaryColor),
+        ),
       ),
       body: isLoading
           ? Center(child: CircularProgressIndicator())
@@ -41,14 +44,17 @@ class _AddressListState extends State<AddressList> {
                     style: TextStyle(fontSize: 18.0),
                   ),
                 )
-              : Column(
-                  children: List.generate(
-                    addresses.length,
-                    (index) => GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context, addresses[index]["id"]);
-                      },
-                      child: AddressCard(address: addresses[index]),
+              : Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    children: List.generate(
+                      addresses.length,
+                      (index) => GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context, addresses[index]["id"]);
+                        },
+                        child: AddressCard(address: addresses[index]),
+                      ),
                     ),
                   ),
                 )),
@@ -76,9 +82,11 @@ class AddressCard extends StatelessWidget {
     return Container(
       margin: EdgeInsets.all(5.0),
       width: SizeConfig.screenWidth,
-      padding: EdgeInsets.all(5.0),
-      decoration:
-          BoxDecoration(border: Border.all(color: Colors.grey, width: 1.0)),
+      padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 15),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey, width: 1.0),
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: Column(
         children: [
           Text(address["first_name"] + " " + address["last_name"]),

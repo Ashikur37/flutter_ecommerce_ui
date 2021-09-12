@@ -23,6 +23,7 @@ class SignForm extends StatefulWidget {
 
 class _SignFormState extends State<SignForm> {
   final _formKey = GlobalKey<FormState>();
+  bool hidePassword = true;
   String email;
   String password;
   bool remember = false;
@@ -50,34 +51,49 @@ class _SignFormState extends State<SignForm> {
       child: Column(
         children: [
           buildPhoneFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
+          SizedBox(height: getProportionateScreenHeight(15)),
           buildPasswordFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
+          SizedBox(height: getProportionateScreenHeight(3)),
           Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Checkbox(
-                value: remember,
-                activeColor: kPrimaryColor,
-                onChanged: (value) {
-                  setState(() {
-                    remember = value;
-                  });
-                },
+              Container(
+                // color: Colors.red,
+                width: 20,
+                margin: EdgeInsets.only(right: 6),
+                child: Checkbox(
+                  value: remember,
+                  activeColor: kPrimaryColor,
+                  onChanged: (value) {
+                    setState(() {
+                      remember = value;
+                    });
+                  },
+                ),
               ),
-              Text("Remember me"),
+              Text(
+                "Remember me",
+                style: TextStyle(
+                  // decoration: TextDecoration.underline,
+                  fontSize: 16,
+                ),
+              ),
               Spacer(),
               GestureDetector(
                 onTap: () => Navigator.pushNamed(
                     context, ForgotPasswordScreen.routeName),
                 child: Text(
-                  "Forgot Password",
-                  style: TextStyle(decoration: TextDecoration.underline),
+                  "Forgot Password?",
+                  style: TextStyle(
+                    // decoration: TextDecoration.underline,
+                    fontSize: 15,
+                  ),
                 ),
               )
             ],
           ),
           FormError(errors: errors),
-          SizedBox(height: getProportionateScreenHeight(20)),
+          SizedBox(height: getProportionateScreenHeight(22)),
           DefaultButton(
             text: "Continue",
             press: () async {
@@ -106,7 +122,7 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildPasswordFormField() {
     return TextFormField(
-      obscureText: hide,
+      obscureText: hidePassword,
       onSaved: (newValue) => password = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -127,18 +143,60 @@ class _SignFormState extends State<SignForm> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Password",
-        hintText: "Enter your password",
+        fillColor: Color(0XFFf5f5f5),
+        // fillColor: Colors.blue.shade100.withOpacity(.09),
+        filled: true,
+        contentPadding: EdgeInsets.only(top: 27),
+        // isDense: true,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Color(0XFFFf6f6f6), width: 1.0),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(
+            color: Color(0XFFFf6f6f6),
+            width: 1.0,
+          ),
+        ),
+
+        // labelText: "Passwordddd",
+        hintText: "Enter password",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: GestureDetector(
-            onTap: () {
-              setState(() {
-                hide = !hide;
-              });
-            },
-            child: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg")),
+        // floatingLabelBehavior: FloatingLabelBehavior.always,
+        prefixIconConstraints: BoxConstraints(
+          minWidth: 40,
+        ),
+        prefixIcon: GestureDetector(
+          onTap: () {
+            setState(() {
+              hide = !hide;
+            });
+          },
+          child: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
+        ),
+
+        suffixIcon: IconButton(
+          icon: Icon(
+            hidePassword ? Icons.visibility_off : Icons.visibility,
+            size: 22,
+            color: Color(0XFF464646),
+          ),
+          onPressed: () {
+            setState(() {
+              hidePassword = !hidePassword;
+            });
+          },
+        ),
       ),
     );
   }
@@ -166,12 +224,43 @@ class _SignFormState extends State<SignForm> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Phone",
-        hintText: "Enter your phone",
+        fillColor: Color(0XFFf5f5f5),
+        // fillColor: Colors.blue.shade100.withOpacity(.09),
+        filled: true,
+        contentPadding: EdgeInsets.only(top: 27),
+        // isDense: true,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Color(0XFFFf6f6f6), width: 1.0),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(
+            color: Color(0XFFFf6f6f6),
+            width: 1.0,
+          ),
+        ),
+
+        // labelText: "Phone",
+        hintText: "Enter phone",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Icon(Icons.phone_outlined),
+        prefixIcon: Icon(
+          Icons.phone_outlined,
+          size: 17,
+        ),
+        prefixIconConstraints: BoxConstraints(
+          minWidth: 40,
+        ),
       ),
     );
   }

@@ -19,20 +19,22 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    return myCart.getItems().length == 0
-        ? Center(
-            child: Text(
-              "Your cart is empty",
-              style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600),
-            ),
-          )
-        : Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(20)),
-            child: ListView.builder(
+    return Container(
+      margin: EdgeInsets.only(top: 10),
+      child: myCart.getItems().length == 0
+          ? Center(
+              child: Text(
+                "Your cart is empty",
+                style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.redAccent),
+              ),
+            )
+          : ListView.builder(
               itemCount: myCart.getItems().length,
               itemBuilder: (context, index) => Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
+                padding: EdgeInsets.symmetric(vertical: 0),
                 child: Dismissible(
                   key: Key(index.toString()),
                   direction: DismissDirection.endToStart,
@@ -54,26 +56,28 @@ class _BodyState extends State<Body> {
                       ],
                     ),
                   ),
-                  child: CartCard(
-                    cart: myCart.cart.cartItem[index],
-                    increment: () {
-                      myCart.cart.incrementItemToCart(index);
-                      setState(() {
-                        myCart = MyCart();
-                      });
-                      widget.updateCart();
-                    },
-                    decrement: () {
-                      myCart.cart.decrementItemFromCart(index);
-                      setState(() {
-                        myCart = MyCart();
-                      });
-                      widget.updateCart();
-                    },
+                  child: Container(
+                    child: CartCard(
+                      cart: myCart.cart.cartItem[index],
+                      increment: () {
+                        myCart.cart.incrementItemToCart(index);
+                        setState(() {
+                          myCart = MyCart();
+                        });
+                        widget.updateCart();
+                      },
+                      decrement: () {
+                        myCart.cart.decrementItemFromCart(index);
+                        setState(() {
+                          myCart = MyCart();
+                        });
+                        widget.updateCart();
+                      },
+                    ),
                   ),
                 ),
               ),
             ),
-          );
+    );
   }
 }

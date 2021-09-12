@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:commerce/components/load_more.dart';
 import 'package:commerce/components/product_detail.dart';
+import 'package:commerce/constants.dart';
 import 'package:commerce/helper/http.dart';
 import 'package:commerce/screens/chatscreen/chat_screen.dart';
 import 'package:commerce/screens/details/details_screen.dart';
@@ -56,7 +57,10 @@ class _MessageScreenState extends State<MessageScreen> {
     });
     return Scaffold(
       appBar: AppBar(
-        title: Text("Inbox"),
+        title: Text(
+          "Inbox",
+          style: TextStyle(color: kPrimaryColor),
+        ),
       ),
       body: Column(
         children: [

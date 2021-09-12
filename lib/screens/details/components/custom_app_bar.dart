@@ -21,13 +21,14 @@ class CustomAppBar extends PreferredSize {
         child: Row(
           children: [
             SizedBox(
-              height: getProportionateScreenWidth(40),
+              // height: getProportionateScreenWidth(40),
               width: getProportionateScreenWidth(40),
               child: FlatButton(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(60),
                 ),
-                color: Colors.white,
+                // color: Colors.white,
+                color: Color(0XFFf7f8fa),
                 padding: EdgeInsets.zero,
                 onPressed: () => Navigator.pop(context),
                 child: SvgPicture.asset(
@@ -38,9 +39,10 @@ class CustomAppBar extends PreferredSize {
             ),
             Spacer(),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
               decoration: BoxDecoration(
-                color: Colors.white,
+                // color: Colors.white,
+                color: Color(0XFFf7f8fa),
                 borderRadius: BorderRadius.circular(14),
               ),
               child: Row(

@@ -25,7 +25,8 @@ class _ShopScreenState extends State<ShopScreen> {
   Widget build(BuildContext context) {
     loadShop();
     return Container(
-      height: 340,
+      height: 330,
+      // color: Colors.blue,
       child: Column(
         children: [
           Padding(
@@ -38,25 +39,39 @@ class _ShopScreenState extends State<ShopScreen> {
                   style: TextStyle(
                     fontSize: 18.0,
                     color: Colors.black,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-                Text("See more"),
+                // GestureDetector(
+                //   child: Container(
+                //     padding:
+                //         EdgeInsets.symmetric(horizontal: 12.0, vertical: 5),
+                //     decoration: BoxDecoration(
+                //       color: Colors.white,
+                //       borderRadius: BorderRadius.circular(29),
+                //     ),
+                //     child: Text(
+                //       "See more",
+                //       style: TextStyle(fontWeight: FontWeight.w400),
+                //     ),
+                //   ),
+                // )
               ],
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 15,
           ),
           Expanded(
             child: isLoading
                 ? Shimmer.fromColors(
-                    baseColor: Colors.red,
-                    highlightColor: Colors.yellow,
+                    baseColor: Color(0xFF00AFB4).withOpacity(.9),
+                    highlightColor: Colors.amber,
                     child: Text(
                       'Doddlemart',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 40.0,
+                        fontSize: 30.0,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -65,7 +80,7 @@ class _ShopScreenState extends State<ShopScreen> {
                     physics: NeverScrollableScrollPhysics(),
                     itemCount: shops.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio: 0.9,
+                        childAspectRatio: 0.85,
                         crossAxisCount: 3,
                         crossAxisSpacing: 2),
                     itemBuilder: (BuildContext context, int index) {
@@ -75,15 +90,44 @@ class _ShopScreenState extends State<ShopScreen> {
                           ShopsScreen.routeName,
                           arguments: ShopsArguments(shops[index]),
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.network(
-                              shops[index]['image'],
-                              width: 100,
-                            ),
-                            Text(shops[index]['name']),
-                          ],
+                        child: Container(
+                          // height: 330,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Colors.white,
+                          ),
+
+                          margin: EdgeInsets.only(
+                            bottom: 10,
+                            left: 5,
+                            right: 5,
+                          ),
+                          // padding: EdgeInsets.only(bottom: 20),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                // color: Colors.red,
+                                child: Image.network(
+                                  shops[index]['image'],
+                                  width: 80,
+                                  height: 80,
+                                ),
+                              ),
+                              Container(
+                                // height: 50,
+                                padding: EdgeInsets.symmetric(horizontal: 4),
+                                child: Text(
+                                  shops[index]['name'],
+                                  textAlign: TextAlign.center,
+                                  // overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       );
                     },

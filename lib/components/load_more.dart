@@ -8,9 +8,16 @@ class LoadMore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(vertical: 10.0),
       child: Column(
         children: [
-          Text("Loading More"),
+          Text(
+            "DoddleMart",
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
           CircularProgressIndicator(),
         ],
       ),
