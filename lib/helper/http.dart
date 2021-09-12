@@ -41,10 +41,17 @@ postAuthHttp(uri, body) async {
 }
 
 postHttp(uri, body) async {
+  print(body);
   try {
     var response = await post(Uri.parse(uri), body: body);
+    print("------");
+    print(response);
+    print("------");
+
     return jsonDecode(response.body);
   } catch (e) {
+    print("aaaa------");
+    print(e);
     return e;
   }
 }

@@ -1,3 +1,6 @@
+import 'package:commerce/helper/http.dart';
+import 'package:commerce/screens/sign_in/sign_in_screen.dart';
+import 'package:commerce/utilities/const.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/components/custom_surfix_icon.dart';
 import 'package:commerce/components/default_button.dart';
@@ -50,6 +53,9 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
   final _formKey = GlobalKey<FormState>();
   List<String> errors = [];
   String email;
+  String otp;
+  String password;
+
   bool hide = true;
   @override
   Widget build(BuildContext context) {
@@ -61,17 +67,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
             keyboardType: TextInputType.emailAddress,
             onSaved: (newValue) => email = newValue,
             onChanged: (value) {
-              if (value.isNotEmpty && errors.contains(kEmailNullError)) {
-                setState(() {
-                  errors.remove(kEmailNullError);
-                });
-              } else if (emailValidatorRegExp.hasMatch(value) &&
-                  errors.contains(kInvalidEmailError)) {
-                setState(() {
-                  errors.remove(kInvalidEmailError);
-                });
-              }
-              return null;
+              email = value;
             },
             validator: (value) {
               if (value.isEmpty && !errors.contains(kEmailNullError)) {
@@ -96,7 +92,25 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
                 style: TextButton.styleFrom(
                   textStyle: const TextStyle(fontSize: 20),
                 ),
-                onPressed: () {},
+                onPressed: () async {
+                  var res =
+                      await postHttp("$baseUrl$resetMobile", {'mobile': email});
+                  // print("$baseUrl$resetMobile");
+
+                  if (!res["success"]) {
+                    final snackBar = SnackBar(
+                      content: Text("No account found"),
+                      backgroundColor: Colors.red,
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  } else {
+                    final snackBar = SnackBar(
+                      content: Text("Otp sent"),
+                      backgroundColor: Colors.green,
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
+                },
                 child: const Text('Send OTP'),
               ),
             ),
@@ -106,14 +120,10 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
             obscureText: true,
             onSaved: (newValue) {},
             onChanged: (value) {
-              if (value.isNotEmpty) {
-              } else if (value.length >= 8) {}
-              return null;
+              otp = value;
             },
             validator: (value) {
               if (value.isEmpty) {
-                return "";
-              } else if (value.length < 8) {
                 return "";
               }
               return null;
@@ -132,14 +142,10 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
             obscureText: hide,
             onSaved: (newValue) {},
             onChanged: (value) {
-              if (value.isNotEmpty) {
-              } else if (value.length >= 8) {}
-              return null;
+              password = value;
             },
             validator: (value) {
               if (value.isEmpty) {
-                return "";
-              } else if (value.length < 8) {
                 return "";
               }
               return null;
@@ -163,9 +169,24 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
           SizedBox(height: SizeConfig.screenHeight * 0.1),
           DefaultButton(
             text: "Continue",
-            press: () {
+            press: () async {
               if (_formKey.currentState.validate()) {
-                // Do what you want to do
+                var res = await postHttp("$baseUrl$resetPassword",
+                    {'mobile': email, "otp": otp, "password": password});
+                if (!res["success"]) {
+                  final snackBar = SnackBar(
+                    content: Text("Invalid OTP"),
+                    backgroundColor: Colors.red,
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                } else {
+                  final snackBar = SnackBar(
+                    content: Text("Password reset"),
+                    backgroundColor: Colors.green,
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  Navigator.pushNamed(context, SignInScreen.routeName);
+                }
               }
             },
           ),

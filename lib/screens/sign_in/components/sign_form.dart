@@ -136,9 +136,6 @@ class _SignFormState extends State<SignForm> {
         if (value.isEmpty) {
           addError(error: kPassNullError);
           return "";
-        } else if (value.length < 8) {
-          addError(error: kShortPassError);
-          return "";
         }
         return null;
       },

@@ -10,6 +10,10 @@ const offerUrl = "/offers";
 
 const productSearchUrl = "/products/search";
 const registerOtp = "/register-otp";
+const resetMobile = "/reset-mobile";
+//
+const resetPassword = "/reset-password";
+
 const loginUrl = "/login";
 const getAddress = "/get-address";
 
