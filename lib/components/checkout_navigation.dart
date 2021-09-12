@@ -21,16 +21,19 @@ class _CheckoutNavigationState extends State<CheckoutNavigation> {
   void loadDelivery() {
     var charge = 0;
     for (var i = 0; i < MyCart().cart.cartItem.length; i++) {
-      charge += int.parse(MyCart()
-          .cart
-          .cartItem[i]
-          .productDetails["product"][widget.region]
-          .toString());
+      // print(MyCart().cart.cartItem[i].productDetails["product"][widget.region]);
+      if (MyCart().cart.cartItem[i].productDetails["product"][widget.region] !=
+          null) {
+        charge += int.parse(MyCart()
+            .cart
+            .cartItem[i]
+            .productDetails["product"][widget.region]
+            .toString());
+      }
     }
     setState(() {
       deliveryCharge = charge;
     });
-    print(deliveryCharge);
   }
 
   @override
