@@ -27,7 +27,8 @@ class CustomSurffixIcon extends StatelessWidget {
     // );
     return SvgPicture.asset(
       svgIcon,
-      height: getProportionateScreenWidth(18),
+      height: getProportionateScreenWidth(20),
+      width: 30,
     );
   }
 }

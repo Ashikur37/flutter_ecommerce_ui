@@ -5,6 +5,7 @@ import 'package:commerce/helper/http.dart';
 import 'package:commerce/screens/order/order_screen.dart';
 import 'package:commerce/utilities/const.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../constants.dart';
 
@@ -76,16 +77,32 @@ class _OrderListState extends State<OrderList> {
   Widget build(BuildContext context) {
     loadOrder();
     return Scaffold(
-        drawer: SideDrawer(),
         bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.abc),
         appBar: AppBar(
+          toolbarHeight: 64,
+          backgroundColor: Colors.grey.shade100,
+          // centerTitle: true,
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: SvgPicture.asset(
+                  'assets/icons/home_toggler.svg',
+                  width: 23,
+                  color: Colors.black,
+                ),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              );
+            },
+          ),
           title: Text(
             "Order List",
-            style: TextStyle(
-              fontSize: 20.0,
-            ),
+            style: TextStyle(fontSize: 20.0, color: kPrimaryColor),
           ),
         ),
+        drawer: SideDrawer(),
         body: SmartRefresher(
           enablePullDown: true,
           enablePullUp: true,
@@ -120,6 +137,7 @@ class _OrderListState extends State<OrderList> {
               : SingleChildScrollView(
                   child: Column(
                     children: [
+                      SizedBox(height: 7),
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
@@ -138,16 +156,17 @@ class _OrderListState extends State<OrderList> {
                                       color: index == activeIndex
                                           ? kPrimaryColor
                                           : Colors.transparent,
-                                      width: 4,
+                                      width: 3.5,
                                     ),
                                   ),
                                 ),
-                                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 10.0, vertical: 12),
                                 child: Text(
                                   status[index],
                                   style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w500,
                                   ),
                                 ),
                               ),
@@ -155,10 +174,10 @@ class _OrderListState extends State<OrderList> {
                           ),
                         ),
                       ),
-                      Container(
-                        color: Colors.grey[100],
-                        height: 10,
-                      ),
+                      // Container(
+                      //   color: Colors.grey[100],
+                      //   height: 1,
+                      // ),
                       Column(
                         children: List.generate(
                           orders.length,
@@ -178,16 +197,17 @@ class _OrderListState extends State<OrderList> {
                                     );
                                   },
                                   child: Container(
+                                    margin: EdgeInsets.only(top: 15),
                                     decoration: BoxDecoration(
                                       border: Border(
                                         bottom: BorderSide(
-                                          width: 3.0,
+                                          width: 1,
                                           color: Colors.grey[200],
                                         ),
                                       ),
                                     ),
                                     padding: EdgeInsets.symmetric(
-                                        horizontal: 30.0, vertical: 10.0),
+                                        horizontal: 15.0, vertical: 10.0),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -199,15 +219,16 @@ class _OrderListState extends State<OrderList> {
                                             Text(
                                               orders[index]["number"],
                                               style: TextStyle(
-                                                fontSize: 20.0,
+                                                fontSize: 18.0,
                                               ),
                                             ),
+                                            SizedBox(height: 5),
                                             Text(
                                               "৳" +
                                                   orders[index]["total"]
                                                       .toString(),
                                               style: TextStyle(
-                                                fontSize: 18.0,
+                                                fontSize: 16.0,
                                                 color: Colors.redAccent,
                                               ),
                                             ),
@@ -220,7 +241,9 @@ class _OrderListState extends State<OrderList> {
                                             Row(
                                               children: [
                                                 Container(
-                                                  padding: EdgeInsets.all(5),
+                                                  padding: EdgeInsets.symmetric(
+                                                      vertical: 5,
+                                                      horizontal: 6),
                                                   decoration: BoxDecoration(
                                                     color:
                                                         statusColors[int.parse(
@@ -228,7 +251,7 @@ class _OrderListState extends State<OrderList> {
                                                     )],
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            3),
+                                                            5),
                                                   ),
                                                   child: Text(
                                                     status[int.parse(
@@ -237,15 +260,19 @@ class _OrderListState extends State<OrderList> {
                                                         ) +
                                                         1],
                                                     style: TextStyle(
-                                                        color: Colors.white),
+                                                        color: Colors.white,
+                                                        fontSize: 12),
                                                   ),
                                                 ),
+                                                SizedBox(width: 5),
                                                 Container(
-                                                  padding: EdgeInsets.all(5),
+                                                  padding: EdgeInsets.symmetric(
+                                                      vertical: 5,
+                                                      horizontal: 6),
                                                   decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            3),
+                                                            5),
                                                     color: (int.parse(orders[
                                                                             index]
                                                                         [
@@ -293,15 +320,17 @@ class _OrderListState extends State<OrderList> {
                                                                   .toString())],
                                                           style: TextStyle(
                                                               color:
-                                                                  Colors.white),
+                                                                  Colors.white,
+                                                              fontSize: 12),
                                                         ),
                                                 ),
                                               ],
                                             ),
+                                            SizedBox(height: 5),
                                             Text(
                                               orders[index]["order_at"],
                                               style: TextStyle(
-                                                fontSize: 18.0,
+                                                fontSize: 16.0,
                                               ),
                                             ),
                                           ],

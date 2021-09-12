@@ -1,4 +1,5 @@
 import 'package:commerce/components/coustom_bottom_nav_bar.dart';
+import 'package:commerce/constants.dart';
 import 'package:commerce/helper/http.dart';
 import 'package:commerce/screens/offer/offer_details.dart';
 import 'package:commerce/utilities/const.dart';
@@ -30,7 +31,10 @@ class _OfferScreenState extends State<OfferScreen> {
     loadProducts();
     return Scaffold(
       appBar: AppBar(
-        title: Text("Offer"),
+        title: Text(
+          "Offer",
+          style: TextStyle(color: kPrimaryColor),
+        ),
       ),
       body: GridView.builder(
         itemCount: offers.length,

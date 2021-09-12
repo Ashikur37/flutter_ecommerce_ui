@@ -1,5 +1,6 @@
 import 'package:commerce/screens/search/search_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -14,8 +15,8 @@ class SearchField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 12, left: SizeConfig.screenWidth * 0.13),
-      width: SizeConfig.screenWidth * 0.70,
-      height: 45,
+      width: SizeConfig.screenWidth * 0.69,
+      height: 44,
       decoration: BoxDecoration(
         color: kSecondaryColor.withOpacity(0.1),
         borderRadius: BorderRadius.circular(29.0),
@@ -28,8 +29,7 @@ class SearchField extends StatelessWidget {
             Navigator.pushNamed(context, SearchScreen.routeName),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(
-            // horizontal: getProportionateScreenWidth(0),
-            vertical: getProportionateScreenWidth(8),
+            vertical: 10.5,
           ),
           border: InputBorder.none,
           focusedBorder: InputBorder.none,
@@ -41,10 +41,9 @@ class SearchField extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.only(left: 3.0),
                 // color: Colors.red,
-                child: FaIcon(
-                  FontAwesomeIcons.search,
-                  size: 17,
-                  // color: Colors.blue,
+                child: SvgPicture.asset(
+                  "assets/icons/search.svg",
+                  width: 18,
                 ),
               ),
             ],

@@ -2,6 +2,7 @@ import 'package:commerce/constants.dart';
 import 'package:commerce/screens/chatscreen/chat_screen.dart';
 import 'package:commerce/screens/store/store_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomProductNavBar extends StatelessWidget {
   final Function addToCart;
@@ -48,8 +49,13 @@ class CustomProductNavBar extends StatelessWidget {
                   //   "STORE",
                   //   textAlign: TextAlign.center,
                   // ),
-                  child: Icon(
-                    Icons.store_outlined,
+                  // child: Icon(
+                  //   Icons.store_outlined,
+                  // ),
+
+                  child: SvgPicture.asset(
+                    'assets/icons/store-alt-solid.svg',
+                    width: 24,
                   ),
                 ),
               ),
@@ -62,7 +68,11 @@ class CustomProductNavBar extends StatelessWidget {
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.10,
                   margin: EdgeInsets.only(right: 10, left: 1),
-                  child: Icon(Icons.chat_rounded),
+                  // child: Icon(Icons.chat_rounded),
+                  child: SvgPicture.asset(
+                    'assets/icons/rocketchat.svg',
+                    width: 28,
+                  ),
                   //  Text(
                   //   "CHAT",
                   //   textAlign: TextAlign.center,

@@ -24,40 +24,40 @@ class Body extends StatelessWidget {
           SizedBox(height: 20),
           ProfileMenu(
             text: "Basic Info",
-            icon: "assets/icons/User Icon.svg",
+            icon: "assets/icons/user-tie-solid.svg",
             press: () => {Navigator.pushNamed(context, BasicProfile.routeName)},
           ),
           ProfileMenu(
             text: "Address",
-            icon: "assets/icons/Bell.svg",
+            icon: "assets/icons/map-marker-solid.svg",
             press: () {
               Navigator.pushNamed(context, AddressList.routeName);
             },
           ),
           ProfileMenu(
             text: "Change Password",
-            icon: "assets/icons/Settings.svg",
+            icon: "assets/icons/key-solid.svg",
             press: () {
               Navigator.pushNamed(context, ChangePassword.routeName);
             },
           ),
           ProfileMenu(
             text: "Order History",
-            icon: "assets/icons/Question mark.svg",
+            icon: "assets/icons/history-solid.svg",
             press: () {
               Navigator.pushNamed(context, OrderList.routeName);
             },
           ),
           ProfileMenu(
             text: "Message",
-            icon: "assets/icons/Question mark.svg",
+            icon: "assets/icons/rocketchat.svg",
             press: () {
               Navigator.pushNamed(context, MessageScreen.routeName);
             },
           ),
           ProfileMenu(
             text: "Log Out",
-            icon: "assets/icons/Log out.svg",
+            icon: "assets/icons/sign-out-alt-solid.svg",
             press: () async {
               await localLogout();
               Navigator.popAndPushNamed(context, SignInScreen.routeName);

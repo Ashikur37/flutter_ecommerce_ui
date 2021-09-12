@@ -41,7 +41,10 @@ class _ChangePasswordState extends State<ChangePassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Change password'),
+        title: Text(
+          'Change password',
+          style: TextStyle(color: kPrimaryColor),
+        ),
       ),
       body: SafeArea(
         child: Form(
@@ -52,9 +55,9 @@ class _ChangePasswordState extends State<ChangePassword> {
               children: [
                 SizedBox(height: getProportionateScreenHeight(30)),
                 buildOldPasswordFormField(),
-                SizedBox(height: getProportionateScreenHeight(30)),
+                SizedBox(height: getProportionateScreenHeight(15)),
                 buildPasswordFormField(),
-                SizedBox(height: getProportionateScreenHeight(30)),
+                SizedBox(height: getProportionateScreenHeight(25)),
                 FormError(errors: errors),
                 SizedBox(height: getProportionateScreenHeight(20)),
                 DefaultButton(
@@ -121,12 +124,37 @@ class _ChangePasswordState extends State<ChangePassword> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: "New Password",
-        hintText: "Enter your password",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
+        fillColor: Color(0XFFf5f5f5),
+        filled: true,
+        contentPadding: EdgeInsets.only(top: 35),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Color(0XFFFf6f6f6), width: 1.0),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(
+            color: Color(0XFFFf6f6f6),
+            width: 1.0,
+          ),
+        ),
+        hintText: "Enter password",
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
+        prefixIcon: Icon(
+          Icons.lock,
+          size: 19,
+        ),
+        prefixIconConstraints: BoxConstraints(
+          minWidth: 35,
+        ),
       ),
     );
   }
@@ -154,12 +182,37 @@ class _ChangePasswordState extends State<ChangePassword> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Old Password",
+        fillColor: Color(0XFFf5f5f5),
+        filled: true,
+        contentPadding: EdgeInsets.only(top: 35),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Color(0XFFFf6f6f6), width: 1.0),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(
+            color: Color(0XFFFf6f6f6),
+            width: 1.0,
+          ),
+        ),
         hintText: "Enter old password",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
+        prefixIcon: Icon(
+          Icons.lock,
+          size: 19,
+        ),
+        prefixIconConstraints: BoxConstraints(
+          minWidth: 35,
+        ),
       ),
     );
   }

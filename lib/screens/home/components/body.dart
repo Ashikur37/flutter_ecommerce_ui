@@ -5,6 +5,7 @@ import 'package:commerce/screens/home/components/carousel.dart';
 import 'package:commerce/screens/home/components/shop_screen.dart';
 import 'package:commerce/utilities/const.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../size_config.dart';
 import 'categories.dart';
@@ -68,12 +69,17 @@ class _BodyState extends State<Body> {
         controller: _scrollController,
         slivers: [
           SliverAppBar(
-            // expandedHeight: 70,
-            // backgroundColor: Colors.red,
+            leading: IconButton(
+              icon: SvgPicture.asset(
+                'assets/icons/home_toggler.svg',
+                width: 24,
+                color: Colors.black,
+              ),
+              onPressed: () => Scaffold.of(context).openDrawer(),
+            ),
             pinned: true,
             toolbarHeight: 70,
             flexibleSpace: Container(
-              // margin: EdgeInsets.only(bottom: 10),
               child: HomeHeader(),
             ),
           ),
@@ -88,10 +94,12 @@ class _BodyState extends State<Body> {
                 //   height: 10,
                 // ),
                 Container(
-                  color: Colors.white,
                   // height: 150,
                   // width: MediaQuery.of(context).size.width * 95,
-                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 12),
                   child: Carousel(),
                 ),
                 Container(
@@ -101,7 +109,7 @@ class _BodyState extends State<Body> {
                   ),
                   child: Categories(),
                 ),
-                SizedBox(height: 15),
+                SizedBox(height: 20),
                 ShopScreen(),
                 Container(
                   // color: Colors.red,

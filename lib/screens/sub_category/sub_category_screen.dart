@@ -1,5 +1,6 @@
 import 'package:commerce/components/load_more.dart';
 import 'package:commerce/components/product_detail.dart';
+import 'package:commerce/constants.dart';
 import 'package:commerce/helper/http.dart';
 import 'package:commerce/utilities/const.dart';
 import 'package:flutter/material.dart';
@@ -53,13 +54,17 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
       }
     });
     return Scaffold(
+      backgroundColor: Color(0XFFf7f8fa),
       appBar: AppBar(
-        title: Text(agrs.subCategory["name"]),
+        title: Text(
+          agrs.subCategory["name"],
+          style: TextStyle(color: kPrimaryColor),
+        ),
       ),
       body: Column(
         children: [
           SizedBox(
-            height: 15,
+            height: 5,
           ),
           Expanded(
             child: GridView.builder(
@@ -68,7 +73,14 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, childAspectRatio: 0.8),
               itemBuilder: (BuildContext context, int index) {
-                return ProductDetail(product: products[index]);
+                return Container(
+                  margin: EdgeInsets.only(right: 5, left: 5, top: 5, bottom: 5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.white,
+                  ),
+                  child: ProductDetail(product: products[index]),
+                );
               },
             ),
           ),

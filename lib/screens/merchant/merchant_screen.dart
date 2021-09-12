@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:commerce/components/load_more.dart';
 import 'package:commerce/components/product_detail.dart';
+import 'package:commerce/constants.dart';
 import 'package:commerce/helper/http.dart';
 import 'package:commerce/screens/details/details_screen.dart';
 import 'package:commerce/screens/store/store_screen.dart';
@@ -55,48 +56,80 @@ class _MerchantScreenState extends State<MerchantScreen> {
       }
     });
     return Scaffold(
+      backgroundColor: Color(0XFFf7f8fa),
       appBar: AppBar(
-        title: Text("Shops"),
+        title: Text(
+          "Shops",
+          style: TextStyle(color: kPrimaryColor),
+        ),
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 15,
-          ),
-          Expanded(
-            child: GridView.builder(
-              controller: _scrollController,
-              itemCount: shops.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  onTap: () => Navigator.pushNamed(
-                    context,
-                    StoreScreen.routeName,
-                    arguments: StoreArguments(shops[index]["id"], true),
-                  ),
-                  child: Container(
-                    child: Column(
-                      children: [
-                        CachedNetworkImage(
-                          height: 150,
-                          imageUrl: shops[index]["image"],
-                          placeholder: (context, url) => new Icon(Icons.shop),
-                          errorWidget: (context, url, error) =>
-                              new Icon(Icons.store_mall_directory),
-                        ),
-                        Text(shops[index]["name"])
-                      ],
-                    ),
-                  ),
-                );
-              },
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 10,
             ),
-          ),
-          isLoadingMore ? LoadMore() : SizedBox()
-        ],
+            Expanded(
+              child: GridView.builder(
+                controller: _scrollController,
+                itemCount: shops.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                ),
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    onTap: () => Navigator.pushNamed(
+                      context,
+                      StoreScreen.routeName,
+                      arguments: StoreArguments(shops[index]["id"], true),
+                    ),
+                    child: Container(
+                      height: 300,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          // border: Border.all(color: Colors.blue, width: 1),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CachedNetworkImage(
+                              height: 100,
+                              imageUrl: shops[index]["image"],
+                              placeholder: (context, url) =>
+                                  new Icon(Icons.shop),
+                              errorWidget: (context, url, error) =>
+                                  new Icon(Icons.store_mall_directory),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            shops[index]["name"],
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w500),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            isLoadingMore ? LoadMore() : SizedBox()
+          ],
+        ),
       ),
     );
   }

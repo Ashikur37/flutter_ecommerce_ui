@@ -53,7 +53,7 @@ class ProductDetail extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Text(
                     product['name'],
                     textAlign: TextAlign.center,
@@ -133,8 +133,8 @@ class ProductDetail extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 0,
-            right: 0,
+            top: 5,
+            right: 5,
             child: Container(
               child: product['discount_percent'] > 0
                   ? Container(
@@ -145,7 +145,7 @@ class ProductDetail extends StatelessWidget {
 
                       // ),
                       padding: EdgeInsets.only(
-                          left: 10.0, right: 4, top: 1.5, bottom: 2),
+                          left: 10.0, right: 4, top: 3.5, bottom: 1.5),
                       decoration: BoxDecoration(
                         color: Color(0xFF00AFB4).withOpacity(.9),
                         borderRadius: BorderRadius.only(
@@ -157,7 +157,7 @@ class ProductDetail extends StatelessWidget {
                         "${product['discount_percent']}% OFF",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 8.5,
+                          fontSize: 9,
                         ),
                       ),
                     )

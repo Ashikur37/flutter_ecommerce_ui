@@ -1,3 +1,4 @@
+import 'package:commerce/constants.dart';
 import 'package:commerce/helper/http.dart';
 import 'package:commerce/screens/campaign/campaign_product_screen.dart';
 import 'package:commerce/utilities/const.dart';
@@ -28,7 +29,10 @@ class _CampaignScreenState extends State<CampaignScreen> {
     loadCampaigns();
     return Scaffold(
       appBar: AppBar(
-        title: Text("Campaign"),
+        title: Text(
+          "Campaign",
+          style: TextStyle(color: kPrimaryColor),
+        ),
       ),
       body: Column(
         children: List.generate(

@@ -2,6 +2,7 @@ import 'package:commerce/components/product_detail.dart';
 import 'package:commerce/helper/http.dart';
 import 'package:commerce/utilities/const.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../constants.dart';
 import '../../size_config.dart';
@@ -32,52 +33,96 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0XFFf7f8fa),
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(height: getProportionateScreenHeight(25)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(left: SizeConfig.screenWidth * 0.1),
-                  width: SizeConfig.screenWidth * 0.7,
-                  decoration: BoxDecoration(
-                    color: kSecondaryColor.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(15),
+            // SizedBox(height: getProportionateScreenHeight(18)),
+
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 16),
+              color: Colors.white,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () => Navigator.pop(context),
+                    // child: Text(
+                    //   "Cancel",
+                    //   style: TextStyle(fontWeight: FontWeight.w600),
+                    // ),
+                    child: Container(
+                      margin: EdgeInsets.only(left: 14, top: 3),
+                      // color: Colors.red,
+                      child: Icon(
+                        Icons.arrow_back,
+                        size: 26,
+                        color: Color(0XFF505050),
+                      ),
+                    ),
                   ),
-                  child: TextField(
-                    autofocus: true,
-                    onChanged: (value) => loadProducts(value),
-                    decoration: InputDecoration(
+                  Container(
+                    height: 46,
+                    margin: EdgeInsets.only(
+                        left: SizeConfig.screenWidth * 0.04,
+                        right: SizeConfig.screenWidth * 0.048),
+                    width: SizeConfig.screenWidth * 0.785,
+                    decoration: BoxDecoration(
+                      color: kSecondaryColor.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: TextField(
+                      autofocus: true,
+                      onChanged: (value) => loadProducts(value),
+                      decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
-                            horizontal: getProportionateScreenWidth(20),
-                            vertical: getProportionateScreenWidth(9)),
+                          vertical: 14.5,
+                        ),
+                        // contentPadding: EdgeInsets.symmetric(
+                        //     horizontal: getProportionateScreenWidth(20),
+                        //     vertical: getProportionateScreenWidth(9)),
                         border: InputBorder.none,
                         focusedBorder: InputBorder.none,
                         enabledBorder: InputBorder.none,
                         hintText: "Search product",
-                        prefixIcon: Icon(Icons.search)),
+                        // prefixIcon: SvgPicture.asset(
+                        //   "assets/icons/search.svg",
+                        //   width: 10,
+                        // ),
+                        prefixIcon: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.only(left: 3.0),
+                              // color: Colors.red,
+                              child: SvgPicture.asset(
+                                "assets/icons/search.svg",
+                                width: 18,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-                GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: Text(
-                    "Cancel",
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  ),
-                )
-              ],
+                ],
+              ),
             ),
-            SizedBox(height: getProportionateScreenHeight(20)),
+            SizedBox(height: getProportionateScreenHeight(6)),
             Expanded(
               child: GridView.builder(
                 itemCount: products.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2, childAspectRatio: 0.8),
                 itemBuilder: (BuildContext context, int index) {
-                  return ProductDetail(product: products[index]);
-                  ;
+                  return Container(
+                      margin:
+                          EdgeInsets.only(right: 5, left: 5, top: 5, bottom: 5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.white,
+                      ),
+                      child: ProductDetail(product: products[index]));
                 },
               ),
             ),

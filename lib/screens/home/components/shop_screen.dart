@@ -42,20 +42,20 @@ class _ShopScreenState extends State<ShopScreen> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                GestureDetector(
-                  child: Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 12.0, vertical: 5),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29),
-                    ),
-                    child: Text(
-                      "See more",
-                      style: TextStyle(fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                )
+                // GestureDetector(
+                //   child: Container(
+                //     padding:
+                //         EdgeInsets.symmetric(horizontal: 12.0, vertical: 5),
+                //     decoration: BoxDecoration(
+                //       color: Colors.white,
+                //       borderRadius: BorderRadius.circular(29),
+                //     ),
+                //     child: Text(
+                //       "See more",
+                //       style: TextStyle(fontWeight: FontWeight.w400),
+                //     ),
+                //   ),
+                // )
               ],
             ),
           ),

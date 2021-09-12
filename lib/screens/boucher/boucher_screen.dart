@@ -15,7 +15,10 @@ class _BoucherScreenState extends State<BoucherScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Boucher"),
+        title: Text(
+          "Boucher",
+          style: TextStyle(color: kPrimaryColor),
+        ),
       ),
       body: Container(
         child: Center(

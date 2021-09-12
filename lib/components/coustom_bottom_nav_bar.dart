@@ -46,7 +46,7 @@ class CustomBottomNavBar extends StatelessWidget {
                 children: [
                   IconButton(
                     icon: SvgPicture.asset(
-                      "assets/icons/Shop Icon.svg",
+                      "assets/icons/home-solid.svg",
                       color: MenuState.home == selectedMenu
                           ? kPrimaryColor
                           : inActiveIconColor,
@@ -61,7 +61,7 @@ class CustomBottomNavBar extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
-                    icon: SvgPicture.asset("assets/icons/Heart Icon.svg"),
+                    icon: SvgPicture.asset("assets/icons/heart.svg"),
                     onPressed: () {
                       Navigator.pushNamed(context, WishListsScreen.routeName);
                     },
@@ -76,7 +76,8 @@ class CustomBottomNavBar extends StatelessWidget {
                   children: [
                     IconButton(
                       icon: SvgPicture.asset(
-                        "assets/icons/campaign.svg",
+                        // "assets/icons/campaign.svg",
+                        'assets/icons/bullhorn-solid.svg',
                         color: kPrimaryColor,
                       ),
                       onPressed: () {
@@ -91,7 +92,7 @@ class CustomBottomNavBar extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
-                    icon: SvgPicture.asset("assets/icons/Cart Icon.svg"),
+                    icon: SvgPicture.asset("assets/icons/opencart.svg"),
                     onPressed: () {
                       Navigator.pushNamed(context, CartScreen.routeName);
                     },

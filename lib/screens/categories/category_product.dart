@@ -16,7 +16,7 @@ class CategoryProduct extends StatelessWidget {
         itemCount: subCategories.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 2.0,
+          crossAxisSpacing: 4.0,
           mainAxisSpacing: 5.0,
         ),
         itemBuilder: (BuildContext context, int index) {

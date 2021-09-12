@@ -1,3 +1,4 @@
+import 'package:commerce/constants.dart';
 import 'package:commerce/models/Cart.dart';
 import 'package:commerce/test.dart';
 import 'package:commerce/utilities/my_cart.dart';
@@ -26,6 +27,7 @@ class _CartScreenState extends State<CartScreen> {
     }
 
     return Scaffold(
+      backgroundColor: Color(0XFFf7f8fa),
       appBar: buildAppBar(context),
       body: Body(
         updateCart: () {
@@ -44,14 +46,17 @@ class _CartScreenState extends State<CartScreen> {
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
       title: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Text(
             "Your Cart",
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: kPrimaryColor),
           ),
           Text(
             "${myCart.getItems().length} items",
-            style: Theme.of(context).textTheme.caption,
+            textAlign: TextAlign.start,
+            // style: Theme.of(context).textTheme.caption,
+            style: TextStyle(fontSize: 12, color: kPrimaryColor),
           ),
         ],
       ),
