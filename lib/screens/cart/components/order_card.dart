@@ -190,7 +190,7 @@ class _OrderCardState extends State<OrderCard> {
             ? SizedBox()
             : Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   widget.isLoading
                       ? SizedBox()
@@ -332,7 +332,7 @@ class CashOnDelivery extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Colors.green, borderRadius: BorderRadius.circular(10)),
               child: Text(
-                "Confirm Order ",
+                "Confirm Orders ",
                 style: TextStyle(color: Colors.white),
               ),
             ),

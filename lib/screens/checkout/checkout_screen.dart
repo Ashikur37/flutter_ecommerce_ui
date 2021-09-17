@@ -123,7 +123,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Order Confirmation"),
+        title: Text(
+          "Order Confirmation",
+          style: TextStyle(color: kPrimaryColor),
+        ),
       ),
       body: Column(
         children: [
@@ -190,9 +193,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         ],
       ),
       bottomNavigationBar: CheckoutNavigation(
-          addressLoading: addressLoading,
-          placeOrder: placeOrder,
-          region: region),
+        addressLoading: addressLoading,
+        placeOrder: placeOrder,
+        region: region,
+      ),
     );
   }
 }

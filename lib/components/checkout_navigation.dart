@@ -55,46 +55,51 @@ class _CheckoutNavigationState extends State<CheckoutNavigation> {
       ),
       child: SafeArea(
           top: false,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width * 0.20,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      "Total Pay",
-                    ),
-                    Text(
-                      "BDT ${MyCart().cart.getTotalAmount() + deliveryCharge}",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ),
-              ),
-              GestureDetector(
-                onTap: () => widget.placeOrder(),
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.35,
-                  padding: EdgeInsets.symmetric(
-                    vertical: 15,
-                    horizontal: 10,
-                  ),
-                  decoration: BoxDecoration(
-                      color: kPrimaryColor,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Text(
-                    "Process to Order",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+          child: Container(
+            padding: EdgeInsets.only(top: 10, left: 15, right: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.30,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Total Pay",
+                      ),
+                      Text(
+                        "BDT ${MyCart().cart.getTotalAmount() + deliveryCharge}",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )
+                    ],
                   ),
                 ),
-              ),
-            ],
+                GestureDetector(
+                  onTap: () => widget.placeOrder(),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    padding: EdgeInsets.symmetric(
+                      vertical: 15,
+                      horizontal: 10,
+                    ),
+                    decoration: BoxDecoration(
+                        color: kPrimaryColor,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Text(
+                      "Process to Order",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           )),
     );
   }

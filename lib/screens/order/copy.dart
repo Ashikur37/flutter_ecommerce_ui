@@ -231,123 +231,107 @@ class _OrderScreenState extends State<OrderScreen> {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 0.0),
+                        padding: const EdgeInsets.only(left: 10.0),
                         child: SingleChildScrollView(
-                          // scrollDirection: Axis.horizontal,
+                          scrollDirection: Axis.horizontal,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10.0),
-                                child: Row(
-                                  children: List.generate(
-                                      status.length,
-                                      (index) => Row(
-                                            children: [
-                                              int.parse(order["order"]
-                                                          ["status"]) ==
-                                                      (index - 1)
-                                                  ? Container(
-                                                      width: 20,
-                                                      height: 20,
-                                                      child: Container(
-                                                        width: 10,
-                                                        height: 10,
-                                                        decoration: BoxDecoration(
-                                                            color:
-                                                                kPrimaryColor,
-                                                            shape: BoxShape
-                                                                .circle),
-                                                      ),
+                              Row(
+                                children: List.generate(
+                                    status.length,
+                                    (index) => Row(
+                                          children: [
+                                            int.parse(order["order"]
+                                                        ["status"]) ==
+                                                    (index - 1)
+                                                ? Container(
+                                                    width: 25,
+                                                    height: 25,
+                                                    child: Container(
+                                                      width: 10,
+                                                      height: 10,
                                                       decoration: BoxDecoration(
-                                                          color:
-                                                              Colors.grey[300],
-                                                          shape:
-                                                              BoxShape.circle),
-                                                    )
-                                                  : Container(
-                                                      width: 20,
-                                                      height: 20,
-                                                      child: int.parse(order[
-                                                                      "order"]
-                                                                  ["status"]) >=
-                                                              index
-                                                          ? (int.parse(order[
-                                                                          "order"]
-                                                                      [
-                                                                      "status"]) ==
-                                                                  6
-                                                              ? Icon(
-                                                                  Icons.close,
-                                                                  color: Colors
-                                                                      .white,
-                                                                  size: 14.0,
-                                                                )
-                                                              : Icon(
-                                                                  Icons.done,
-                                                                  color: Colors
-                                                                      .white,
-                                                                  size: 14.0,
-                                                                ))
-                                                          : SizedBox(),
-                                                      decoration: BoxDecoration(
-                                                          color: (int.parse(order["order"]["status"]) >=
-                                                                      index &&
-                                                                  int.parse(order["order"][
-                                                                          "status"]) !=
-                                                                      6)
-                                                              ? Colors.green
-                                                              : (int.parse(order["order"][
-                                                                          "status"]) ==
-                                                                      6
-                                                                  ? kPrimaryColor
-                                                                  : Colors.grey[
-                                                                      300]),
+                                                          color: kPrimaryColor,
                                                           shape:
                                                               BoxShape.circle),
                                                     ),
-                                              (status.length - 1) == index
-                                                  ? SizedBox()
-                                                  : Container(
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              .117,
-                                                      height: 2,
-                                                      color: int.parse(order[
-                                                                          "order"]
-                                                                      [
-                                                                      "status"]) >=
-                                                                  index &&
-                                                              int.parse(order[
-                                                                          "order"]
-                                                                      [
-                                                                      "status"]) !=
-                                                                  6
-                                                          ? Colors.green
-                                                          : Colors.grey,
-                                                    )
-                                            ],
-                                          )),
-                                ),
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.grey[300],
+                                                        shape: BoxShape.circle),
+                                                  )
+                                                : Container(
+                                                    width: 25,
+                                                    height: 25,
+                                                    child: int.parse(order[
+                                                                    "order"]
+                                                                ["status"]) >=
+                                                            index
+                                                        ? (int.parse(order[
+                                                                        "order"]
+                                                                    [
+                                                                    "status"]) ==
+                                                                6
+                                                            ? Icon(
+                                                                Icons.close,
+                                                                color: Colors
+                                                                    .white,
+                                                                size: 14.0,
+                                                              )
+                                                            : Icon(
+                                                                Icons.done,
+                                                                color: Colors
+                                                                    .white,
+                                                                size: 14.0,
+                                                              ))
+                                                        : SizedBox(),
+                                                    decoration: BoxDecoration(
+                                                        color: (int.parse(order["order"]
+                                                                        [
+                                                                        "status"]) >=
+                                                                    index &&
+                                                                int.parse(order["order"]
+                                                                        [
+                                                                        "status"]) !=
+                                                                    6)
+                                                            ? Colors.green
+                                                            : (int.parse(order["order"]
+                                                                        ["status"]) ==
+                                                                    6
+                                                                ? kPrimaryColor
+                                                                : Colors.grey[300]),
+                                                        shape: BoxShape.circle),
+                                                  ),
+                                            (status.length - 1) == index
+                                                ? SizedBox()
+                                                : Container(
+                                                    width: 50,
+                                                    height: 2,
+                                                    color: int.parse(order[
+                                                                        "order"]
+                                                                    [
+                                                                    "status"]) >=
+                                                                index &&
+                                                            int.parse(order[
+                                                                        "order"]
+                                                                    [
+                                                                    "status"]) !=
+                                                                6
+                                                        ? Colors.green
+                                                        : Colors.grey,
+                                                  )
+                                          ],
+                                        )),
                               ),
-                              SizedBox(height: 3),
-                              SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: List.generate(
-                                    status.length,
-                                    (index) => Container(
-                                      // width: 50,
-                                      width: MediaQuery.of(context).size.width *
-                                              .12 +
-                                          19,
-                                      child: Text(
-                                        status[index],
-                                        style: TextStyle(fontSize: 10.0),
-                                      ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: List.generate(
+                                  status.length,
+                                  (index) => Container(
+                                    width: 70,
+                                    child: Text(
+                                      status[index],
+                                      style: TextStyle(fontSize: 12.0),
                                     ),
                                   ),
                                 ),
@@ -356,7 +340,6 @@ class _OrderScreenState extends State<OrderScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 10),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -372,120 +355,111 @@ class _OrderScreenState extends State<OrderScreen> {
                           Container(
                             width: double.infinity,
                             color: Colors.grey[100],
-                            height: 2,
+                            height: 6,
                           ),
                         ],
                       ),
-                      Container(
-                        padding: EdgeInsets.symmetric(vertical: 20),
-                        child: Column(
-                          children: List.generate(
-                            order["tracks"]["data"].length,
-                            (index) => Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: 75,
-                                  // padding: EdgeInsets.symmetric(horizontal: 20),
-                                  margin: EdgeInsets.only(
-                                      right: 10.0, top: 1.0, left: 12),
-                                  child: Text(
-                                    order["tracks"]["data"][index]["at"],
-                                    textAlign: TextAlign.left,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      fontSize: 15.0,
-                                      color: Colors.grey[600],
-                                    ),
-                                    maxLines: 3,
+                      Column(
+                        children: List.generate(
+                          order["tracks"]["data"].length,
+                          (index) => Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 80,
+                                margin: EdgeInsets.only(right: 10.0, top: 1.0),
+                                child: Text(
+                                  order["tracks"]["data"][index]["at"],
+                                  textAlign: TextAlign.right,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontSize: 15.0,
+                                    color: Colors.grey[600],
                                   ),
+                                  maxLines: 3,
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Column(
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Column(
+                                        children: [
+                                          Container(
+                                            padding: EdgeInsets.all(7),
+                                            decoration: BoxDecoration(
+                                              color: kPrimaryColor,
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                          index !=
+                                                  (order["tracks"]["data"]
+                                                          .length -
+                                                      1)
+                                              ? Container(
+                                                  height: 100,
+                                                  margin: EdgeInsets.only(
+                                                      left: 1.0),
+                                                  width: 2,
+                                                  color: Colors.grey[400],
+                                                )
+                                              : SizedBox()
+                                        ],
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(left: 10.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
-                                            Container(
-                                              padding: EdgeInsets.all(7),
-                                              decoration: BoxDecoration(
-                                                color: kPrimaryColor,
-                                                shape: BoxShape.circle,
+                                            Text(
+                                              order["tracks"]["data"][index]
+                                                  ["title"],
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
                                               ),
                                             ),
-                                            index !=
-                                                    (order["tracks"]["data"]
-                                                            .length -
-                                                        1)
-                                                ? Container(
-                                                    height: 100,
-                                                    margin: EdgeInsets.only(
-                                                        left: 1.0),
-                                                    width: 2,
-                                                    color: Colors.grey[400],
-                                                  )
-                                                : SizedBox()
+                                            SizedBox(
+                                              height: 10.0,
+                                            ),
+                                            Container(
+                                              width: 250,
+                                              child: Text(
+                                                order["tracks"]["data"][index]
+                                                    ["details"],
+                                                textAlign: TextAlign.justify,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: TextStyle(
+                                                  fontSize: 15.0,
+                                                  color: Colors.grey[600],
+                                                ),
+                                                maxLines: 3,
+                                              ),
+                                            ),
                                           ],
                                         ),
-                                        Container(
-                                          margin: EdgeInsets.only(left: 10.0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                order["tracks"]["data"][index]
-                                                    ["title"],
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 5.0,
-                                              ),
-                                              Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    140,
-                                                child: Text(
-                                                  order["tracks"]["data"][index]
-                                                      ["details"],
-                                                  textAlign: TextAlign.justify,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  style: TextStyle(
-                                                    fontSize: 15.0,
-                                                    color: Colors.grey[600],
-                                                  ),
-                                                  maxLines: 3,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                      // Container(
-                      //   width: double.infinity,
-                      //   color: Colors.grey[100],
-                      //   height: 6,
-                      // ),
                       Container(
                         width: double.infinity,
                         color: Colors.grey[100],
-                        height: 2,
+                        height: 6,
+                      ),
+                      Container(
+                        width: double.infinity,
+                        color: Colors.grey[100],
+                        height: 6,
                       ),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -535,13 +509,11 @@ class _OrderScreenState extends State<OrderScreen> {
                             fontSize: 20.0,
                           ),
                         ),
-                        SizedBox(height: 5),
                         Container(
                           width: double.infinity,
                           color: Colors.grey[100],
-                          height: 2,
+                          height: 6,
                         ),
-                        SizedBox(height: 8),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -552,7 +524,6 @@ class _OrderScreenState extends State<OrderScreen> {
                                 Text("৳${order["order"]["total"]}"),
                               ],
                             ),
-                            SizedBox(height: 2),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -560,7 +531,6 @@ class _OrderScreenState extends State<OrderScreen> {
                                 Text("৳${order["order"]["paid_amount"]}"),
                               ],
                             ),
-                            SizedBox(height: 2),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -568,7 +538,6 @@ class _OrderScreenState extends State<OrderScreen> {
                                 Text("৳${order["order"]["shipping_cost"]}"),
                               ],
                             ),
-                            SizedBox(height: 2),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -601,8 +570,8 @@ class _OrderScreenState extends State<OrderScreen> {
                               padding: EdgeInsets.symmetric(
                                   vertical: 5, horizontal: 10.0),
                               decoration: BoxDecoration(
-                                  color: methodColor,
-                                  borderRadius: BorderRadius.circular(8)),
+                                color: methodColor,
+                              ),
                               child: Text(
                                 method,
                                 style: TextStyle(
@@ -612,13 +581,11 @@ class _OrderScreenState extends State<OrderScreen> {
                             )
                           ],
                         ),
-                        SizedBox(height: 5),
                         Container(
                           width: double.infinity,
                           color: Colors.grey[100],
-                          height: 2,
+                          height: 6,
                         ),
-                        SizedBox(height: 5),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -641,7 +608,7 @@ class _OrderScreenState extends State<OrderScreen> {
                 ),
                 SliverToBoxAdapter(
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 15.0),
+                    padding: EdgeInsets.all(20.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -657,79 +624,58 @@ class _OrderScreenState extends State<OrderScreen> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 8),
                         Container(
-                          // margin: EdgeInsets.all(5.0),
+                          margin: EdgeInsets.all(5.0),
                           width: SizeConfig.screenWidth,
-                          // padding: EdgeInsets.all(5.0),
-                          child: Column(
+                          padding: EdgeInsets.all(5.0),
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                width: MediaQuery.of(context).size.width - 20,
-                                padding: EdgeInsets.all(10),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  border:
-                                      Border.all(color: Colors.grey.shade200),
-                                ),
+                                    border: Border.all(
+                                        color: Colors.grey.shade200)),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    SizedBox(height: 2),
                                     Text(
                                       "Bill From",
                                       style: TextStyle(
                                         fontSize: 18.0,
-                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                    SizedBox(height: 6),
                                     Text(order["shop_name"]),
-                                    SizedBox(height: 2),
                                     Text(
                                       order["address"],
                                       textAlign: TextAlign.justify,
                                       overflow: TextOverflow.clip,
                                       maxLines: 3,
                                     ),
-                                    SizedBox(height: 2),
                                     Text(order["phone"]),
-                                    SizedBox(height: 2),
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 10),
                               Container(
-                                width: MediaQuery.of(context).size.width - 20,
-                                padding: EdgeInsets.all(10),
+                                width: MediaQuery.of(context).size.width * 0.45,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
                                     border: Border.all(
                                         color: Colors.grey.shade200)),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    SizedBox(height: 2),
                                     Text(
                                       "Bill To",
                                       style: TextStyle(
                                         fontSize: 18.0,
-                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                    SizedBox(height: 6),
                                     Text(order["order"]["customer_first_name"] +
                                         " " +
                                         order["order"]["customer_last_name"]),
-                                    SizedBox(height: 2),
                                     Text(order["order"]["customer_email"]),
-                                    SizedBox(height: 2),
                                     Text(order["order"]["billing_address_1"]),
-                                    SizedBox(height: 2),
                                     Text(order["order"]["customer_phone"]),
-                                    SizedBox(height: 2),
                                     Row(
                                       children: [
                                         Text(order["order"]
@@ -737,7 +683,6 @@ class _OrderScreenState extends State<OrderScreen> {
                                         Text(order["order"]["billing_city"]),
                                       ],
                                     ),
-                                    SizedBox(height: 15),
                                     int.parse(order["order"]["status"]) < 3
                                         ? GestureDetector(
                                             onTap: () async {
@@ -762,11 +707,11 @@ class _OrderScreenState extends State<OrderScreen> {
                                             },
                                             child: Container(
                                               padding: EdgeInsets.symmetric(
-                                                  vertical: 7, horizontal: 12),
+                                                  vertical: 5, horizontal: 10),
                                               decoration: BoxDecoration(
                                                 color: Colors.grey,
                                                 borderRadius:
-                                                    BorderRadius.circular(6),
+                                                    BorderRadius.circular(10),
                                               ),
                                               child: Text(
                                                 "Change Delivery Address",
@@ -777,8 +722,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                               ),
                                             ),
                                           )
-                                        : SizedBox(),
-                                    SizedBox(height: 2),
+                                        : SizedBox()
                                   ],
                                 ),
                               ),

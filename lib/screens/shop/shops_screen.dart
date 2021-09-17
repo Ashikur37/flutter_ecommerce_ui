@@ -70,43 +70,40 @@ class _ShopsScreenState extends State<ShopsScreen> {
             padding: EdgeInsets.symmetric(vertical: 18, horizontal: 15),
             // color: Colors.red,
             decoration: BoxDecoration(color: Colors.white),
-            child: Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.add_call,
-                          size: 18,
-                        ),
-                        SizedBox(width: 5),
-                        Text(
-                          agrs.shop["phone"],
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(width: 25),
-                        Icon(Icons.location_on_outlined, size: 19),
-                        SizedBox(width: 4),
-                        Expanded(
-                          child: Text(
-                            agrs.shop["location"],
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              height: 1.3,
-                            ),
-                          ),
-                        ),
-                      ],
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Row(
+                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Icon(
+                      Icons.add_call,
+                      size: 18,
                     ),
-                  ),
-                ],
-              ),
+                    SizedBox(width: 5),
+                    Text(
+                      agrs.shop["phone"],
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(width: 25),
+                    Icon(Icons.location_on_outlined, size: 19),
+                    SizedBox(width: 4),
+                    Container(
+                      width: MediaQuery.of(context).size.width * .5 - 10,
+                      child: Text(
+                        agrs.shop["location"],
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          height: 1.3,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
           SizedBox(

@@ -120,7 +120,7 @@ class Categories extends StatelessWidget {
                   },
                 ),
                 SizedBox(
-                  width: 10.0,
+                  width: 5.0,
                 )
               ],
             ),
@@ -150,7 +150,8 @@ class CategoryCard extends StatelessWidget {
       onTap: press,
       child: Container(
         // color: Colors.red,
-        width: getProportionateScreenWidth(70),
+        alignment: Alignment.center,
+        width: getProportionateScreenWidth(67),
         child: Column(
           children: [
             Container(

@@ -93,7 +93,7 @@ class _WishListsScreenState extends State<WishListsScreen> {
                     fontWeight: FontWeight.w500),
               ),
             ),
-      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
+      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.wishlist),
     );
   }
 }

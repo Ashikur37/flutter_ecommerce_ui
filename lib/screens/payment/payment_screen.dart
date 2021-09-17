@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:commerce/screens/home/home_screen.dart';
 import 'package:commerce/screens/order/order_screen.dart';
 import 'package:commerce/utilities/const.dart';
 import 'package:flutter/material.dart';
@@ -98,7 +99,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       isSuccessfull = true;
                       Navigator.popAndPushNamed(
                         context,
-                        OrderScreen.routeName,
+                        HomeScreen.routeName,
                         arguments: OrderDetailsArguments(agrs.orderId),
                       );
                       _onBackPressed();

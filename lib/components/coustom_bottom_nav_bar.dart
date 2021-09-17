@@ -61,7 +61,12 @@ class CustomBottomNavBar extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
-                    icon: SvgPicture.asset("assets/icons/heart.svg"),
+                    icon: SvgPicture.asset(
+                      "assets/icons/heart.svg",
+                      color: MenuState.wishlist == selectedMenu
+                          ? kPrimaryColor
+                          : inActiveIconColor,
+                    ),
                     onPressed: () {
                       Navigator.pushNamed(context, WishListsScreen.routeName);
                     },
@@ -78,7 +83,8 @@ class CustomBottomNavBar extends StatelessWidget {
                       icon: SvgPicture.asset(
                         // "assets/icons/campaign.svg",
                         'assets/icons/bullhorn-solid.svg',
-                        color: kPrimaryColor,
+                        // color: kPrimaryColor,
+                        color: Color(0XFF909090),
                       ),
                       onPressed: () {
                         Navigator.pushNamed(context, CampaignScreen.routeName);
