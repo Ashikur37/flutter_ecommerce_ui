@@ -36,7 +36,7 @@ dependencies:
   cached_network_image: ^3.0.0
   shimmer: ^2.0.0
   flutter_html: ^2.0.0
-  flutter_cart: ^0.0.5+1
+  flutter_cart: ^0.0.6
   shared_preferences: ^2.0.6
   hexcolor: ^2.0.3
   url_launcher: ^6.0.6

@@ -5,6 +5,7 @@ import 'package:commerce/screens/cart/cart_screen.dart';
 import 'package:commerce/utilities/const.dart';
 import 'package:commerce/utilities/my_cart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cart/model/cart_response_wrapper.dart';
 
 import '../../enums.dart';
 import '../../models/Product.dart';
@@ -28,7 +29,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
   var sizeIndex = -1;
   void loadProduct(id) async {
     if (isLoading) {
-      print("$baseUrl/products/$id");
       var prod = await getHttp("$baseUrl/products/$id");
       setState(() {
         product = prod["data"];
@@ -57,7 +57,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
       } else if (product["sizes"].length > 0 && sizeIndex == -1) {
         showMessage("Please select size", Colors.redAccent);
       } else {
-        MyCart().addToCart({
+        var data = MyCart().addToCart({
           "product": product,
           "colorIndex": colorIndex,
           "sizeIndex": sizeIndex

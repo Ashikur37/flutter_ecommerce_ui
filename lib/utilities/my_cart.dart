@@ -5,9 +5,9 @@ class MyCart {
 
 // Creating the instance of flutter cart package.
   var cart = FlutterCart();
-  addToCart(dynamic _product, String u, price) => {
+  addToCart(var _product, String u, price) => {
         message = cart.addToCart(
-            productId: _product["id"],
+            productId: _product["product"]["id"],
             unitPrice: price,
             quantity: 1,
 
