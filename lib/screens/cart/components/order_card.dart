@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:commerce/helper/http.dart';
+import 'package:commerce/screens/home/home_screen.dart';
 import 'package:commerce/screens/order/order_screen.dart';
 import 'package:commerce/screens/payment/delivery_charge_screen.dart';
 import 'package:commerce/screens/payment/payment_screen.dart';
@@ -333,8 +334,8 @@ class _CashOnDeliveryState extends State<CashOnDelivery> {
               // data["data"]["id"]
               Navigator.pushNamed(
                 context,
-                OrderScreen.routeName,
-                arguments: OrderDetailsArguments(widget.orderId),
+                HomeScreen.routeName,
+                // arguments: OrderDetailsArguments(widget.orderId),
               );
             },
             child: Container(
