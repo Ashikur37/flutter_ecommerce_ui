@@ -220,7 +220,8 @@ class _OrderCardState extends State<OrderCard> {
                                             0 ||
                                         widget.paymentStatus == 1
                                     ? SizedBox()
-                                    : widget.isCod == 1
+                                    //is cod widget.isCod
+                                    : 1 == 1
                                         ? GestureDetector(
                                             onTap: () async {
                                               var data = await postAuthHttp(
@@ -291,7 +292,7 @@ class _OrderCardState extends State<OrderCard> {
   }
 }
 
-class CashOnDelivery extends StatelessWidget {
+class CashOnDelivery extends StatefulWidget {
   final int shippingPaid;
   final int orderId;
   final int paymentStatus;
@@ -306,22 +307,34 @@ class CashOnDelivery extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _CashOnDeliveryState createState() => _CashOnDeliveryState();
+}
+
+class _CashOnDeliveryState extends State<CashOnDelivery> {
+  bool isLoading = true;
+  @override
   Widget build(BuildContext context) {
-    return paymentStatus > 0 || status > 0
+    return widget.paymentStatus > 0 || widget.status > 0
         ? Text(
             "Cash On Delivery",
             style: TextStyle(fontSize: 20.0, color: Colors.green),
           )
         : GestureDetector(
             onTap: () async {
-              var data =
-                  await getAuthHttp('$baseUrl/order/${orderId}/confirm-order');
+              if (!isLoading) {
+                return;
+              }
+              setState(() {
+                isLoading = false;
+              });
+              var data = await getAuthHttp(
+                  '$baseUrl/order/${widget.orderId}/confirm-order');
 
               // data["data"]["id"]
               Navigator.pushNamed(
                 context,
                 OrderScreen.routeName,
-                arguments: OrderDetailsArguments(orderId),
+                arguments: OrderDetailsArguments(widget.orderId),
               );
             },
             child: Container(

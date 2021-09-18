@@ -113,6 +113,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         }
         var data = await postAuthHttp('$baseUrl$checkout',
             jsonEncode({"products": item, "address_id": addressId}));
+        MyCart().clearItem();
         Navigator.pushNamed(
           context,
           OrderScreen.routeName,

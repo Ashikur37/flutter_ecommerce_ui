@@ -31,4 +31,5 @@ class MyCart {
   }
 
   getItems() => cart.cartItem;
+  clearItem() => cart.deleteAllCart();
 }
