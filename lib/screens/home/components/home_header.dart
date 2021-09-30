@@ -7,7 +7,8 @@ import 'icon_btn_with_counter.dart';
 import 'search_field.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-const _url = 'https://m.me/easymert.com.bd';
+// const _url = 'https://m.me/easymert.com.bd';
+const _url = 'https://m.me/doddlemart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({
