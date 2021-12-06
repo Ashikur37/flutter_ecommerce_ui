@@ -113,9 +113,10 @@ class _BodyState extends State<Body> {
                 ShopScreen(),
                 Container(
                   // color: Colors.red,
+                  margin: EdgeInsets.only(top: 15),
                   child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 10),
                     child: Row(
                       // mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -137,7 +138,7 @@ class _BodyState extends State<Body> {
           ),
           SliverGrid(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, childAspectRatio: 0.82),
+                crossAxisCount: 2, childAspectRatio: 0.95),
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
                 return Container(

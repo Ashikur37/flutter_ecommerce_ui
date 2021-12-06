@@ -8,7 +8,7 @@ import 'search_field.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // const _url = 'https://m.me/easymert.com.bd';
-const _url = 'https://m.me/doddlemart';
+const _url = 'https://m.me/easymartshoppingbd';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({

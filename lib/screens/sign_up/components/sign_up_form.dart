@@ -145,7 +145,10 @@ class _SignUpFormState extends State<SignUpForm> {
               hide = !hide;
             });
           },
-          child: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
+          child: Icon(
+            Icons.lock,
+            size: 18,
+          ),
         ),
         suffixIcon: IconButton(
           icon: Icon(

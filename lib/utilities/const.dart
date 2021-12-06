@@ -1,5 +1,6 @@
-const baseUrl = "https://doddlemart.com/api";
-const rootUrl = "https://doddlemart.com";
+const baseUrl = "https://easymartshopping.com/api";
+const rootUrl = "https://easymartshopping.com";
+// const rootUrl = "https://doddlemart.com";
 
 // const rootUrl = "http://192.168.31.247/easy";
 // const baseUrl = "http://192.168.31.247/easy/api";
