@@ -1,4 +1,4 @@
-package com.doddlemart.bd
+package com.easymartshopping.bd
 
 import io.flutter.embedding.android.FlutterActivity
 

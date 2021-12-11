@@ -57,7 +57,7 @@ class _SideDrawerState extends State<SideDrawer> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Doddlemart',
+                    'easymartshopping',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: kPrimaryColor,
@@ -80,7 +80,7 @@ class _SideDrawerState extends State<SideDrawer> {
                         width: 3,
                       ),
                       Text(
-                        "Doddlemart.com",
+                        "easymartshopping.com",
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold),
                       )

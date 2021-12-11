@@ -35,7 +35,7 @@ class SubCategoryDetail extends StatelessWidget {
                 highlightColor: Colors.amber,
                 child: Center(
                   child: Text(
-                    'Doddlemart',
+                    'easymartshopping',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16.0,

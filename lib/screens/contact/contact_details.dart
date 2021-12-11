@@ -24,7 +24,7 @@ class _ContactDetailsState extends State<ContactDetails> {
         padding: EdgeInsets.all(10),
         child: Column(children: <Widget>[
           Text(
-            "Doddlemart",
+            "easymartshopping",
             style: TextStyle(
                 color: kPrimaryColor,
                 fontSize: 22,
@@ -48,10 +48,10 @@ class _ContactDetailsState extends State<ContactDetails> {
               ),
               Column(
                 children: [
-                  Text("info@doddlemart.com"),
+                  Text("info@easymartshopping.com"),
                   Container(
                     margin: EdgeInsets.only(left: 19),
-                    child: Text("support@doddlemart.com"),
+                    child: Text("support@easymartshopping.com"),
                   ),
                 ],
               ),

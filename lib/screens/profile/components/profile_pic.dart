@@ -244,7 +244,7 @@ class _ProfilePicState extends State<ProfilePic> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              'Doddlemart Account',
+                                              'easymartshopping Account',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 22.0,

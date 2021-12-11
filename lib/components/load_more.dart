@@ -12,7 +12,7 @@ class LoadMore extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "DoddleMart",
+            "easymartshopping",
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,

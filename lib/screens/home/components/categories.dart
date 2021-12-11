@@ -29,7 +29,7 @@ class Categories extends StatelessWidget {
       },
       {
         "icon": "assets/icons/Gift Icon.svg",
-        "text": "Doddle Offer",
+        "text": "E-Mart Offer",
         "route": OfferScreen.routeName,
         'color': Colors.red.shade300,
       },
@@ -46,43 +46,43 @@ class Categories extends StatelessWidget {
         'color': Colors.teal,
       },
 
-      {
-        "icon": "assets/icons/Prime_shop.svg",
-        "text": "Prime Shop",
-        "route": MerchantScreen.routeName,
-        'color': Colors.purpleAccent,
-      },
+      // {
+      //   "icon": "assets/icons/Prime_shop.svg",
+      //   "text": "Prime Shop",
+      //   "route": MerchantScreen.routeName,
+      //   'color': Colors.purpleAccent,
+      // },
 
-      {
-        "icon": "assets/icons/Voucher.svg",
-        "text": "Boucher",
-        'color': Colors.green.shade300,
-        "route": BoucherScreen.routeName
-      },
-      {
-        "icon": "assets/icons/Voucher_Shop.svg",
-        "text": "Boucher Shop",
-        "route": BoucherScreen.routeName,
-        'color': Colors.red,
-      },
-      {
-        "icon": "assets/icons/biking-solid.svg",
-        "text": "Doddle Ride",
-        "route": BoucherScreen.routeName,
-        'color': Color(0XFF0088ff),
-      },
-      {
-        "icon": "assets/icons/Food.svg",
-        "text": "Doddle Food",
-        "route": BoucherScreen.routeName,
-        'color': Colors.green,
-      },
-      {
-        "icon": "assets/icons/truck-solid.svg",
-        "text": "Doddle Courier",
-        "route": BoucherScreen.routeName,
-        'color': Color(0XFFf405b5),
-      },
+      // {
+      //   "icon": "assets/icons/Voucher.svg",
+      //   "text": "Boucher",
+      //   'color': Colors.green.shade300,
+      //   "route": BoucherScreen.routeName
+      // },
+      // {
+      //   "icon": "assets/icons/Voucher_Shop.svg",
+      //   "text": "Boucher Shop",
+      //   "route": BoucherScreen.routeName,
+      //   'color': Colors.red,
+      // },
+      // {
+      //   "icon": "assets/icons/biking-solid.svg",
+      //   "text": "Doddle Ride",
+      //   "route": BoucherScreen.routeName,
+      //   'color': Color(0XFF0088ff),
+      // },
+      // {
+      //   "icon": "assets/icons/Food.svg",
+      //   "text": "Doddle Food",
+      //   "route": BoucherScreen.routeName,
+      //   'color': Colors.green,
+      // },
+      // {
+      //   "icon": "assets/icons/truck-solid.svg",
+      //   "text": "Doddle Courier",
+      //   "route": BoucherScreen.routeName,
+      //   'color': Color(0XFFf405b5),
+      // },
       // Doddle Ride,Doddle Food
     ];
     return Container(
