@@ -138,7 +138,7 @@ class _BodyState extends State<Body> {
           ),
           SliverGrid(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, childAspectRatio: 0.95),
+                crossAxisCount: 2, childAspectRatio: 0.85),
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
                 return Container(
