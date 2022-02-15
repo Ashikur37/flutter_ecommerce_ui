@@ -10,7 +10,7 @@ const slideUrl = "/slides";
 const offerUrl = "/offers";
 
 const productSearchUrl = "/products/search";
-const registerOtp = "/register-otp";
+const registerOtp = "/regi-otp";
 const resetMobile = "/reset-mobile";
 //
 const resetPassword = "/reset-password";
@@ -18,7 +18,7 @@ const resetPassword = "/reset-password";
 const loginUrl = "/login";
 const getAddress = "/get-address";
 
-const registerUrl = "/register";
+const registerUrl = "/regi";
 const topProducts = "/top-products";
 
 const getItemPrice = "/cart/get-item-price";
